@@ -1,0 +1,334 @@
+#test112211223{
+overflow:hidden;
+}
+
+#confirmOverlay{
+	width:100%;
+	height:100%;
+	position:fixed;
+	top:0;
+	left:0;
+	background:url('ie.png');
+	background: -moz-linear-gradient(rgba(11,11,11,0.1), rgba(11,11,11,0.6)) repeat-x rgba(11,11,11,0.2);
+	background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(11,11,11,0.1)), to(rgba(11,11,11,0.6))) repeat-x rgba(11,11,11,0.2);
+	z-index: 99999;
+}
+
+#confirmOverlay *{
+box-sizing: content-box !important;
+}
+
+#confirmOverlay img{
+display: inline !important;
+}
+
+.top-cart #am_minicart_container  .block-content {
+    background: none;
+    position: relative;
+    right: 0;
+    top: 0px;
+    width: auto;
+}
+
+
+#am-block-related{
+overflow: hidden;
+}
+
+#confirmBox{
+	background-image: url(main-texture.png);
+    width: 100%;
+	max-width: 460px !important;
+    min-width: 320px;
+	position:fixed;
+	text-align: center;
+	margin:-130px 0 0 -230px;
+	border: 1px solid rgba(33, 33, 33, 0.6);
+    z-index: 100;
+	-moz-box-shadow: 0 0 2px rgba(255, 255, 255, 0.6) inset;
+	-webkit-box-shadow: 0 0 2px rgba(255, 255, 255, 0.6) inset;
+	box-shadow: 0 0 2px rgba(255, 255, 255, 0.6) inset;
+}
+
+#hideDiv{
+    width:100%;
+    height:100%;
+    z-index: 10;    
+}
+
+#confirmBox h1,
+#confirmBox p{
+	font:26px/1 'Cuprum','Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	/*background:url('header_bg.jpg') repeat-x left bottom #f5f5f5;*/
+	padding: 18px 5px;
+    margin: 0;
+	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);
+	color:#666;
+}
+
+#confirmBox h1{
+	letter-spacing:0.3px;
+	color:#888;
+    background-image: url(main-texture.png);
+    background-color: #f4f4f4;
+}
+
+#confirmBox p{
+	background:none;
+	font-size:16px;
+	line-height:1.4;
+	padding-top: 5px;
+}
+
+#amcart-count{
+    font: 26px/1 'Cuprum','Lucida Sans Unicode','Lucida Grande',sans-serif;
+    color: #666666;
+    background:none;
+    font-size:16px;
+    line-height:1.4;
+    padding-top: 5px;
+}
+
+#am-input{
+    width:25px;
+    height: 30px;
+    text-align:center;
+    font: 15px 'Cuprum','Lucida Sans Unicode','Lucida Grande',sans-serif;
+}
+
+#am-input:focus{
+    border-color: #ffff99;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset,0 0 8px rgba(82, 168, 236, 0.6);
+    outline: 0 none;
+}
+
+.focus{
+    border-color: #ffff99;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset,0 0 8px rgba(82, 168, 236, 0.6);
+    outline: 0 none;
+}
+
+
+#confirmButtons{
+	padding:5px 0 15px;
+	text-align:center;
+    clear: both;
+}
+
+#confirmButtons button{
+	display:inline-block;
+	position:relative;
+    color: white;
+	height: 33px;  
+	font:17px/33px 'Cuprum','Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	width: 140px;
+    overflow: hidden; 
+	margin-right: 15px;
+	padding: 0 30px 0 30px;
+	text-decoration:none;
+    border-radius: 7px;
+    text-transform: uppercase;
+    -webkit-box-shadow: 0 3px 3px rgba(0,0,0,.25), inset 0 0 3px rgba(255,255,255,.89);
+    -moz-box-shadow: 0 3px 3px rgba(0,0,0,.25), inset 0 0 3px rgba(255,255,255,.89);
+    box-shadow: 0 3px 3px rgba(0,0,0,.25), inset 0 0 3px rgba(255,255,255,.89);
+}
+
+#confirmBox button:last-child{
+    margin-right:0;
+}
+
+.amcart-options form{
+    text-align: left;
+    font:16px/1 'Cuprum','Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);
+    color:#666;
+}
+
+.amcart-options form dd{
+    border-bottom: 1px solid white;
+    margin: 0 0 5px 10px;
+    padding: 5px 0 10px 0;
+}
+
+.amcart-options form dd input {
+    padding: 6px 0 4px 0px;
+    border: 1px solid #cecece;
+    background: #F6F6f6;
+}
+
+.amcart-options form dd select {
+    border: 1px solid #cecece;
+    background: #F6F6f6;
+}
+
+.amcart-options form dd textarea {
+    /* = Убираем скролл */
+    overflow: auto;
+ 
+    /* = Убираем увеличение */
+    resize: none;
+    width: 300px;
+    height: 50px;
+ 
+    /* = Добавим фон, рамку, отступ*/
+    background: #f6f6f6;
+    border: 1px solid #cecece;
+    border-radius: 8px 0 0 0;
+    padding: 8px 0 8px 10px;
+}
+
+#messageBox{
+      padding: 5px 21px 5px 21px;
+}
+
+#messageBox dt label {
+    color: #2F2F2F;
+    font-weight: bold;
+}
+
+#messageBox div.price-box {
+    margin-bottom: 0px;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+#messageBox div.price-box p {
+    margin: 0px;
+    padding: 0px;
+}
+
+#messageBox .required em {
+    color: red;
+    margin-right: 3px;
+}
+
+#amimg_container
+{
+    position: absolute;
+    top: 340px;
+    left: 50%;
+    z-index: 9999;
+}
+
+#amprogress{
+    height:100%;
+    width:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    background:url('ie.png');
+    background: -moz-linear-gradient(rgba(11,11,11,0.1), rgba(11,11,11,0.6)) repeat-x rgba(11,11,11,0.2);
+    background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(11,11,11,0.1)), to(rgba(11,11,11,0.6))) repeat-x rgba(11,11,11,0.2);
+    z-index:100000;
+ }
+ 
+#messageBox .product {
+    margin-left: 0px;
+    padding-top: 5px;;
+}
+
+#messageBox td .price-box p{
+   font-size:13px;
+}
+
+#messageBox td {
+   text-align: center;
+   width:133px;
+   padding:0 3px 5px 3px;
+}
+
+
+#am-block-related table{
+    table-layout: fixed;
+    width: 398px;
+    word-wrap: break-word;
+}
+ 
+ div.product-details{
+    position:relative;
+    bottom: 3px;
+}
+
+#messageBox .block-related p{
+    padding:5px 0 5px 0;
+    margin:0;
+    
+}
+#messageBox p.block-related-p{
+    border-bottom: 1px solid #C4C1BC; 
+}
+
+#am-qty-input{
+    margin:5px;
+}
+
+#am-qty{
+    margin:5px;
+}
+
+#am-qty-button-up{
+    border: black 1px;
+}
+
+#am-qty-button-down{
+   border: black 1px;
+}
+
+#am-qty-button-update{
+    position:relative;
+    top:30px;
+    left:-15px;
+}
+
+#am_minicart_container{
+   background: url("header_bg.jpg") repeat-x scroll left bottom #F5F5F5;
+    border-radius: 2px 2px 2px 2px;
+    color: #555555;
+    padding: 8px;
+    position: absolute;
+    text-align: left;
+    right: 0;
+    width: 234px;
+    z-index: 3000;
+    overflow: hidden; 
+   /*box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset,0 0 8px rgba(82, 168, 236, 0.6);*/
+   -webkit-box-shadow: 1px 1px 1px #D3D3D3; 
+   -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(color=#D3D3D3,direction=125,strength=1)";
+   box-shadow: 1px 1px 1px #D3D3D3;
+}
+
+#am_minicart_container li{
+   width: 220px;
+   padding: 5px;
+   background: none;
+}
+
+#am_minicart_container button.button span{
+   background-color: rgb(117, 178, 211);
+   border: none;
+   border-radius: 2px 2px 2px 2px;
+}
+
+#am_minicart_container button.button{
+    margin: 5px;  
+}
+ 
+
+#am_minicart_container button.button:hover span{
+   background-color: rgb(120, 189, 218);
+}
+
+#am_minicart_container li:hover{
+    background-color: white;
+}
+
+#am_minicart_container a.btn-remove, a.btn-edit {
+    float: right;
+    margin: 1px 0 2px 5px;
+}
+
+@media screen and (max-width: 565px) {
+    #confirmBox button:last-child{
+        margin-right: 15px;
+        margin-top: 5px;
+    }
+}

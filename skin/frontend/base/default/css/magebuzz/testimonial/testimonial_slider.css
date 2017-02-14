@@ -1,0 +1,23 @@
+.block-testimonial-sidebar{}
+.block-testimonial-sidebar .block-content {
+    padding: 5px 9px;
+}
+.block-testimonial-sidebar .testimonial-sidebar-content a{text-decoration:none; color:#222222;}
+.block-testimonial-sidebar .testimonial-sidebar-content .testimonial-author {
+	font-size: 12px;
+	font-style: normal;
+	color: #0A233C;
+	text-align: right;
+	display: block;
+	font-weight: bold;
+}
+.testimonial-date {
+	font-size: 10px;
+	text-align: right;
+	display: block;
+	font-weight: bold;
+}
+.block-testimonial-sidebar .bx-pager{margin:8px auto 0}
+.block-testimonial-sidebar .bx-pager .bx-pager-item{display:inline-block; float:left}
+.block-testimonial-sidebar .bx-pager a{	width:8px; 	height:7px; 	background:url(images/pager-item.png) top left no-repeat;	display: block;	margin: 0 2px;    outline: 0 none;    text-indent: -9999px;}
+.block-testimonial-sidebar .bx-pager a.active{background:url(images/pager-item-active.png) top left no-repeat;}

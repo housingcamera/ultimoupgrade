@@ -1,0 +1,51 @@
+/*!
+ * @category   Apptrian
+ * @package    Apptrian_Subcategories
+ * @author     Apptrian
+ * @copyright  Copyright (c) 2015 Apptrian (http://www.apptrian.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+
+.apptrian-subcategories {
+	clear: both;
+	overflow: auto;
+}
+
+.apptrian-subcategories-heading {
+	margin: 10px 0;
+}
+
+/* bof Grid layout */
+
+.apptrian-subcategories-layout-grid li {
+    float: left;
+    display: block;
+    text-align: center;
+    margin: 10px;
+}
+
+.apptrian-subcategories-layout-grid li span {
+    display: block;
+    margin: 8px 0;
+}
+
+/* eof Grid layout */
+
+
+/* bof List layout */
+
+.apptrian-subcategories-layout-list li {
+    display: block;
+    margin: 10px;
+    overflow: auto;
+}
+
+.apptrian-subcategories-layout-list li > a {
+    float: left;
+}
+
+.apptrian-subcategories-layout-list .category-info {
+    margin-left: 150px;
+}
+
+/* eof List layout */

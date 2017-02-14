@@ -1,0 +1,165 @@
+#tip {
+	position: absolute;
+	border: 1px solid #CCCCCC;
+	background: #A7C2E8;
+	padding: 4px;
+	display: none;
+}
+.testimonial-entry {
+	padding: 20px;
+}
+
+.testimonial-entry  {
+	margin-bottom: 20px;
+}
+
+.testimonial-entry.odd {
+	background: #F8F8F8;
+	border-top: 1px dashed #E0E0E0;
+	border-bottom: 1px dashed #E0E0E0;
+}
+
+.testimonial-tagline {
+	font-family: Lucida Sans Unicode, Arial, sans-serif !important;
+	font-weight: normal !important;
+	font-size: 16px !important;
+	margin: 0 !important;
+}
+
+.testimonial-content {
+
+}
+
+.testimonial-content-avatar {float: left; margin: 4px 10px 0 0;}
+
+.testimonial-content p {
+	color:#808080;
+	font-family:"Lucida Sans Unicode",Arial,Helvetica,sans-serif;
+	font-size:11px !important;
+	font-style:normal !important;
+	line-height:18px;
+	margin:8px 0 !important;
+}
+
+.testimonial-source {
+	font-family: Lucida Sans Unicode, Arial, sans-serif;
+}
+
+.testimonial-author {
+	font-size: 12px;
+	font-style: normal;
+	color: #0A233C;
+	text-align: right;
+	display: block;
+	font-weight: bold;
+}
+
+.testimonial-www {
+	font-style: normal;
+	text-align: right;
+	display: block;
+}
+
+.testimonial-date {
+	font-size: 10px;
+	text-align: right;
+	display: block;
+	font-weight: bold;
+}
+
+
+.customer-testimonials .page-title {
+	margin: 0 0 10px;
+}
+.customer-testimonials .page-title h1 {
+	color: #464646;
+    float: left;
+    font-size: 17px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.customer-testimonials .page-title button {
+	float: right;
+}
+
+.block-testimonial .testimonial-entry {
+	padding: 0;
+}
+
+.block-testimonial .testimonial-content {
+	margin: 0 !important;
+	font-style: italic;
+	padding-bottom: 5px;
+}
+
+.block-testimonial .testimonial-container {
+	padding: 8px;
+}
+
+.block-testimonial .pagination {
+	padding: 5px 8px 10px;
+	margin-bottom: 15px;
+}
+
+.block-testimonial .pagination .btn-prev {
+	background: url("../../images/testimonial/navigation-left.png") no-repeat scroll left top transparent;
+	float: left;
+}
+
+.block-testimonial .pagination .btn-next {
+	background: url("../../images/testimonial/navigation-right.png") no-repeat scroll left top transparent;
+	float: right;
+}
+
+.block-testimonial .pagination a {
+	height: 0;
+	overflow: hidden;
+	padding-top: 18px;
+	width: 18px;
+	display: block;
+}
+
+.testimonial-submit {float: left; width: 685px;}
+.testimonial-submit .page-title h1 {color: #464646; font-weight: bold; font-size: 17px; text-transform: uppercase; }
+
+.testimonial-submit .form-list {float: left; width: 100%;}
+.testimonial-submit .form-list li {float: left; width: 255px; margin: 0 20px 7px 0;}
+.testimonial-submit .form-list li .input-text {float: left; width: 255px; }
+.testimonial-submit .form-list li .std-input-box { width: 535px !important;clear: both; display: block;}
+.testimonial-submit .form-list li.required-std {float: left; width: 100% !important;}
+.testimonial-submit .form-list li.required-std .std-input-box .required-entry {width: 530px !important;}
+.testimonial-submit .form-list li.required-std {margin: 0 !important;}
+.testimonial-submit .input-box-captcha {float: left; width: 100%; margin: 10px 0 0 0;}
+.testimonial-submit .input-box-captcha #captcha {float: left; margin: 0 10px 0 0; }
+.testimonial-submit .input-box-captcha .required-entry {float: left; height: 24px;font-size: 17px; margin: 0 7px 0 0;}
+.testimonial-submit .input-box-captcha p {float: left; width: 100%; }
+.testimonial-submit .input-box-captcha a.refresh-captcha {    float: left;  padding: 11px 0 0;}
+
+/*-- Block Testimonial Sidebar --*/
+
+.block-testimonial-sidebar .block-content {padding: 5px 9px;}
+.block-testimonial-sidebar .block-content .testimonial-sidebar-content {padding: 0 0 15px; float: left;}
+.block-testimonial-sidebar .block-content .std {float: left; width: 100%;}
+.block-testimonial-sidebar .block-content .std .tooltip {font-size: 11px;}
+.block-testimonial-sidebar .block-content .name-date-testimonial {float: left; width: 100%; text-align: right;}
+.block-testimonial-sidebar .block-content .name-date-testimonial h6 {margin: 0;}
+.block-testimonial-sidebar .block-content .name-date-testimonial .name {font-size: 12px;}
+
+/*=======================================*/
+
+
+/*-- Cutomer Testimonial Content --*/
+
+.customer-testimonials .customer-testimonials-content {    
+	float: left;
+    margin: 20px 10px 0;
+	padding: 10px;
+	border: 1px solid #dfdfdf;
+    width: 645px;
+}
+
+.customer-testimonials .customer-testimonials-content:hover { border: 1px solid #ffde1c;}
+.customer-testimonials .customer-testimonials-content.last { margin: 20px 10px;}
+
+/*========================================*/

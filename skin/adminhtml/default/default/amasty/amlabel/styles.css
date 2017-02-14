@@ -1,0 +1,263 @@
+.amlabel-table-position td {
+    padding: 20px;
+    border: 2px solid;
+}
+
+.preview{
+    position: relative;
+    display: inline-block;
+}
+
+.preview-image{
+    border-width: 1px;
+    position: relative;
+    border-style: solid;
+    border-color: #aaa #c8c8c8 #c8c8c8 #aaa;
+}
+
+.amlabel-table-position td:hover{
+    background-color: #FAEBD7;
+}
+
+.amlabel-table-position td.selected {
+    background-color: #FF8C00 !important;
+}
+
+label[for="prod_style_show"],  label[for="cat_style_show"]{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.color_preview{
+    width: 16px;
+    height: 16px;
+    border: 1px solid #000;
+}
+
+#cat_color, #prod_color, #cat_label_color, #prod_label_color{
+    width: 254px;
+}
+
+#cat_label_color, #prod_label_color, #prod_label_color_wheel, #prod_label_color_wheel{
+    margin-bottom: 10px;
+}
+
+/*styles from frontend*/
+
+.amlabel-div {
+    position: relative;
+}
+
+.amlabel-div .amlabel-txt {
+    line-height: 11px;
+    font-size: 0.9em;
+    font-weight: bold;
+    display: block;
+    letter-spacing: 0.01px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.amlabel-div a {
+    text-decoration: none;
+    position: relative;
+}
+
+.amlabel-table {
+    position: absolute;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.amlabel-table td {
+    vertical-align: middle;
+    text-align: center;
+    border: 0;
+    height: auto;
+}
+
+.top-center {
+    top     : 0;
+    left    : 0;
+    right   : 0;
+    margin-left : auto;
+    margin-right : auto;
+}
+
+.middle-left {
+    left : 0;
+    top   : 0;
+    bottom  : 0;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.middle-right {
+    right: 0;
+    top   : 0;
+    bottom  : 0;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.bottom-center {
+    bottom: 0;
+    left    : 0;
+    right   : 0;
+    margin-left : auto;
+    margin-right : auto;
+}
+
+.middle-center {
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    top   : 0;
+    bottom  : 0;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.top-left {
+    top: 0;
+    left: 0;
+}
+
+.top-right {
+    top: 0;
+    right: 0;
+}
+
+.bottom-left {
+    bottom: 0;
+    left: 0;
+}
+
+.bottom-right {
+    bottom: 0;
+    right: 0;
+}
+
+.products-list .amlabel-div {
+    float: left;
+}
+
+* html .amlabel-div {
+    float: left;
+}
+
+* html .amlabel-div a {
+    position: relative;
+}
+
+@media (max-width: 930px) {
+    .amlabel-table {
+        display: none;
+    }
+}
+
+.amlabel-table2 {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.amlabel-txt2 {
+    width: 100%;
+    height: 100%;
+    background-size: contain !important;
+    position: absolute;
+    z-index: 9999;
+}
+
+.amlabel-choose-container input[type="radio"] {
+    margin: 0 10px 5px 0;
+}
+
+.amlabel-choose-container{
+    margin-bottom: 7px;
+}
+
+input[name="cat_img"],  input[name="prod_img"]{
+    width: 100%;
+}
+
+.amlabel-shape{
+    display: inline-block;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #aaa #c8c8c8 #c8c8c8 #aaa;
+    margin: 0 10px 10px 0;
+    height: 40px;
+    vertical-align: top;
+    padding: 2px;
+}
+
+.amlabel-shapes-container {
+    position: absolute;
+}
+
+.amlabel-shapes-container-clone {
+    height: 60px;
+}
+
+img.amlabel-shape-image {
+    height: 100%;
+    vertical-align: middle;
+}
+
+.amlabel-choose-container label{
+    cursor: pointer;
+}
+
+label[for^="shape_no"]{
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 40px;
+}
+
+.form-list td.value textarea {
+    height: 8em;
+}
+
+#cat_preview .note {
+    max-width: 156px;
+}
+
+.amlabel-image-preview{
+    display: inline-block;
+    margin-right: 5px;
+    max-width: 60px;
+    vertical-align: top;
+}
+
+.amlabel-image-preview img{
+    width: 100%
+}
+
+.amlabel-image-upload{
+    max-width: 225px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#cat_preview img, #cat_preview .preview-image{
+    max-width: 156px;
+}
+
+#prod_preview img{
+    max-width: 585px;
+}
+
+.update-preview{
+    cursor: pointer;
+}
+
+.colorpicker{
+    z-index: 99999;
+}
+
+
