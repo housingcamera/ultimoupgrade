@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * StitchLabs_ChannelIntegration extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       StitchLabs
+ * @package        StitchLabs_ChannelIntegration
+ * @copyright      Copyright (c) 2014
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<config>
+    <modules>
+        <StitchLabs_ChannelIntegration>
+            <version>1.0.12</version>
+        </StitchLabs_ChannelIntegration>
+    </modules>
+    <global>
+        <blocks>
+            <stitchlabs_channelintegration>
+                <class>StitchLabs_ChannelIntegration_Block</class>
+            </stitchlabs_channelintegration>
+        </blocks>
+        <helpers>
+            <stitchlabs_channelintegration>
+                <class>StitchLabs_ChannelIntegration_Helper</class>
+            </stitchlabs_channelintegration>
+        </helpers>
+        <models>
+            <stitchlabs_channelintegration>
+                <class>StitchLabs_ChannelIntegration_Model</class>
+                <resourceModel>stitchlabs_channelintegration_resource</resourceModel>
+            </stitchlabs_channelintegration>
+            <stitchlabs_channelintegration_resource>
+                <class>StitchLabs_ChannelIntegration_Model_Resource</class>
+                <entities>
+                    <product>
+                        <table>stitchlabs_channelintegration_product</table>
+                    </product>
+                    <order>
+                        <table>stitchlabs_channelintegration_order</table>
+                    </order>
+                    <info>
+                        <table>stitchlabs_channelintegration_info</table>
+                    </info>
+                </entities>
+            </stitchlabs_channelintegration_resource>
+        </models>
+        <resources>
+            <stitchlabs_channelintegration_setup>
+                <setup>
+                    <module>StitchLabs_ChannelIntegration</module>
+                    <class>StitchLabs_ChannelIntegration_Model_Resource_Setup</class>
+                </setup>
+            </stitchlabs_channelintegration_setup>
+        </resources>
+    </global>
+    <adminhtml>
+        <events>
+            <sales_order_creditmemo_save_after>
+                <observers>
+                    <stitchlabs_channelintegration>
+                        <class>stitchlabs_channelintegration/observer</class>
+                        <method>logCreditMemoStockReturns</method>
+                    </stitchlabs_channelintegration>
+                </observers>
+            </sales_order_creditmemo_save_after>
+        </events>
+    </adminhtml>
+</config>

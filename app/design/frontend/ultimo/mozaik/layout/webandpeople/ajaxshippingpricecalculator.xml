@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+    <wp_ajaxshippingpricecalculator_view>
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>js/webandpeople/ajaxshippingpricecalculator/ajaxshippingpricecalculator.js</name></action>
+            <action method="addItem"><type>skin_css</type><name>css/webandpeople/ajaxshippingpricecalculator/ajaxshippingpricecalculator.css</name></action>
+        </reference>
+        <block name="shipping.calculator.view" type="wp_ajaxshippingpricecalculator/form" template="webandpeople/ajaxshippingpricecalculator/view.phtml" />
+    </wp_ajaxshippingpricecalculator_view>
+
+    <wp_ajaxshippingpricecalculator_index_index>
+        <block type="wp_ajaxshippingpricecalculator/result" name="shipping.calculator.result" template="webandpeople/ajaxshippingpricecalculator/result.phtml" output="toHtml" />
+    </wp_ajaxshippingpricecalculator_index_index>
+
+    <wp_ajaxshippingpricecalculator_left>
+        <update handle="wp_ajaxshippingpricecalculator_view" />
+        <reference name="left">
+            <action method="insert"><block>shipping.calculator.view</block></action>
+        </reference>
+    </wp_ajaxshippingpricecalculator_left>
+
+    <wp_ajaxshippingpricecalculator_right>
+        <update handle="wp_ajaxshippingpricecalculator_view" />
+        <reference name="right">
+            <action method="insert"><block>shipping.calculator.view</block></action>
+        </reference>
+    </wp_ajaxshippingpricecalculator_right>
+
+    <wp_ajaxshippingpricecalculator_short_description>
+        <update handle="wp_ajaxshippingpricecalculator_view" />
+        <reference name="product.info">
+            <block name="shipping.calculator.view" as="other" type="wp_ajaxshippingpricecalculator/form" template="webandpeople/ajaxshippingpricecalculator/view.phtml" />
+        </reference>
+    </wp_ajaxshippingpricecalculator_short_description>
+
+    <wp_ajaxshippingpricecalculator_description>
+        <update handle="wp_ajaxshippingpricecalculator_view" />
+        <reference name="product.info">
+            <block name="shipping.calculator.view" as="description" before="-" type="wp_ajaxshippingpricecalculator/form" template="webandpeople/ajaxshippingpricecalculator/view.phtml">
+                <block type="catalog/product_view_description" name="product.description" as="product_description" template="catalog/product/view/description.phtml"/>
+            </block>
+        </reference>
+    </wp_ajaxshippingpricecalculator_description>
+</layout>

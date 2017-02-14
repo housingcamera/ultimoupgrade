@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * StitchLabs_ChannelIntegration extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       StitchLabs
+ * @package        StitchLabs_ChannelIntegration
+ * @copyright      Copyright (c) 2014
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<config>
+    <api>
+        <resources>
+            <channelintegration_product translate="title" module="stitchlabs_channelintegration">
+                <title>Product API</title>
+                <model>stitchlabs_channelintegration/product_api</model>
+                <acl>channelintegration/product</acl>
+                <methods>
+                    <list translate="title" module="stitchlabs_channelintegration">
+                        <title>Retrieve list of Products</title>
+                        <method>items</method>
+                        <acl>channelintegration/product/list</acl>
+                    </list>
+                    <info translate="title" module="stitchlabs_channelintegration">
+                        <title>Retrieve Product info</title>
+                        <acl>channelintegration/product/info</acl>
+                    </info>
+                    <add translate="title" module="stitchlabs_channelintegration">
+                        <title>Add Product</title>
+                        <acl>channelintegration/product/add</acl>
+                    </add>
+                    <update translate="title" module="stitchlabs_channelintegration">
+                        <title>Update Product</title>
+                        <acl>channelintegration/product/update</acl>
+                    </update>
+                    <remove translate="title" module="stitchlabs_channelintegration">
+                        <title>Remove Product</title>
+                        <acl>channelintegration/product/remove</acl>
+                    </remove>
+                </methods>
+                <faults module="stitchlabs_channelintegration">
+                    <product_not_exists>
+                        <code>101</code>
+                        <message>Requested Product does not exist.</message>
+                    </product_not_exists>
+                    <invalid_data>
+                        <code>102</code>
+                        <message>Provided data is invalid.</message>
+                    </invalid_data>
+                    <save_error>
+                        <code>103</code>
+                        <message>Error while saving Product. Details in error message.</message>
+                    </save_error>
+                    <remove_error>
+                        <code>104</code>
+                        <message>Error while removing Product. Details in error message.</message>
+                    </remove_error>
+                </faults>
+            </channelintegration_product>
+
+            <channelintegration_order translate="title" module="stitchlabs_channelintegration">
+                <title>Order API</title>
+                <model>stitchlabs_channelintegration/order_api</model>
+                <acl>channelintegration/order</acl>
+                <methods>
+                    <list translate="title" module="stitchlabs_channelintegration">
+                        <title>Retrieve list of Orders</title>
+                        <method>items</method>
+                        <acl>channelintegration/order/list</acl>
+                    </list>
+                    <info translate="title" module="stitchlabs_channelintegration">
+                        <title>Retrieve Order info</title>
+                        <acl>channelintegration/order/info</acl>
+                    </info>
+                    <add translate="title" module="stitchlabs_channelintegration">
+                        <title>Add Order</title>
+                        <acl>channelintegration/order/add</acl>
+                    </add>
+                    <update translate="title" module="stitchlabs_channelintegration">
+                        <title>Update Order</title>
+                        <acl>channelintegration/order/update</acl>
+                    </update>
+                    <remove translate="title" module="stitchlabs_channelintegration">
+                        <title>Remove Order</title>
+                        <acl>channelintegration/order/remove</acl>
+                    </remove>
+                </methods>
+                <faults module="stitchlabs_channelintegration">
+                    <order_not_exists>
+                        <code>101</code>
+                        <message>Requested Order does not exist.</message>
+                    </order_not_exists>
+                    <invalid_data>
+                        <code>102</code>
+                        <message>Provided data is invalid.</message>
+                    </invalid_data>
+                    <save_error>
+                        <code>103</code>
+                        <message>Error while saving Order. Details in error message.</message>
+                    </save_error>
+                    <remove_error>
+                        <code>104</code>
+                        <message>Error while removing Order. Details in error message.</message>
+                    </remove_error>
+                </faults>
+            </channelintegration_order>
+
+            <channelintegration_info translate="title" module="stitchlabs_channelintegration">
+                <title>Info API</title>
+                <model>stitchlabs_channelintegration/info_api</model>
+                <acl>channelintegration/info</acl>
+                <methods>
+                    <server translate="title" module="stitchlabs_channelintegration">
+                        <title>Retrieve server info</title>
+                        <acl>channelintegration/info/server</acl>
+                    </server>
+                    <module translate="title" module="stitchlabs_channelintegration">
+                        <title>Retrieve module info</title>
+                        <acl>channelintegration/info/module</acl>
+                    </module>
+                </methods>
+                <faults module="stitchlabs_channelintegration">
+                    <invalid_data>
+                        <code>102</code>
+                        <message>Provided data is invalid.</message>
+                    </invalid_data>
+                </faults>
+            </channelintegration_info>
+        </resources>
+        <resources_alias>
+            <stitch_product>channelintegration_product</stitch_product>
+            <stitch_order>channelintegration_order</stitch_order>
+            <stitch_info>channelintegration_info</stitch_info>
+        </resources_alias>
+        <v2>
+            <resources_function_prefix>
+                <stitch_product>channelintegrationProduct</stitch_product>
+                <stitch_order>channelintegrationOrder</stitch_order>
+                <stitch_info>channelintegrationInfo</stitch_info>
+            </resources_function_prefix>
+        </v2>
+        <acl>
+            <resources>
+                <stitchlabs_channelintegration translate="title" module="stitchlabs_channelintegration">
+                    <title>ChannelIntegration</title>
+                    <product translate="title" module="stitchlabs_channelintegration">
+                        <title>Product</title>
+                        <sort_order>0</sort_order>
+                        <list translate="title" module="stitchlabs_channelintegration">
+                            <title>List</title>
+                        </list>
+                        <info translate="title" module="stitchlabs_channelintegration">
+                            <title>Info</title>
+                        </info>
+                        <add translate="title" module="stitchlabs_channelintegration">
+                            <title>Add</title>
+                        </add>
+                        <update translate="title" module="stitchlabs_channelintegration">
+                            <title>Update</title>
+                        </update>
+                        <remove translate="title" module="stitchlabs_channelintegration">
+                            <title>Remove</title>
+                        </remove>
+                    </product>
+
+                    <order translate="title" module="stitchlabs_channelintegration">
+                        <title>Order</title>
+                        <sort_order>0</sort_order>
+                        <list translate="title" module="stitchlabs_channelintegration">
+                            <title>List</title>
+                        </list>
+                        <info translate="title" module="stitchlabs_channelintegration">
+                            <title>Info</title>
+                        </info>
+                        <add translate="title" module="stitchlabs_channelintegration">
+                            <title>Add</title>
+                        </add>
+                        <update translate="title" module="stitchlabs_channelintegration">
+                            <title>Update</title>
+                        </update>
+                        <remove translate="title" module="stitchlabs_channelintegration">
+                            <title>Remove</title>
+                        </remove>
+                    </order>
+
+                    <info translate="title" module="stitchlabs_channelintegration">
+                        <title>Info</title>
+                        <sort_order>0</sort_order>
+                        <server translate="title" module="stitchlabs_channelintegration">
+                            <title>Server</title>
+                        </server>
+                        <module translate="title" module="stitchlabs_channelintegration">
+                            <title>Module</title>
+                        </module>
+                    </info>
+                </stitchlabs_channelintegration>
+            </resources>
+        </acl>
+    </api>
+</config>

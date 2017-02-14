@@ -1,0 +1,124 @@
+<?php 
+/**
+* @author Amasty Team
+* @copyright Copyright (c) 2013 Amasty (http://www.amasty.com)
+* @package Amasty_Cart
+*/  
+if(Mage::getStoreConfig('amcart/general/enable')): ?>
+    <?php
+    $hlr = $this->helper("amcart");
+    //Visual Options
+    $backgroundColor        = $hlr->getBackgroundColor();
+    $headerBackgroundColor  = $hlr->getHeaderBackgroundColor();
+    $textColor              = $hlr->getTextColor();
+    $buttonTextColor        = $hlr->getButtonTextColor();
+    $leftButtonColor        = $hlr->getLeftButtonColor();
+    $rightButtonColor       = $hlr->getRightButtonColor();
+
+
+    $backgroundColorFrom = $hlr->colourBrightness($backgroundColor, 0.9);
+    $backgroundColorTo   = $hlr->colourBrightness($backgroundColor, -0.7);
+
+    $headerBackgroundColorFrom = $hlr->colourBrightness($headerBackgroundColor, 0.9);
+    $headerBackgroundColorTo   = $hlr->colourBrightness($headerBackgroundColor, -0.7);
+
+    /*left button*/
+    $buttonLeftColorFrom   = $hlr->colourBrightness($leftButtonColor, -0.8);
+    $buttonLeftColorTo     = $hlr->colourBrightness($leftButtonColor, 1);
+    $buttonLeftBorderColor = $hlr->colourBrightness($leftButtonColor, -0.8);
+
+    $buttonLeftColorActiveFrom = $hlr->colourBrightness($leftButtonColor, 1);
+    $buttonLeftColorActiveTo   = $hlr->colourBrightness($leftButtonColor, -0.8);
+
+    $buttonLeftColorHoverFrom = $hlr->colourBrightness($buttonLeftColorFrom, 0.9);
+    $buttonLeftColorHoverTo   = $hlr->colourBrightness($buttonLeftColorTo, 0.9);
+
+    /*right button*/
+    $buttonRightColorFrom  = $hlr->colourBrightness($rightButtonColor, -0.8);
+    $buttonRightColorTo    = $hlr->colourBrightness($rightButtonColor, 1);
+    $buttonRightBorderColor = $hlr->colourBrightness($rightButtonColor, -0.8);
+
+    $buttonRightColorActiveFrom = $hlr->colourBrightness($rightButtonColor, 1);
+    $buttonRightColorActiveTo   = $hlr->colourBrightness($rightButtonColor, -0.8);
+
+    $buttonRightColorHoverFrom = $hlr->colourBrightness($buttonRightColorFrom, 0.9);
+    $buttonRightColorHoverTo   = $hlr->colourBrightness($buttonRightColorTo, 0.9);
+    ?>
+
+    <style>
+        #confirmButtons button span{
+            color: <?php print $buttonTextColor?>;
+        }
+
+        #confirmButtons {
+            color: <?php print $textColor?>;
+        }
+
+        div#confirmBox{
+            background-color: <?php print $backgroundColor?>;
+        }
+
+        div#confirmBox h1{
+            background-color: <?php print $headerBackgroundColor?>;
+        }
+
+        #confirmButtons button.am-btn-left:active
+        {
+            background-color: <?php print $leftButtonColor?>;
+            background-image: -webkit-linear-gradient(bottom, <?php print $buttonLeftColorActiveFrom;?>, <?php print $buttonLeftColorActiveTo;?>);
+            background-image: -moz-linear-gradient(bottom, <?php print $buttonLeftColorActiveFrom;?>, <?php print $buttonLeftColorActiveTo;?>);
+            background-image: -o-linear-gradient(bottom, <?php print $buttonLeftColorActiveFrom;?>, <?php print $buttonLeftColorActiveTo;?>);
+            background-image: linear-gradient(to top, <?php print $buttonLeftColorActiveFrom;?>, <?php print $buttonLeftColorActiveTo;?>);
+        }
+
+        #confirmButtons button.am-btn-left:hover
+        {
+            background-color: <?php print $leftButtonColor?>;
+            background-image: -webkit-linear-gradient(bottom, <?php print $buttonLeftColorHoverFrom;?>, <?php print $buttonLeftColorHoverTo;?>);
+            background-image: -moz-linear-gradient(bottom, <?php print $buttonLeftColorHoverFrom;?>, <?php print $buttonLeftColorHoverTo;?>);
+            background-image: -o-linear-gradient(bottom, <?php print $buttonLeftColorHoverFrom;?>, <?php print $buttonLeftColorHoverTo;?>);
+            background-image: linear-gradient(to top, <?php print $buttonLeftColorHoverFrom;?>, <?php print $buttonLeftColorHoverTo;?>);
+        }
+
+        #confirmButtons button.am-btn-left
+        {
+            background-color: <?php print $leftButtonColor?>;
+            background-image: -webkit-linear-gradient(bottom, <?php print $buttonLeftColorFrom;?>, <?php print $buttonLeftColorTo;?>);
+            background-image: -moz-linear-gradient(bottom, <?php print $buttonLeftColorFrom;?>, <?php print $buttonLeftColorTo;?>);
+            background-image: -o-linear-gradient(bottom, <?php print $buttonLeftColorFrom;?>, <?php print $buttonLeftColorTo;?>);
+            background-image: linear-gradient(to top, <?php print $buttonLeftColorFrom;?>, <?php print $buttonLeftColorTo;?>);
+            border: solid 1px <?php print $buttonLeftBorderColor;?>;
+        }
+        /**right*/
+        #confirmButtons button.am-btn-right:active
+        {
+            background-color: <?php print $rightButtonColor?>;
+            background-image: -webkit-linear-gradient(bottom, <?php print $buttonRightColorActiveFrom;?>, <?php print $buttonRightColorActiveTo;?>);
+            background-image: -moz-linear-gradient(bottom, <?php print $buttonRightColorActiveFrom;?>, <?php print $buttonRightColorActiveTo;?>);
+            background-image: -o-linear-gradient(bottom, <?php print $buttonRightColorActiveFrom;?>, <?php print $buttonRightColorActiveTo;?>);
+            background-image: linear-gradient(to top, <?php print $buttonRightColorActiveFrom;?>, <?php print $buttonRightColorActiveTo;?>);
+        }
+
+        #confirmButtons button.am-btn-right:hover
+        {
+            background-color: <?php print $rightButtonColor?>;
+            background-image: -webkit-linear-gradient(bottom, <?php print $buttonRightColorHoverFrom;?>, <?php print $buttonRightColorHoverTo;?>);
+            background-image: -moz-linear-gradient(bottom, <?php print $buttonRightColorHoverFrom;?>, <?php print $buttonRightColorHoverTo;?>);
+            background-image: -o-linear-gradient(bottom, <?php print $buttonRightColorHoverFrom;?>, <?php print $buttonRightColorHoverTo;?>);
+            background-image: linear-gradient(to top, <?php print $buttonRightColorHoverFrom;?>, <?php print $buttonRightColorHoverTo;?>);
+        }
+
+        #confirmButtons button.am-btn-right
+        {
+            background-color: <?php print $rightButtonColor?>;
+            background-image: -webkit-linear-gradient(bottom, <?php print $buttonRightColorFrom;?>, <?php print $buttonRightColorTo;?>);
+            background-image: -moz-linear-gradient(bottom, <?php print $buttonRightColorFrom;?>, <?php print $buttonRightColorTo;?>);
+            background-image: -o-linear-gradient(bottom, <?php print $buttonRightColorFrom;?>, <?php print $buttonRightColorTo;?>);
+            background-image: linear-gradient(to top, <?php print $buttonRightColorFrom;?>, <?php print $buttonRightColorTo;?>);
+            border: solid 1px <?php print $buttonRightBorderColor;?>;
+        }
+    </style>
+    <script type="text/javascript">
+        var AmAjaxObj = new AmAjax(<?php echo Mage::helper('amcart')->jsParam($this)?>);
+    </script>
+ <?php endif; ?>        

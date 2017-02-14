@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+
+  <catalog_product_view>
+    <reference name="alert.urls">
+      <block type="stamped/stamped" name="stamped.reviews.badge" as="stamped-reviews-badge" template="stamped/badge.phtml"></block>
+    </reference>
+
+    <reference name="content">
+      <block type="stamped/stamped" name="stamped.reviews.widget" as="stamped-reviews-widget" template="stamped/widget.phtml" after="product.info"></block>
+    </reference>
+
+    <reference name="product.info">
+      <block type="stamped/stamped" name="stamped.reviews" as="stamped-reviews" template="stamped/widget2.phtml"/>
+    </reference>
+  </catalog_product_view>
+
+  <default>
+    <reference name="head">
+      <block type="stamped/stamped" as="stamped-js" template="stamped/javascript.phtml" name="stamped.js">
+      </block>
+    </reference>
+
+    <reference name="content">
+      <block type="cms/block" name="stamped" as="stamped">
+        <block type="stamped/stamped" name="stamped.badge" as="stamped-badge" template="stamped/badge.phtml"/>
+        <block type="stamped/stamped" name="stamped.reviews" as="stamped-reviews" template="stamped/reviews.phtml"/>
+      </block>
+    </reference>
+  </default>
+</layout>

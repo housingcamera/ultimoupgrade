@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @author Amasty Team
+* @copyright Copyright (c) 2013 Amasty (http://www.amasty.com)
+* @package Amasty_Cart
+*/
+-->
+<config>
+    <modules>
+        <Amasty_Cart>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Amasty_Cart>
+    </modules>
+</config>

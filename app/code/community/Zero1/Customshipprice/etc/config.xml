@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Zero1_Customshipprice>
+            <version>1.0.1</version>
+        </Zero1_Customshipprice>
+    </modules>
+    
+    <global> 
+        <models>
+            <customshipprice>
+                <class>Zero1_Customshipprice_Model</class>
+            </customshipprice>
+            
+            <adminhtml>
+                <rewrite>
+                    <sales_order_create>Zero1_Customshipprice_Model_Adminhtml_Sales_Order_Create</sales_order_create>
+                </rewrite>
+            </adminhtml>
+        </models>     
+    
+        <blocks>
+            <customshipprice>
+                <class>Zero1_Customshipprice_Block</class>
+            </customshipprice>
+        </blocks>
+        
+        <helpers>
+            <customshipprice>
+                <class>Zero1_Customshipprice_Helper</class>
+            </customshipprice>
+        </helpers>
+    </global>
+    
+    <adminhtml>
+        <layout>
+            <updates>
+                <customshipprice>
+                    <file>customshipprice.xml</file>
+                </customshipprice>
+            </updates>
+        </layout>
+    </adminhtml>
+
+    <default>
+        <carriers>
+            <customshipprice>
+                <active>0</active>
+                <sallowspecific>0</sallowspecific>
+                <model>customshipprice/carrier_customshipprice</model>
+                <name>Custom Shipping Price</name>
+                <title>Custom Shipping Price</title>
+                <specificerrmsg>This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.</specificerrmsg>
+            </customshipprice>
+        </carriers>
+    </default>
+</config>

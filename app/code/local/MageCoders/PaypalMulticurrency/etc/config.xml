@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * @author   MageCoders
+ * @package    MageCoders_PaypalMulticurrency
+ */
+ -->
+<config>
+    <modules>
+        <MageCoders_PaypalMulticurrency>
+            <version>1.0.0</version>
+        </MageCoders_PaypalMulticurrency>
+    </modules>
+     <global>
+        <models>
+            <paypalmulticurrency>
+                <class>MageCoders_PaypalMulticurrency_Model</class>
+            </paypalmulticurrency>
+			<paypal>
+			    <rewrite>
+			        <standard>MageCoders_PaypalMulticurrency_Model_Standard</standard>
+			    </rewrite>
+			    <rewrite>
+			        <hostedpro_request>MageCoders_PaypalMulticurrency_Model_Hostedpro_Request</hostedpro_request>
+			    </rewrite>			
+			
+			    <rewrite>
+			        <cart>MageCoders_PaypalMulticurrency_Model_Cart</cart>
+			    </rewrite>	
+				<rewrite>
+					<express_checkout>MageCoders_PaypalMulticurrency_Model_Express_Checkout</express_checkout>
+				</rewrite>
+					
+				<rewrite>
+					<express>MageCoders_PaypalMulticurrency_Model_Express</express>
+				</rewrite>	
+				<rewrite>
+					<pro>MageCoders_PaypalMulticurrency_Model_Pro</pro>
+				</rewrite>
+				<rewrite>
+					<direct>MageCoders_PaypalMulticurrency_Model_Direct</direct>
+				</rewrite>	
+				<rewrite>
+					<payflowpro>MageCoders_PaypalMulticurrency_Model_Payflowpro</payflowpro>
+				</rewrite>										
+				<rewrite>
+					<payflowlink>MageCoders_PaypalMulticurrency_Model_Payflowlink</payflowlink>
+				</rewrite>														
+					
+			</paypal>
+			
+			<sales>
+				<rewrite>
+					<order_payment>MageCoders_PaypalMulticurrency_Model_Sales_Order_Payment</order_payment>
+				</rewrite>
+			</sales>
+			
+			
+			
+        </models>
+		
+		<helpers>
+			 <paypalmulticurrency>
+                <class>MageCoders_PaypalMulticurrency_Helper</class>
+            </paypalmulticurrency>
+		</helpers>
+       
+    </global>
+	
+	<adminhtml>
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<MageCoders_PaypalMulticurrency>
+							<title>PaypalMulticurrency Pro Module</title>
+							<sort_order>10</sort_order>
+						</MageCoders_PaypalMulticurrency>
+						<system>
+							<children>
+								<config>
+									<children>
+										<paypalmulticurrency translate="title" module="paypalmulticurrency"> 
+											<title>PaypalMulticurrency Settings</title>
+											<sort_order>50</sort_order>
+										</paypalmulticurrency>
+									</children>							
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+	</adminhtml>  
+	
+</config>

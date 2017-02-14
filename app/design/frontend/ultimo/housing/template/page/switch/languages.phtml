@@ -1,0 +1,50 @@
+<?php
+/**
+ * Language switcher
+ *
+ * @see Mage_Page_Block_Switch
+ *
+ */
+?>
+<?php if(count($this->getStores())>1): ?>
+
+    <?php
+        $currStoreName = '';
+        $currStoreCode = '';
+        $html = array();
+        $html[] = '<ul class="dropdown-content left-hand">';
+        foreach($this->getStores() as $_store)
+        {
+            $storeName = $this->__($this->escapeHtml($_store->getName()));
+            $storeId = $_store->getId();
+            $storeCode = $_store->getCode(); //$storeCode = Mage::getStoreConfig('general/locale/code', $storeId);
+            $css = 'style="background-image:url('. $this->getSkinUrl('images/flags/'. $storeCode .'.png') .');"';
+            
+            if($storeId == $this->getCurrentStoreId())
+            {
+                $currStoreName = $storeName;
+                $currStoreCode = $storeCode;
+                $html[] = '<li class="current"><span class="label dropdown-icon" '. $css .'>&nbsp;</span>'. $storeName .'</li>';
+            }
+            else
+            {
+                $html[] = '<li><a href="'. $_store->getCurrentUrl() .'"><span class="label dropdown-icon" '. $css .'>&nbsp;</span>'. $storeName .'</a></li>';
+            }
+        }
+        $html[] = '</ul>';
+    ?>
+
+    <div class="lang-switcher dropdown">
+        <a href="#" class="dropdown-heading cover">
+            <span>
+                <span class="label dropdown-icon flag"
+                style="background-image:url(<?php echo $this->getSkinUrl('images/flags/'. $currStoreCode .'.png'); ?>)">&nbsp;</span>
+                <?php /*?> <p class="label hide-below-1280"><?php echo $this->__('Language'); ?>:</p> <?php */?>
+                <span class="value"><?php echo $currStoreName; ?></span>
+                <span class="caret"></span>
+            </span>
+        </a>
+        <?php echo implode('', $html); ?>
+    </div>
+
+<?php endif; ?>

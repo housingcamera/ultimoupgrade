@@ -1,0 +1,35 @@
+<?php if ($this->isPopupLink()) : ?>
+
+<div class="block-shipping-results">
+    <div class="block-content">
+        <?php echo $this->getLayout()->createBlock('wp_ajaxshippingpricecalculator/result')->setTemplate('webandpeople/ajaxshippingpricecalculator/result_content.phtml')->toHtml(); ?>
+    </div>
+</div>
+
+<?php else : ?>
+
+    <?php if ($this->isOutsideBlock()) : ?>
+
+<div class="block block-shipping-results outside">
+    <div class="block-title">
+        <strong><span><?php echo $this->__('Shipping Rates') ?></span></strong>
+    </div>
+    <div class="block-content">
+        <?php echo $this->getLayout()->createBlock('wp_ajaxshippingpricecalculator/result')->setTemplate('webandpeople/ajaxshippingpricecalculator/result_content.phtml')->toHtml(); ?>
+    </div>
+</div>
+
+    <?php else : ?>
+
+<div class="block block-shipping-results inside">
+    <div class="block-title">
+        <strong><span><?php echo $this->__('Shipping Rates') ?></span></strong>
+    </div>
+    <div class="block-content">
+        <?php echo $this->getLayout()->createBlock('wp_ajaxshippingpricecalculator/result')->setTemplate('webandpeople/ajaxshippingpricecalculator/result_content.phtml')->toHtml(); ?>
+    </div>
+</div>
+
+    <?php endif; ?>
+
+<?php endif; ?>

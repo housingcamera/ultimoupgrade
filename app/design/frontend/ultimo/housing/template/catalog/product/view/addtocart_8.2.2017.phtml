@@ -1,0 +1,71 @@
+<?php $_product = $this->getProduct(); ?>
+<?php $buttonTitle = $this->__('Add to Cart'); ?>
+<?php if ($_product->isSaleable()): ?>
+    <div class="add-to-cart left-side">
+        <?php if(!$_product->isGrouped()): ?>
+            <div class="qty-wrapper">
+                <label for="qty"><?php echo $this->__('Qty:') ?></label>
+                <input type="text" name="qty" id="qty" maxlength="12" value="<?php echo $this->getProductDefaultQty() * 1 ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Qty')) ?>" class="input-text qty" />
+            </div>
+        <?php endif; ?>
+        <button type="button" title="<?php echo $buttonTitle ?>" id="product-addtocart-button" class="button btn-cart" onclick="productAddToCartForm.submit(this)"><span><span><?php echo $buttonTitle ?></span></span></button>
+    </div>
+    <div class="paypal-wrapper"><?php echo $this->getChildHtml('', true, true) ?></div>
+    <script type="text/javascript">
+        //<![CDATA[
+        jQuery(function($) {
+
+            function qtyAdd(a, b, precision) {
+                var x = Math.pow(10, precision || 2);
+                return (Math.round(a * x) + Math.round(b * x)) / x;
+            }
+            function qtySubtract(a, b, precision) {
+                var x = Math.pow(10, precision || 2);
+                return (Math.round(a * x) - Math.round(b * x)) / x;
+            }
+
+            // Insert plus/minus buttons
+            $('.qty-wrapper').append('<div class="qty-buttons-wrapper"><div class="qty-button increase"></div><div class="qty-button decrease"></div></div>');
+
+            // Initialize plus/minus buttons
+            $('.qty-button').on('click', function() {
+
+                var $button = $(this);
+                var $input = $button.parent().parent().find('input');
+                var oldValue = $input.val();
+                var newVal = 0;
+
+                if (isNaN(oldValue))
+                {
+                    $input.css('color', 'red');
+                }
+                else
+                {
+                    if ($button.hasClass('increase'))
+                    {
+                        newVal = qtyAdd(parseFloat(oldValue), 1, 4);
+                        $input.css('color', '');
+                    }
+                    else 
+                    {
+                        var candidateNewValue = qtySubtract(parseFloat(oldValue), 1, 4);
+                        if (oldValue > 0 && candidateNewValue > 0) 
+                        {
+                            newVal = candidateNewValue;
+                        }
+                        else
+                        {
+                            newVal = 0;
+                            $input.css('color', 'red');
+                        }
+                    }
+
+                    $input.val(newVal);
+                }
+
+            });
+
+        });
+        //]]>
+    </script>
+<?php endif; ?>

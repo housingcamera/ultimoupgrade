@@ -1,0 +1,126 @@
+<?php
+/**
+ * @category   Apptrian
+ * @package    Apptrian_Subcategories
+ * @author     Apptrian
+ * @copyright  Copyright (c) 2015 Apptrian (http://www.apptrian.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+
+$helper = Mage::helper('apptrian_subcategories');
+
+$result = $helper->checkCategoryPage(
+		preg_replace(array('/apptrian_subcategories_/', '/_after/', '/_before/'), array('', '', ''), $this->getNameInLayout()));
+
+if (Mage::getStoreConfig('apptrian_subcategories/general/enabled')
+	&& !$helper->isExcluded($result)
+): ?>
+
+<?php
+    
+	$pageType = $result['page_type'];
+	
+    $categories = $helper->getSubcategories($result);
+    
+    if (count($categories) > 0): ?>
+
+<?php
+    
+    $layoutClass              = Mage::getStoreConfig('apptrian_subcategories/' . $pageType . '/subcategories_layout');
+    $showSubcategoriesHeading = Mage::getStoreConfig('apptrian_subcategories/' . $pageType . '/show_subcategories_heading');
+    $showCategoryName         = Mage::getStoreConfig('apptrian_subcategories/' . $pageType . '/show_category_name');
+    $showDescription          = Mage::getStoreConfig('apptrian_subcategories/' . $pageType . '/show_description');
+    $showImage                = Mage::getStoreConfig('apptrian_subcategories/' . $pageType . '/show_image');
+    $height                   = Mage::getStoreConfig('apptrian_subcategories/' . $pageType . '/height');
+    $width                    = Mage::getStoreConfig('apptrian_subcategories/' . $pageType . '/width');
+    
+    if ($height != '' || $width != '') {
+    
+        $placeholderImageUrl = Mage::getModel('catalog/product')->getSmallImageUrl($width, $height);
+        
+        $dAttribs = '';
+        
+        if ($height != '') {
+            $dAttribs .= ' height="' . $height . '" ';
+        }
+        
+        if ($width != '') {
+            if ($dAttribs == '') {
+                $dAttribs .= ' ';
+            }
+            $dAttribs .= 'width="' . $width . '" ';
+        }
+        
+    } else {
+
+        $placeholderImageUrl = Mage::getModel('catalog/product')->getSmallImageUrl();
+        $dAttribs = ' ';
+        
+    }
+
+    if ($showSubcategoriesHeading): ?>
+<h2 class="apptrian-subcategories-heading"><?php echo $this->__('Subcategories') . ':'; ?></h2>
+<?php endif;
+    if ($layoutClass == 'layout-grid'): ?>
+<ul class="apptrian-subcategories <?php echo 'apptrian-subcategories-' . $layoutClass; ?>">
+    <?php foreach ($categories as $category): ?>
+        <li>
+            <?php
+                // Get all needed data
+                $href                = $category['url'];
+                $categoryName        = $category['name'];
+                $src                 = $helper->getImageUrl($category, $showImage, $placeholderImageUrl);
+                $categoryDescription = $helper->getDescription($category, $showDescription);
+            ?>
+            <a href="<?php echo $href; ?>">
+                <?php if ($showCategoryName == 'top'): ?>
+                <span><?php echo $categoryName; ?></span>
+                <?php endif; ?>
+                <?php if ($showImage != 'none'): ?>
+                <img src="<?php echo $src; ?>" alt="<?php echo $categoryName; ?>"<?php echo $dAttribs; ?>/>
+                <?php endif; ?>
+                <?php if ($showCategoryName == 'bottom'): ?>
+                <span><?php echo $categoryName; ?></span>
+                <?php endif; ?>
+            </a>
+            <?php echo $categoryDescription; ?>
+        </li>
+    <?php endforeach; ?>
+</ul>
+<?php else: ?>
+<ul class="apptrian-subcategories <?php echo 'apptrian-subcategories-' . $layoutClass; ?>">
+    <?php foreach ($categories as $category): ?>
+        <li>
+            <?php
+                // Get all needed data
+                $href                = $category['url'];
+                $categoryName        = $category['name'];
+                $src                 = $helper->getImageUrl($category, $showImage, $placeholderImageUrl);
+                $categoryDescription = $helper->getDescription($category, $showDescription);
+            ?>
+            <?php if ($showImage != 'none'): ?>
+            <a href="<?php echo $href; ?>">
+                <?php if ($showImage != 'none'): ?>
+                <img src="<?php echo $src; ?>" alt="<?php echo $categoryName; ?>"<?php echo $dAttribs; ?>/>
+                <?php endif; ?>
+            </a>
+            <div class="apptrian-subcategories-category-info">
+            <?php endif; ?>
+                <?php if ($showCategoryName == 'top'): ?>
+                <h2 class="apptrian-subcategories-category-name"><a href="<?php echo $href; ?>"><?php echo $categoryName; ?></a></h2>
+                <?php endif; ?>
+                <?php echo $categoryDescription; ?>
+                <?php if ($showCategoryName == 'bottom'): ?>
+                <h2 class="apptrian-subcategories-category-name"><a href="<?php echo $href; ?>"><?php echo $categoryName; ?></a></h2>
+                <?php endif; ?>
+            <?php if ($showImage != 'none'): ?>
+            </div>
+            <?php endif; ?>
+        </li>
+    <?php endforeach; ?>
+</ul>
+<?php endif; ?>
+
+<?php endif; ?>
+
+<?php endif; ?>

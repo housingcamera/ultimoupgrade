@@ -1,0 +1,123 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Regions
+ */
+-->
+<config>
+    <modules>
+        <Amasty_Regions>
+            <version>1.0.1</version>
+        </Amasty_Regions>
+    </modules>
+
+
+    <global>
+        <models>
+            <amregions>
+                <class>Amasty_Regions_Model</class>
+                <resourceModel>amregions_resource</resourceModel>
+            </amregions>
+
+            <amregions_resource>
+                <class>Amasty_Regions_Model_Resource</class>
+                <entities>
+                    <region>
+                        <table>amasty_regions_region</table>
+                    </region>
+                    <region_country>
+                        <table>amasty_regions_region_country</table>
+                    </region_country>
+                </entities>
+            </amregions_resource>
+
+            <enterprise_customersegment>
+                <rewrite>
+                    <observer>Amasty_Regions_Model_Customersegment_Observer</observer>
+                </rewrite>
+            </enterprise_customersegment>
+        </models>
+
+        <resources>
+            <amregions_setup>
+                <setup>
+                    <module>Amasty_Regions</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </amregions_setup>
+
+            <amregions_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </amregions_write>
+
+            <amregions_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </amregions_read>
+        </resources>
+
+
+        <blocks>
+            <amregions>
+                <class>Amasty_Regions_Block</class>
+            </amregions>
+        </blocks>
+
+        <helpers>
+            <amregions>
+                <class>Amasty_Regions_Helper</class>
+            </amregions>
+        </helpers>
+        <events>
+            <salesrule_rule_condition_combine>
+                <observers>
+                    <amasty_regions_model_observer>
+                        <type>singleton</type>
+                        <class>amregions/observer</class>
+                        <method>handleNewConditions</method>
+                    </amasty_regions_model_observer>
+                </observers>
+            </salesrule_rule_condition_combine>
+        </events>
+    </global>
+
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Amasty_Regions before="Mage_Adminhtml">Amasty_Regions_Adminhtml</Amasty_Regions>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <amregions module="Amasty_Regions">
+                    <file>amasty/amregions/amregions.xml</file>
+                </amregions>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Amasty_Regions>
+                    <files>
+                        <default>Amasty_Regions.csv</default>
+                    </files>
+                </Amasty_Regions>
+            </modules>
+        </translate>
+    </adminhtml>
+
+</config>

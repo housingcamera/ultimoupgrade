@@ -1,0 +1,62 @@
+"Google Shopping","Google Shopping"
+"Create a new data feed","Nieuwe datafeed aanmaken"
+"Simplegoogleshopping filename","Simplegoogleshopping bestandsnaam"
+"File path","Bestands pad"
+"File link","Bestands link"
+"Last update","Laatst gewijzigd"
+"Website url", "Website url"
+"Title", "Titel"
+"Xml product pattern", "XML product model"
+"Filename", "Bestandsnaam"
+"Path", "Pad"
+
+"Description", "Omschrijving"
+"Store View","StoreView"
+"Action","Actie"
+"Save & Generate","Opslaan en genereren"
+"Save & Continue","Opslaan en verder gaan"
+"Copy","Kopie&euml;ren"
+"Save","Opslaan"
+"Back","Terug"
+"Reset","Terug zetten"
+
+"Configuration", "Configuratie"
+"Categories", "Categorie&euml;n"
+"Product type","Product type"
+"Visibility","Zichtbaar"
+"Attributes","Attribuut"
+"Not Visible Individually", "Induvidueel niet zichtbaar"
+"Catalog", "Catalogus"
+"Search", "Zoeken"
+"Catalog, Search", "Catalogus & Zoeken"
+
+"Preview", "Voorbeeld"
+"products", "Producten"
+"Delete", "Verwijderen"
+"Generate","Genereren"
+"Edit","Bewerken"
+"Filters", "Filters"
+
+"Create a new data feed","Nieuwe datafeed aanmaken"
+"Modify data feed : ","Datefeed bewerken :"
+"This is a required field.", "Dit is een verplicht veld."
+
+"Item does not exist","Het item bestaat niet."
+"Generate a data feed can take a while. Are you sure you want to generate it now ?","Het genereren kan enige tijd in beslag nemen. Weet u zeker dat u de datafeed wilt genereren?"
+
+
+"The data feed \"%s\" has been generated.","De datafeed \"%s\" is gegenereerd."
+"The data feed has been saved.","De datafeed is opgeslagen."
+"The data feed has been deleted.","De datafeed is verwijderd."
+"Unable to find a data feed to delete.","Er zijn geen gegevens gevonden om te verwijderen."
+"Unable to generate the data feed.","Er kon geen datafeed gegenereerd worden."
+"Unable to find a data feed to generate.","Er kon geen datafeed gevonden worden om te genereren."
+"Please define correct path","Geef een correct pad op"
+"Please create the specified folder \"%s\" before saving the data feed.","Maak de folder "%s" aan voordat u de datafeed opslaat."
+"Please make sure that \"%s\" is writable by web-server.","Er dienen schrijfrechten te staan op \"%s\"."
+"Please use only letters (a-z or A-Z), numbers (0-9) or underscore (_) in the filename. No spaces or other characters are allowed.","Gebruik alleen letters (a-z of A-Z), getallen (0-9) of underscore (_) in bestandsnamen. Geen spaties of andere tekens toegestaan."
+"File \"%s\" cannot be saved. Please, make sure the directory \"%s\" is writeable by web server.","Het bestand \"%s\" kon niet worden opgeslagen. Er dienen schrijfrechten te staan op \"%s\"."
+
+
+
+

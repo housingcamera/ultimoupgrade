@@ -1,0 +1,29 @@
+<script type="text/javascript">
+    //<![CDATA[
+    function importHistoryOrders() {
+        new Ajax.Request('<?php echo Mage::helper('adminhtml')->getUrl('adminhtml/adminhtml_stamped/importHistoryOrders') ?>', {
+            method:     'get',
+            parameters: {
+                "store" : "<?php echo Mage::app()->getRequest()->getParam('store', 0); ?>"
+            },
+            onComplete: function(transport){
+                if (transport.responseText == 1){
+                    var html = '<ul class="messages"><li class="success-msg"><ul><li>' + 'Your orders has been imported to Stamped.io successfully. Please visit https://go.stamped.io/ to check your scheduled reviews requests.' + '</li></ul></li></ul>';
+                    $('messages').update(html);
+                } 
+                else {
+                    var html = '<ul class="messages"><li class="error-msg"><ul><li>' + transport.responseText + '</li></ul></li></ul>';
+                    $('messages').update(html);    
+                }
+            }
+        });
+    }
+    //]]>
+</script>
+
+<?php echo $this->getLayout()->createBlock('adminhtml/widget_button')
+            ->setData(array(
+            'id'        => 'stamped_button',
+            'label'     => $this->helper('adminhtml')->__('Import History Orders'),
+            'onclick'   => 'javascript:importHistoryOrders(); return false;'
+        )) -> _toHtml(); ?>

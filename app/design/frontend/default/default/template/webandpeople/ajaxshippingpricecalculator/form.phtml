@@ -1,0 +1,78 @@
+<?php if ($this->isPopupLink()) : ?>
+
+<div class="col2-set">
+    <div class="col-1">
+        <h3><?php echo $this->__('Shipping Rates') ?></h3>
+        <p><?php echo $this->__('Click "Calculate" to show result below') ?></p>
+        <fieldset id="shipping-calculator-results" style="display:none"></fieldset>
+    </div>
+    <div class="col-2 block-shipping-calculator">
+        <h3><?php echo $this->__('Destination') ?></h3>
+        <p><?php echo $this->__('Enter your destination to get a shipping estimate.') ?></p>
+        <div class="block-content">
+            <?php echo $this->getLayout()->createBlock('wp_ajaxshippingpricecalculator/form')->setTemplate('webandpeople/ajaxshippingpricecalculator/form_content.phtml')->toHtml(); ?>
+        </div>
+    </div>
+</div>
+<div class="col2-set">
+    <div class="buttons-set">
+        <span class="please-wait" id="shipping-calculator-loading-message" style="display:none;">
+            <img src="<?php echo $this->getSkinUrl('images/webandpeople/ajaxshippingpricecalculator/progress.gif') ?>" alt="<?php echo $this->__('Loading rates...') ?>" title="<?php echo $this->__('Loading rates...') ?>" class="v-middle" /> <?php echo $this->__('Loading rates...') ?>
+        </span>
+        <button id="shipping-calculator-button" type="button" title="<?php echo $this->__('Calculate') ?>" onclick="wpCalculateProductShipping('<?php echo $this->jsQuoteEscape($this->getCalculatorUrl());?>')" class="button"><span><span><?php echo $this->__('Calculate') ?></span></span></button>
+    </div>
+</div>
+
+<?php else : ?>
+
+    <?php if ($this->isOutsideBlock()) : ?>
+
+<div class="block block-shipping-calculator outside">
+    <div class="block-title">
+        <strong><span><?php echo $this->__('Calculate Shipping Price') ?></span></strong>
+    </div>
+    <div class="block-content">
+
+        <p class="block-subtitle"><?php echo $this->__('Enter your destination to get a shipping estimate.') ?></p>
+
+        <?php echo $this->getLayout()->createBlock('wp_ajaxshippingpricecalculator/form')->setTemplate('webandpeople/ajaxshippingpricecalculator/form_content.phtml')->toHtml(); ?>
+
+        <div class="actions">
+            <span class="please-wait" id="shipping-calculator-loading-message" style="display:none;">
+                <img src="<?php echo $this->getSkinUrl('images/webandpeople/ajaxshippingpricecalculator/progress.gif') ?>" alt="<?php echo $this->__('Loading rates...') ?>" title="<?php echo $this->__('Loading rates...') ?>" class="v-middle" /> <?php echo $this->__('Loading rates...') ?>
+            </span>
+            <div class="f-right">
+                <button id="shipping-calculator-button" type="button" title="<?php echo $this->__('Calculate') ?>" onclick="wpCalculateProductShipping('<?php echo $this->jsQuoteEscape($this->getCalculatorUrl());?>')" class="button"><span><span><?php echo $this->__('Calculate') ?></span></span></button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="shipping-calculator-results" style="display:none"></div>
+
+    <?php else : ?>
+
+<div class="block block-shipping-calculator inside">
+    <div class="block-title">
+        <strong><span><?php echo $this->__('Calculate Shipping Price') ?></span></strong>
+    </div>
+    <div class="block-content">
+
+        <p class="block-subtitle"><?php echo $this->__('Enter your destination to get a shipping estimate.') ?></p>
+
+        <?php echo $this->getLayout()->createBlock('wp_ajaxshippingpricecalculator/form')->setTemplate('webandpeople/ajaxshippingpricecalculator/form_content.phtml')->toHtml(); ?>
+
+        <div class="actions">
+            <span class="please-wait" id="shipping-calculator-loading-message" style="display:none;">
+                <img src="<?php echo $this->getSkinUrl('images/webandpeople/ajaxshippingpricecalculator/progress.gif') ?>" alt="<?php echo $this->__('Loading rates...') ?>" title="<?php echo $this->__('Loading rates...') ?>" class="v-middle" /> <?php echo $this->__('Loading rates...') ?>
+            </span>
+            <div class="f-right">
+                <button id="shipping-calculator-button" type="button" title="<?php echo $this->__('Calculate') ?>" onclick="wpCalculateProductShipping('<?php echo $this->jsQuoteEscape($this->getCalculatorUrl());?>')" class="button"><span><span><?php echo $this->__('Calculate') ?></span></span></button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="shipping-calculator-results" style="display:none"></div>
+
+    <?php endif; ?>
+
+<?php endif; ?>

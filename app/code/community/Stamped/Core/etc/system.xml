@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <tabs>
+    <stamped>
+      <label>Stamped.io</label>
+      <sort_order>500</sort_order>
+    </stamped>
+  </tabs>
+
+  <sections>
+    <stamped module="stamped">
+      <label>Stamped.io Reviews</label>
+      <tab>stamped</tab>
+      <frontend_type>text</frontend_type>
+      <sort_order>1</sort_order>
+      <show_in_default>1</show_in_default>
+      <show_in_website>1</show_in_website>
+      <show_in_store>1</show_in_store>
+      <groups>
+        <default_config_group translate="label">
+          <label>Stamped Settings</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>1</sort_order>
+          <show_in_store>0</show_in_store>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <comment>
+            <![CDATA[
+                  <p>Stamped.io allows you to automatically send emails to your customers requesting for reviews of their recent purchase with you.</p>
+                  <p>Edit the Settings by selecting store view from the "<strong>Current Configuration Scope</strong>" dropdown on the top of the left sidebar.</p>
+                ]]>
+          </comment>
+        </default_config_group>
+
+        <stamped_settings_group translate="label">
+          <label>Settings</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>2</sort_order>
+          <show_in_store>1</show_in_store>
+          <show_in_default>0</show_in_default>
+          <show_in_website>0</show_in_website>
+          <comment>
+            <![CDATA[
+                  <p>Please enter the following API Public & Private Key, you can grab the keys from your Stamped.io Profile's page here: <a href="http://go.stamped.io/#/app/settings">http://go.stamped.io/#/app/settings</a></p>
+                  ]]>
+          </comment>
+
+          <fields>
+            <stamped_apikey>
+              <label>API Public Key</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>1</sort_order>
+              <comment>
+              </comment>
+              <show_in_store>1</show_in_store>
+              <show_in_website>0</show_in_website>
+              <show_in_default>0</show_in_default>
+            </stamped_apikey>
+            <stamped_apisecret>
+              <label>API Private Key</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>2</sort_order>
+              <comment>
+              </comment>
+              <show_in_store>1</show_in_store>
+              <show_in_default>0</show_in_default>
+              <show_in_website>0</show_in_website>
+            </stamped_apisecret>
+            <stamped_storeurl>
+              <label>Store URL</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>3</sort_order>
+              <comment>
+                <![CDATA[
+                              This URL should match the one provided in your Stamped.io account
+                              ]]>
+              </comment>
+              <show_in_store>1</show_in_store>
+              <show_in_default>0</show_in_default>
+              <show_in_website>0</show_in_website>
+            </stamped_storeurl>
+            <enable_widget>
+              <label>Show reviews widget in product page</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <enabled>1</enabled>
+              <sort_order>4</sort_order>
+              <comment>
+                <![CDATA[
+                   Show reviews widget in product page
+                ]]>
+              </comment>
+              <show_in_default>0</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>1</show_in_store>
+            </enable_widget>
+            <order_status_trigger translate="label">
+              <label>Order status to trigger Review Requests Emails</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>4</sort_order>
+              <comment>
+                <![CDATA[
+                              Set the order statuses that will trigger the review requests to be sent, example of commonly used statuses are "Complete", "Shipped," "Pending," or "Received.". Seperate multiple status with comma e.g. "Complete, Shipped"
+                              ]]>
+              </comment>
+              <show_in_store>1</show_in_store>
+              <show_in_default>0</show_in_default>
+              <show_in_website>0</show_in_website>
+            </order_status_trigger>
+          </fields>
+        </stamped_settings_group>
+
+        <stamped_import_group translate="label">
+          <label>History Orders Import</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>3</sort_order>
+          <show_in_store>1</show_in_store>
+          <show_in_default>0</show_in_default>
+          <show_in_website>0</show_in_website>
+          <comment>
+          </comment>
+
+          <fields>
+            <import_history_orders translate="label">
+              <label>
+                <![CDATA[
+                              Import your existing orders history up to 6 months to Stamped.io. <br /><br /><i>If you need to import orders that is back-dated more than 6 months, please email us at hello@shopry.com</i>
+                              ]]>
+              </label>
+              <frontend_type>button</frontend_type>
+              <frontend_model>
+                stamped/adminhtml_system_config_form_button
+              </frontend_model>
+              <sort_order>3</sort_order>
+              <show_in_store>1</show_in_store>
+              <show_in_default>0</show_in_default>
+              <show_in_website>0</show_in_website>
+              <comment>
+              </comment>
+            </import_history_orders>
+          </fields>
+        </stamped_import_group>
+      </groups>
+    </stamped>
+  </sections>
+</config>

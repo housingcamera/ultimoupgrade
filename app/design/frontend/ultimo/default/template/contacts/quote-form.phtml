@@ -1,0 +1,114 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+
+<script type="text/javascript">
+//<![CDATA[
+    var RecaptchaOptions = {
+        theme : 'red',
+lang : 'en',
+    };
+//]]>
+</script>
+
+
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+
+
+<form action="<?php echo $this->getFormAction(); ?>" id="contactForm" method="post">
+    <div class="fieldset" style="padding-right:0; padding-bottom:0;">
+        <h2 class="legend"><?php echo Mage::helper('contacts')->__('Request a Quote') ?></h2>
+        <ul class="form-list">
+            <li class="fields">
+                <div class="field">
+                    <label for="name" class="required"><em>*</em><?php echo Mage::helper('contacts')->__('Name') ?></label>
+                    <div class="input-box">
+                        <input name="name" id="name" title="<?php echo Mage::helper('contacts')->__('Name') ?>" value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserName()) ?>" class="input-text required-entry" type="text" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="email" class="required"><em>*</em><?php echo Mage::helper('contacts')->__('Email') ?></label>
+                    <div class="input-box">
+                        <input name="email" id="email" title="<?php echo Mage::helper('contacts')->__('Email') ?>" value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserEmail()) ?>" class="input-text required-entry validate-email" type="text" />
+                        <br /> <input type="checkbox" name="subscribe_newsletter" checked><?php echo Mage::helper('contacts')->__(' Subscribe to Newsletter ') ?>
+                    </div>
+                </div>
+            </li>
+            <li class="fields">
+                <div class="field">
+                        <label for="telephone"><?php echo Mage::helper('contacts')->__('Telephone') ?></label>
+                        <div class="input-box">
+                                <input name="telephone" id="telephone" title="<?php echo Mage::helper('contacts')->__('Telephone') ?>" value="" class="input-text" type="text" />
+                        </div>
+                </div>
+                <div class="field">				
+                        <label for="country"><?php echo Mage::helper('contacts')->__('Shipping Country') ?></label>
+                        <div class="input-box">
+                                <input name="country" id="country" title="<?php echo Mage::helper('contacts')->__('Shipping Country') ?>" value="" class="input-text" type="text" />
+                        </div>					
+                </div>
+            </li>
+            <li class="wide">
+                <label for="comment" class="required"><em>*</em><?php echo Mage::helper('contacts')->__('Housing, Lenses, Lighing and Accessories') ?></label>
+                <div class="input-box">
+                    <textarea name="comment" id="comment" placeholder="Please list in detail the items you are looking for or options you are considering..." title="<?php echo Mage::helper('contacts')->__('Housing, Lenses, Lighing and Accessories') ?>" class="required-entry input-text" style="width:529px;" cols="5" rows="3"></textarea>
+                </div>
+            </li>
+            <li class="wide">
+                <div class="input-box">
+                    <script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?hl=en&amp;k=6Ldz4wgTAAAAAEuRPvnkosYzpQ_1PiLRJlZnfDUZ"></script>
+                    <script src="http://www.google.com/recaptcha/api/js/recaptcha.js" type="text/javascript"></script>
+
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="buttons-set">
+        <p class="required"><?php echo Mage::helper('contacts')->__('* Required Fields') ?></p>
+        <input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
+        <button type="submit" title="<?php echo Mage::helper('contacts')->__('Submit') ?>" class="button"  onclick="saveEmail();"><span><span style="background:#ffffff; border:1px solid #dddddd; "><?php echo Mage::helper('contacts')->__('Submit') ?></span></span></button>
+    </div>
+</form>
+<script type="text/javascript">
+
+    if(window.location.href.indexOf("/contacts/index/") > -1) {
+
+         /* Google Code for Chat Engaged Conversion Page */
+      //var google_conversion_id = 1058025126;
+      //var google_conversion_label = "RtL-CJK2hAkQpt3A-AM";
+      //trackConv(google_conversion_id,google_conversion_label);
+      /* END Google Code for Chat Engaged Conversion Page */
+       //ga('send', 'event', 'ContactForm', 'Sent', 'Anonymous', 4);
+    }
+
+    function saveEmail(){
+        jQuery.cookie('cem', document.getElementById("email").value , { expires: 360, path: '/' });
+    }
+
+//<![CDATA[
+    var contactForm = new VarienForm('contactForm', true);
+//]]>
+</script>

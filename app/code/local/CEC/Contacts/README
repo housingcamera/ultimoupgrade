@@ -1,0 +1,5 @@
+/**
+* This extension overrrides the contacts indexcontroller in order to add the option to subscribe the user to the newsletter.
+* It requires a subscribe box added to the form.phtml file in the contacts tempalte.
+* Like this : <input type="checkbox" name="subscribe_newsletter"><?php echo Mage::helper('contacts')->__(' Subscribe to Newsletter ') ?>
+**/

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Amasty_Cart>
+            <version>2.3.6</version>
+        </Amasty_Cart>
+    </modules>
+
+    
+    <frontend>
+        <translate>
+            <modules>
+                <Amasty_Cart>
+                    <files>
+                        <default>Amasty_Cart.csv</default>
+                    </files>
+                </Amasty_Cart>
+            </modules>
+        </translate>
+        
+        <layout>
+            <updates>
+                <amcart>
+                    <file>amasty/amcart.xml</file>
+                </amcart>
+            </updates>
+        </layout>
+        
+        <routers>
+            <amcart>
+                <use>standard</use>
+                <args>
+                    <module>Amasty_Cart</module>
+                    <frontName>amcart</frontName>
+                </args>
+            </amcart>
+        </routers>
+    </frontend>
+    
+    
+    <adminhtml>
+        <translate>
+            <modules>
+                <Amasty_Cart>
+                    <files>
+                        <default>Amasty_Cart.csv</default>
+                    </files>
+                </Amasty_Cart>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <amcart>
+                    <file>amasty/amcart.xml</file>
+                </amcart>
+            </updates>
+        </layout>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <amcart translate="title" module="amcart">
+                                            <title>Ajax Cart</title>
+                                        </amcart>
+                                    </children>
+                                </config>
+                            </children>
+                        </system> 
+                     </children>
+                </admin> 
+            </resources>
+        </acl>
+    </adminhtml>
+    
+    
+    
+    <global>
+        <models>
+            <amcart>
+                <class>Amasty_Cart_Model</class>
+            </amcart>
+        </models>
+        
+		<resources>
+             <amcart_setup>
+                <setup>
+                    <module>Amasty_Cart</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </amcart_setup>
+		    <amcart_write>
+		        <connection><use>core_write</use></connection>
+		    </amcart_write>
+		    <amcart_read>
+		        <connection><use>core_read</use></connection>
+		    </amcart_read>
+		</resources>
+		  
+        
+        <blocks>
+            <amcart>
+                <class>Amasty_Cart_Block</class>
+            </amcart>
+	<bundle>
+                <rewrite>
+                    <catalog_product_price>Amasty_Cart_Block_Bundle_Catalog_Product_Price</catalog_product_price>
+                </rewrite>
+            </bundle>
+
+        </blocks>
+        
+        <helpers>
+            <amcart>
+                <class>Amasty_Cart_Helper</class>
+            </amcart>
+        </helpers>
+
+        
+    </global>
+    
+    <default>
+        <amcart>
+            <general>
+                <enable>1</enable>
+				<button_selector>button.btn-cart</button_selector>
+                <time>5</time>
+                <use_product_page>1</use_product_page>
+                <product_button>1</product_button>
+                <display_qty>1</display_qty>
+                <minicart>0</minicart>
+                <linkcompare>1</linkcompare>
+                <wishlist>1</wishlist>
+            </general>
+            <display>
+                <type_loading>1</type_loading>
+                <align>0</align>
+                <disp_count>1</disp_count>
+                <disp_sum>1</disp_sum>
+             <!--   <color>0</color>-->
+            </display>
+            <reloading>
+                <selector>.header-minicart</selector>
+                <path>checkout/cart/mini.phtml</path>
+            </reloading>
+            <visual>
+                <background>DBDBDB</background>
+                <header_background>BFBFBF</header_background>
+                <text>707070</text>
+                <button_text>FFFFFF</button_text>
+                <left_button>7FC7EB</left_button>
+                <right_button>9A9A9A</right_button>
+            </visual>
+        </amcart>
+    </default>
+</config>

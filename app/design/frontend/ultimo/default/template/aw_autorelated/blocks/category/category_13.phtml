@@ -1,0 +1,56 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Autorelated
+ * @version    2.4.4
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php $abstractBlock = $this->helper('awautorelated')->getAbstractProductBlock() ?>
+<?php if ($this->getCollection() && $this->getCollection()->getSize()) : ?>
+    <div class="box base-mini mini-related-items aw-arp-block block-related-category aw-arp-block-<?php echo $this->getData('id') ?>">
+        <div class="head">
+            <h4><?php echo $this->htmlEscape($this->getData('name')) ?></h4>
+        </div>
+        <div class="content aw-arp-block-content">
+            <ul>
+                <?php foreach ($this->getCollection() as $product) : ?>
+                    <li class="aw-arp-item">
+                        <a href="<?php echo $abstractBlock->getProductUrl($product) ?>"><img src="<?php echo $this->helper('catalog/image')->init($product, 'thumbnail')->resize(75) ?>" alt="<?php echo $this->htmlEscape($product->getName()) ?>" width="75" height="75" /></a><br />
+                        <a href="<?php echo $abstractBlock->getProductUrl($product) ?>"><?php echo $this->htmlEscape($product->getName()) ?></a><br />
+                        <?php echo $abstractBlock->getPriceHtml($product, true, '-related') ?>
+                        <?php if ($product->isSaleable()) : ?>
+                              <div class="aw-arp-addtocart">
+                                    <p>
+                                        <a class="link-cart" href="javascript:setLocation('<?php echo $abstractBlock->getAddToCartUrl($product) ?>');"><?php echo $this->__('Add to Cart') ?></a>
+                                    </p>
+                               </div>
+                        <?php else : ?>
+                            <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                        <?php endif ?>
+                        <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                            <a href="javascript:setLocation('<?php echo $abstractBlock->getAddToWishlistUrl($product) ?>')" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a>
+                        <?php endif; ?>
+                    </li>
+                <?php endforeach ?>
+            </ul>
+        </div>
+    </div>
+<?php endif;?>

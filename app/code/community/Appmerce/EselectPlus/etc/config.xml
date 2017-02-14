@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Appmerce - Applications for Ecommerce
+* http://www.appmerce.com
+*
+* @extension   eSELECTplus eSELECTplus Canada payment suite
+* @type        Payment method
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Open Software License (OSL 3.0)
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://opensource.org/licenses/osl-3.0.php
+*
+* @category    Magento Commerce
+* @package     Appmerce_EselectPlus
+* @copyright   Copyright (c) 2011-2014 Appmerce (http://www.appmerce.com)
+* @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+*/
+-->
+<config>
+    <modules>
+        <Appmerce_EselectPlus>
+            <version>0.1.0</version>
+        </Appmerce_EselectPlus>
+    </modules>
+    <global>
+        <models>
+            <eselectplus>
+                <class>Appmerce_EselectPlus_Model</class>
+                <resourceModel>eselectplus_mysql4</resourceModel>
+            </eselectplus>
+            <eselectplus_mysql4>
+                <class>Appmerce_EselectPlus_Model_Mysql4</class>
+                <entities>
+                    <api_debug>
+                        <table>eselectplus_api_debug</table>
+                    </api_debug>
+                </entities>
+            </eselectplus_mysql4>
+        </models>
+        <helpers>
+            <eselectplus>
+                <class>Appmerce_EselectPlus_Helper</class>
+            </eselectplus>
+        </helpers>
+        <resources>
+            <eselectplus_setup>
+                <setup>
+                    <module>Appmerce_EselectPlus</module>
+                    <class>Appmerce_EselectPlus_Model_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </eselectplus_setup>
+            <eselectplus_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </eselectplus_write>
+            <eselectplus_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </eselectplus_read>
+        </resources>
+        <blocks>
+            <eselectplus>
+                <class>Appmerce_EselectPlus_Block</class>
+            </eselectplus>
+        </blocks>
+        <payment>
+            <cc>
+                <types>
+                    <ESELECTPLUS_DINERSCARD translate="name">
+                        <code>ESELECTPLUS_DINERSCARD</code>
+                        <name>Diners Card</name>
+                        <order>62</order>
+                    </ESELECTPLUS_DINERSCARD>
+                </types>
+            </cc>
+        </payment>
+    </global>
+    <frontend>
+        <layout>
+            <updates>
+                <eselectplus>
+                    <file>appmerce/eselectplus/layout.xml</file>
+                </eselectplus>
+            </updates>
+        </layout>
+        <secure_url>
+            <eselectplus_hosted>/eselectplus/hosted</eselectplus_hosted>
+        </secure_url>
+        <routers>
+            <eselectplus>
+                <use>standard</use>
+                <args>
+                    <module>Appmerce_EselectPlus</module>
+                    <frontName>eselectplus</frontName>
+                </args>
+            </eselectplus>
+        </routers>
+        <translate>
+            <modules>
+                <Appmerce_EselectPlus>
+                    <files>
+                        <default>Appmerce_EselectPlus.csv</default>
+                    </files>
+                </Appmerce_EselectPlus>
+            </modules>
+        </translate>
+        <events>
+            <sales_convert_quote_payment_to_order_payment>
+                <observers>
+                    <eselectplus_observer>
+                        <type>singleton</type>
+                        <class>eselectplus/observer</class>
+                        <method>convertPayment</method>
+                    </eselectplus_observer>
+                </observers>
+            </sales_convert_quote_payment_to_order_payment>
+            <sales_model_service_quote_submit_after>
+                <observers>
+                    <eselectplus_observer>
+                        <type>singleton</type>
+                        <class>eselectplus/observer_submit</class>
+                        <method>sales_model_service_quote_submit_after</method>
+                    </eselectplus_observer>
+                </observers>
+            </sales_model_service_quote_submit_after>
+        </events>
+    </frontend>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Appmerce_EselectPlus>
+                    <files>
+                        <default>Appmerce_EselectPlus.csv</default>
+                    </files>
+                </Appmerce_EselectPlus>
+            </modules>
+        </translate>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <payment_services translate="title" module="payment">
+                                            <title>Payment Services</title>
+                                        </payment_services>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <events>
+            <sales_order_invoice_save_before>
+                <observers>
+                    <eselectplus_observer>
+                        <type>singleton</type>
+                        <class>eselectplus/observer_invoice</class>
+                        <method>sales_order_invoice_save_before</method>
+                    </eselectplus_observer>
+                </observers>
+            </sales_order_invoice_save_before>
+            <sales_order_creditmemo_save_before>
+                <observers>
+                    <eselectplus_observer>
+                        <type>singleton</type>
+                        <class>eselectplus/observer_invoice</class>
+                        <method>sales_order_creditmemo_save_before</method>
+                    </eselectplus_observer>
+                </observers>
+            </sales_order_creditmemo_save_before>
+        </events>
+    </adminhtml>
+    <default>
+        <payment>
+            <eselectplus_hosted>
+                <model>eselectplus/api_hosted</model>
+                <title>Moneris eSELECTplus Hosted Payment Page</title>
+                <allowspecific>0</allowspecific>
+                <order_email>1</order_email>
+                <order_status>pending</order_status>
+                <pending_status>pending_payment</pending_status>
+                <processing_status>processing</processing_status>
+                <hpp_key backend_model="adminhtml/system_config_backend_encrypted"/>
+            </eselectplus_hosted>
+            <!--
+            <eselectplus_direct>
+                <model>eselectplus/api_direct</model>
+                <title>Moneris eSELECTplus Direct Post</title>
+                <allowspecific>0</allowspecific>
+                <order_email>1</order_email>
+                <cctypes>MC,VI</cctypes>
+                <order_status>processing</order_status>
+                <hpp_key backend_model="adminhtml/system_config_backend_encrypted"/>
+                <api_token backend_model="adminhtml/system_config_backend_encrypted"/>
+            </eselectplus_direct>
+            -->
+        </payment>
+    </default>
+</config>

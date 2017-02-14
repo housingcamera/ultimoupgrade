@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:typens="urn:{{var wsdl.name}}"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  name="{{var wsdl.name}}"
+                  targetNamespace="urn:{{var wsdl.name}}">
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:{{var wsdl.name}}">
+            <xsd:complexType name="channelintegrationProductEntityArray">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded" name="complexObjectArray"
+                                 type="typens:channelintegrationProductEntity"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="channelintegrationProductEntity">
+                <xsd:sequence>
+                    <xsd:element name="entity_id" type="xsd:string"/>
+                    <xsd:element name="tattribute" type="xsd:string"/>
+                    <xsd:element name="status" type="xsd:string"/>
+
+                    <xsd:element name="created_at" type="xsd:string"/>
+                    <xsd:element name="updated_at" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="channelintegrationProductAddEntity">
+                <xsd:sequence>
+                    <xsd:element name="tattribute" type="xsd:string"/>
+                    <xsd:element name="status" type="xsd:string"/>
+
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="channelintegrationProductUpdateEntity">
+                <xsd:sequence>
+                    <xsd:element name="tattribute" type="xsd:string"/>
+                    <xsd:element name="status" type="xsd:string"/>
+
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="channelintegrationProductInfoEntity">
+                <xsd:sequence>
+                    <xsd:element name="entity_id" type="xsd:string"/>
+                    <xsd:element name="tattribute" type="xsd:string"/>
+                    <xsd:element name="status" type="xsd:string"/>
+
+                    <xsd:element name="created_at" type="xsd:string"/>
+                    <xsd:element name="updated_at" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:element name="channelintegrationProductListRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string"/>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="filters" type="typens:filters"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="channelintegrationProductListResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="result"
+                                     type="typens:channelintegrationProductEntityArray"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="channelintegrationProductInfoRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="productId" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="channelintegrationProductInfoResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result"
+                                     type="typens:channelintegrationProductInfoEntity"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="channelintegrationProductAddRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="data"
+                                     type="typens:channelintegrationProductAddEntity"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="channelintegrationProductAddResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="channelintegrationProductUpdateRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="productId" type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="data"
+                                     type="typens:channelintegrationProductUpdateEntity"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="channelintegrationProductUpdateResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="xsd:boolean"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="channelintegrationProductRemoveRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string"/>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="productId" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="channelintegrationProductRemoveResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="xsd:boolean"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="channelintegrationProductListRequest">
+        <wsdl:part name="parameters" element="typens:channelintegrationProductListRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="channelintegrationProductListResponse">
+        <wsdl:part name="parameters" element="typens:channelintegrationProductListResponseParam"/>
+    </wsdl:message>
+    <wsdl:message name="channelintegrationProductInfoRequest">
+        <wsdl:part name="parameters" element="typens:channelintegrationProductInfoRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="channelintegrationProductInfoResponse">
+        <wsdl:part name="parameters" element="typens:channelintegrationProductInfoResponseParam"/>
+    </wsdl:message>
+    <wsdl:message name="channelintegrationProductAddRequest">
+        <wsdl:part name="parameters" element="typens:channelintegrationProductAddRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="channelintegrationProductAddResponse">
+        <wsdl:part name="parameters" element="typens:channelintegrationProductAddResponseParam"/>
+    </wsdl:message>
+    <wsdl:message name="channelintegrationProductUpdateRequest">
+        <wsdl:part name="parameters" element="typens:channelintegrationProductUpdateRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="channelintegrationProductUpdateResponse">
+        <wsdl:part name="parameters" element="typens:channelintegrationProductUpdateResponseParam"/>
+    </wsdl:message>
+    <wsdl:message name="channelintegrationProductRemoveRequest">
+        <wsdl:part name="parameters" element="typens:channelintegrationProductRemoveRequestParam"/>
+    </wsdl:message>
+    <wsdl:message name="channelintegrationProductRemoveResponse">
+        <wsdl:part name="parameters" element="typens:channelintegrationProductRemoveResponseParam"/>
+    </wsdl:message>
+    <wsdl:portType name="{{var wsdl.handler}}PortType">
+        <wsdl:operation name="channelintegrationProductList">
+            <wsdl:documentation>Retrieve list of Products</wsdl:documentation>
+            <wsdl:input message="typens:channelintegrationProductListRequest"/>
+            <wsdl:output message="typens:channelintegrationProductListResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="channelintegrationProductInfo">
+            <wsdl:documentation>Retrieve Product info</wsdl:documentation>
+            <wsdl:input message="typens:channelintegrationProductInfoRequest"/>
+            <wsdl:output message="typens:channelintegrationProductInfoResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="channelintegrationProductAdd">
+            <wsdl:documentation>Add Product</wsdl:documentation>
+            <wsdl:input message="typens:channelintegrationProductAddRequest"/>
+            <wsdl:output message="typens:channelintegrationProductAddResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="channelintegrationProductUpdate">
+            <wsdl:documentation>Update Product</wsdl:documentation>
+            <wsdl:input message="typens:channelintegrationProductUpdateRequest"/>
+            <wsdl:output message="typens:channelintegrationProductUpdateResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="channelintegrationProductRemove">
+            <wsdl:documentation>Remove Product</wsdl:documentation>
+            <wsdl:input message="typens:channelintegrationProductRemoveRequest"/>
+            <wsdl:output message="typens:channelintegrationProductRemoveResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="{{var wsdl.handler}}Binding" type="typens:{{var wsdl.handler}}PortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="channelintegrationProductList">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="channelintegrationProductInfo">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="channelintegrationProductAdd">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="channelintegrationProductUpdate">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="channelintegrationProductRemove">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="{{var wsdl.name}}Service">
+        <wsdl:port name="{{var wsdl.handler}}Port" binding="typens:{{var wsdl.handler}}Binding">
+            <soap:address location="{{var wsdl.url}}"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,34 @@
+<?php if ($this->canShow()): ?>
+
+<table cellspacing="0" width="100%" class="admin-rewardpoints-details">
+    <colgroup>
+        <col>
+        <col width="1">
+    </colgroup>
+    
+    <thead>
+        <tr>
+            <th colspan="2" class="admin-point-details"><h4 class="icon-head-reward"><?php echo Mage::helper('rewardpoints')->__('Reward Points Details') ?></h4></th>
+        </tr>
+    </thead>
+    
+    <tfoot>
+        <tr class="0">
+            <td class="label">
+                <strong><?php echo Mage::helper('rewardpoints')->__('Point Gathered') ?></strong>
+            </td>
+            <td class="emph">
+                <strong><?php echo $this->getPointsOnOrder(); ?></strong>
+            </td>
+        </tr>
+    </tfoot>
+
+    <tbody>
+        <tr class="0">
+            <td class="label"><?php echo Mage::helper('rewardpoints')->__('Point Used') ?></td>
+            <td><?php echo $this->getPointsUsed();?></td>
+        </tr>
+    </tbody>
+</table>
+
+<?php endif;?>

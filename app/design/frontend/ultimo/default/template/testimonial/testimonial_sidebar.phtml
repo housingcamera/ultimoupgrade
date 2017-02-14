@@ -1,0 +1,30 @@
+<?php if(Mage::getStoreConfig('testimonial/general_option/enable_sidebar') == 1):?>
+	<?php $latestTestimonial = $this->getTestimonialsRand()?>
+	<?php if(count($latestTestimonial) > 0):?>
+	<link type="text/css" href="<?php echo $this->getSkinUrl('css/magebuzz/testimonial.css')?>" rel="stylesheet">
+	<div class="block block-testimonial-sidebar">
+            <div class="block-title">
+                    <strong><span><?php echo $this->__('Our Customers Say')?></span></strong>
+            </div>
+            <div class="block-content">
+                <?php foreach($latestTestimonial as $_item):?>
+                    <div class="testimonial-sidebar-content">
+                        <div class="std">
+                            <?php
+                                $_description = $_item->getTestimonial();
+                                $short_desc = $this->getContentTestimonialSidebar($_description, 80);
+                                echo $short_desc;
+                            ?>
+                            <a href="<?php echo $this->getUrl('testimonial')?>#<?php echo $_item->getName();?>" title=""><?php echo "View more"?></a>
+                        </div>
+                        <div class="name-date-testimonial">
+                            <div class="name"><?php echo $_item->getName();?></div>
+                            <div class="date"><?php echo date('F, Y',Mage::getModel('core/date')->gmtTimestamp ( $_item->getCreatedTime()));?></div>
+                        </div>
+                    </div>
+                <?php endforeach;?>
+            </div>
+            <a href="/customer-reviews">Read all <?php echo $this->getTestimonialCount(); ?> Testimonials.</a>
+	</div>
+	<?php endif ?>
+<?php endif ?>

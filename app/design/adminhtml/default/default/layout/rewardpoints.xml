@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<layout>
+    <default>
+        <reference name="head">
+            <action method="addCss">
+                <name>j2t_rewardpoints.css</name>
+            </action>
+            <action method="addJs"><file>j2t_rewardpoints.js</file></action>
+        </reference>
+    </default>
+
+    <!--<adminhtml_sales_order_view>
+            <reference name="order_totals">
+                    <action method="setTemplate">
+                            <template>rewardpoints/reward_totals.phtml</template>
+                    </action>
+                    <block type="adminhtml/sales_order_totals" name="reward_order_totals" template="sales/order/totals.phtml">
+                        <block type="adminhtml/sales_order_totals_tax" name="tax" template="sales/order/totals/tax.phtml" />
+                    </block>
+                    <block type="rewardpoints/adminhtml_totals" name="customer_account_points" as="points" template="rewardpoints/points.phtml"/>
+            </reference>
+    </adminhtml_sales_order_view>-->
+    
+    <adminhtml_sales_order_create_index>
+        <!--REMOVED <reference name="coupons">
+            <action method="setTemplate">
+                    <template>rewardpoints/wrapper.phtml</template>
+            </action>
+            <block type="rewardpoints/adminhtml_createorder_reward" template="rewardpoints/form.phtml" name="reward_coupons" />
+            
+            <block type="adminhtml/sales_order_create_coupons" template="sales/order/create/coupons/form.phtml" name="original_coupons">
+                <block type="adminhtml/sales_order_create_coupons_form" template="sales/order/create/coupons/form.phtml" name="form" />
+            </block>
+        </reference>-->
+    </adminhtml_sales_order_create_index>
+    
+    <adminhtml_sales_order_create_load_block_data>
+        <reference name="coupons">
+            <action method="setTemplate">
+                    <template>rewardpoints/wrapper.phtml</template>
+            </action>
+            <!-- Rewardpoints_Block_Adminhtml_Createorder_Reward-->
+            <block type="rewardpoints/adminhtml_createorder_reward" template="rewardpoints/form.phtml" name="reward_coupons" />
+            
+            <block type="adminhtml/sales_order_create_coupons" template="sales/order/create/coupons/form.phtml" name="original_coupons">
+                <block type="adminhtml/sales_order_create_coupons_form" template="sales/order/create/coupons/form.phtml" name="form" />
+            </block>
+        </reference>
+    </adminhtml_sales_order_create_load_block_data>
+    
+    <adminhtml_sales_order_create_load_block_items>
+        <reference name="coupons">
+            <action method="setTemplate">
+                    <template>rewardpoints/wrapper.phtml</template>
+            </action>
+            <!-- Rewardpoints_Block_Adminhtml_Createorder_Reward-->
+            <block type="rewardpoints/adminhtml_createorder_reward" template="rewardpoints/form.phtml" name="reward_coupons" />
+            
+            <block type="adminhtml/sales_order_create_coupons" template="sales/order/create/coupons/form.phtml" name="original_coupons">
+                <block type="adminhtml/sales_order_create_coupons_form" template="sales/order/create/coupons/form.phtml" name="form" />
+            </block>
+        </reference>
+    </adminhtml_sales_order_create_load_block_items>
+
+
+</layout>

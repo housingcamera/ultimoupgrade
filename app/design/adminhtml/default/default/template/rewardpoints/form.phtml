@@ -1,0 +1,35 @@
+<?php
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+?>
+<div class="entry-edit box-left" style="margin-right:10px;">
+    <div class="entry-edit-head">
+        <h4 class="icon-head"><?php echo Mage::helper('rewardpoints')->__('Reward Points') ?></h4>
+     </div>
+     <fieldset class="np">
+         <div class="content">
+             <p><?php echo Mage::helper('rewardpoints')->__('This client is gathering %d points with this order.', $this->getPointsOnOrder());?></p>
+             <p><input type="text" class="input-text validate-digits" id="rewards:point" value="<?php echo $this->getPointsUsed(); ?>" name="rewardpoints_qty" style="width:200px" />&nbsp;<?php echo $this->getButtonHtml(Mage::helper('rewardpoints')->__('Apply'), 'order.applyReward($F(\'rewards:point\'))') ?></p>
+             <?php if($this->getPointsUsed()): ?>
+                <p><strong><?php echo Mage::helper('rewardpoints')->__('%d Points Used', $this->getPointsUsed()) ?></strong> [<a href="#" onclick="order.applyReward('0'); return false;" title="<?php echo Mage::helper('rewardpoints')->__('Remove Points') ?>"><?php echo Mage::helper('rewardpoints')->__('Remove') ?></a>]</p>
+             <?php endif; ?>
+             <p><?php echo Mage::helper('rewardpoints')->__('This client has %d points.', $this->getClientPoints());?></p>
+             <script type="text/javascript">
+                //order.overlay('shipping-method-overlay', <?php if ($this->getQuote()->isVirtual()): ?>false<?php else: ?>true<?php endif; ?>);
+                //order.overlay('address-shipping-overlay', <?php if ($this->getQuote()->isVirtual()): ?>false<?php else: ?>true<?php endif; ?>);
+                
+                var orderIntervalCheck = setInterval(function(){
+                    if (order != undefined){
+                        order.applyReward = function(points) {
+                            order.loadArea(['items', 'shipping_method', 'totals', 'billing_method'], true, {'order[rewardpoints][qty]':points, reset_shipping: true});
+                        }
+                        clearInterval(orderIntervalCheck);
+                    } 
+                },500);        
+             </script>
+        </div>
+    </fieldset>
+</div>

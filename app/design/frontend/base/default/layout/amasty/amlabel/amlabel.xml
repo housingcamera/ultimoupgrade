@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Label
+ */
+-->
+<layout version="1.0.0">
+    <default>
+
+        <reference name="before_body_end">
+            <block type="core/template" name="amlabel_script" after="-" template="amasty/amlabel/script.phtml"/>
+        </reference>
+
+        <reference name="head">
+            <action method="addItem">
+        		<type>skin_css</type>
+        		<name>css/amasty/amlabel/amlabel.css</name>
+        	</action>
+            <action method="addItem" ifconfig="amlabel/options/use_js">
+                <type>js</type>
+                <name>amasty/amlabel/amlabel_observer.js</name>
+                <params/>
+            </action>
+            <action method="addItem">
+                <type>js</type>
+                <name>amasty/amlabel/amlabel_height.js</name>
+                <params/>
+            </action>
+        </reference>
+    </default>
+</layout>

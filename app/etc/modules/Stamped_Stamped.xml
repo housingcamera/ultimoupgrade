@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <stamped_core>
+            <active>true</active>
+            <codePool>community</codePool>
+        </stamped_core>
+    </modules>
+</config>

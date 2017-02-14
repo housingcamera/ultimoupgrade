@@ -1,0 +1,1 @@
+Toolbar.php is also changed in the core since Amasty is overriding it and thus the local has no effect.

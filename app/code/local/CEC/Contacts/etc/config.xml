@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <frontend>
+        <routers>
+            <contacts>
+                <args>
+                    <modules>
+                            <cec_contacts before="Mage_Contacts">CEC_Contacts</cec_contacts>
+                    </modules>
+                </args>
+            </contacts>
+        </routers>
+    </frontend>
+</config>

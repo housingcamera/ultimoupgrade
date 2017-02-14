@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <korifi translate="label" module="sendy">
+            <label>Korifi</label>
+            <sort_order>0</sort_order>
+        </korifi>
+    </tabs>
+    <sections>
+        <sendy translate="label" module="sendy">
+            <tab>korifi</tab>
+            <label>Subscriber To Sendy</label>
+            <frontend_type>text</frontend_type>
+            <sort_order>110</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <setting translate="label">
+                    <label>Configs</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>35</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Active</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Status of module.</comment>
+                        </active>
+                        <api_key translate="label">
+                            <label>API Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>This can be found on your Account Settings page in Sendy.</comment>
+                        </api_key>
+                        <list_id translate="label">
+                            <label>API List ID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Magento users who subscribe/unsubscribe to the newsletter will be added/removed from this Sendy email list.</comment>
+                        </list_id>
+                        <installation_url translate="label">
+                            <label>Installation Url for Sendy</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Installation Url for Sendy. Example: http://domain.com.au/sendy/</comment>
+                        </installation_url>						
+                    </fields>
+                </setting>
+                <!--subscribertosendy translate="label">
+                    <label>Subscriber Ebay To Sendy</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>40</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Active</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Status of module.</comment>
+                        </active>
+                        <dbtable translate="label">
+                            <label>Database table</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Database table store data for module.</comment>
+                        </dbtable>
+                        <type translate="label">
+                            <label>Date type</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>sendy/system_config_source_type</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Get customer info in day(s) ago</comment>
+                        </type>
+                        <api_key translate="label">
+                            <label>API Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>This can be found on your Account Settings page in Campaign Monitor.</comment>
+                        </api_key>
+                        <list_id translate="label">
+                            <label>API List ID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Magento users who subscribe/unsubscribe to the newsletter will be added/removed from this Sendy email list.</comment>
+                        </list_id>
+                    </fields>
+                </subscribertosendy-->				
+            </groups>
+        </sendy>
+    </sections>
+</config>

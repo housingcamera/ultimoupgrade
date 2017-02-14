@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Regions
+ */
+-->
+<config>
+    <menu>
+        <sales>
+            <children>
+                <amregions translate="title" module="amregions">
+                    <title>Shipping Areas</title>
+                    <action>adminhtml/amregions</action>
+                    <sort_order>930</sort_order>
+                </amregions>
+            </children>
+        </sales>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                        <sales>
+                            <children>
+                                <amregions translate="title" module="amregions">
+                                    <title>Shipping Areas</title>
+                                </amregions>
+                            </children>
+                        </sales>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

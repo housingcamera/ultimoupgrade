@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <CEC_CustomCategoryAttribute>
+            <active>true</active>
+            <codePool>local</codePool>
+        </CEC_CustomCategoryAttribute>
+    </modules>
+</config>

@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!--
+/**
+* CEC
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Open Software License (OSL 3.0)
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://opensource.org/licenses/osl-3.0.php
+* If you did not receive a copy of the license and are unable to
+* obtain it through the world-wide-web, please send an email
+* to license@magentocommerce.com so we can send you a copy immediately.
+*
+* @category    CEC
+* @package     CEC_ExtendedGrid
+* @author      CEC Core Team
+* @copyright   Copyright (c) 2014 CEC 
+* @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+*/
+-->
+<config>
+    <modules>
+        <CEC_ExtendedGrid>
+            <version>1.0.1</version>
+        </CEC_ExtendedGrid>
+    </modules>
+    <global>
+        <sales>
+            <order>
+                <states>
+                    <pending_payment translate="label">
+                        <visible_on_front>1</visible_on_front>
+                    </pending_payment>
+                </states>
+            </order>
+        </sales>
+        <blocks>
+            <cec_extendedgrid>
+                <class>CEC_ExtendedGrid_Block</class>
+            </cec_extendedgrid>
+            <adminhtml>
+                <rewrite>
+                       <catalog_product_grid>CEC_ExtendedGrid_Block_Adminhtml_Catalog_Product_Grid</catalog_product_grid>
+                </rewrite>
+            </adminhtml> 
+        </blocks>
+        <helpers>
+            <cec_extendedgrid>
+                <class>CEC_ExtendedGrid_Helper</class>
+            </cec_extendedgrid>
+        </helpers>
+        <models>
+            <cec_extendedgrid>
+                <class>CEC_ExtendedGrid_Model</class>
+            </cec_extendedgrid>
+            <sales_resource>
+                <rewrite>
+                    <order_grid_collection>CEC_ExtendedGrid_Model_Resource_Sales_Order_Grid_Collection</order_grid_collection>
+                </rewrite>
+            </sales_resource>
+        </models>
+    </global>
+    <adminhtml>
+        <events>
+            <sales_order_grid_collection_load_before>
+                <observers>
+                    <cec_exgrid>
+                        <model>cec_extendedgrid/observer</model>
+                        <method>salesOrderGridCollectionLoadBefore</method>
+                    </cec_exgrid>
+                </observers>
+            </sales_order_grid_collection_load_before>
+        </events>
+        <layout>
+            <updates>
+                <cec_extendedgrid>
+                    <file>cec/extendedgrid.xml</file>
+                </cec_extendedgrid>
+            </updates>
+        </layout>
+    </adminhtml>
+</config>

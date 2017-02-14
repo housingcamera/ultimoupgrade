@@ -1,0 +1,46 @@
+<?php if ($this->isEnabled()): ?>
+
+<?php if ($this->isPopupLink()) : ?>
+
+    <?php echo $this->getLayout()->createBlock('wp_ajaxshippingpricecalculator/form')->setTemplate('webandpeople/ajaxshippingpricecalculator/popup_link.phtml')->toHtml(); ?>
+
+    <script type="text/javascript">//<![CDATA[
+
+        var calculatorValidateFields = null;
+        var winCalculator = null;
+        var calculatorFormHtml = <?php echo Mage::helper('core')->jsonEncode($this->getLayout()->createBlock('wp_ajaxshippingpricecalculator/form')->setTemplate('webandpeople/ajaxshippingpricecalculator/form.phtml')->toHtml()); ?>;
+
+        function wpPopupCalculator()
+        {
+            if (!winCalculator) {
+                winCalculator = new WP_WinPopup({
+                    id: 'popup-calculator-form',
+                    html: calculatorFormHtml,
+                    title: '<?php echo $this->__('Calculate Shipping Price') ?>'
+                });
+            } else {
+                winCalculator.open();
+            }
+        }
+
+    //]]></script>
+
+<?php else : ?>
+
+    <?php echo $this->getLayout()->createBlock('wp_ajaxshippingpricecalculator/form')->setTemplate('webandpeople/ajaxshippingpricecalculator/form.phtml')->toHtml(); ?>
+
+    <script type="text/javascript">//<![CDATA[
+
+        var calculatorValidateFields = {};
+
+        Event.observe(window, 'load', function() {
+            wpRemoveValidatorMarks();
+        });
+
+    //]]></script>
+
+<?php endif; ?>
+
+<?php echo $this->getChildHtml('product_description') ?>
+
+<?php endif;?>

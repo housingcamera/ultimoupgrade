@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <sections>
+        <amcart translate="label" module="amcart">
+            <label>Ajax Cart</label>
+            <tab>amasty</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>11003</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>5</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enable translate="label comment">
+                            <label>Enable Ajax Shopping Cart</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </enable>
+						<button_selector translate="label comment">
+                            <label>CSS For Add to Cart Button</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </button_selector>
+                        <time translate="label comment">
+                            <label>Dialog Close Delay (in seconds)</label>
+			    <comment>If set to 0, confirmation dialog will not hide automatically.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </time>
+                        <use_product_page translate="label comment">
+                            <label>Use Ajax Shopping Cart on Product View Pages</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <comment><![CDATA[
+                                    <script type="text/javascript">
+                                        checkEnable = function() {
+                                            if ($('amcart_general_enable').getValue() == 0) {
+                                                $('amcart_general_use_product_page').setValue(0);
+                                                $('amcart_general_minicart').setValue(0);
+						$('amcart_general_enable_jquery').setValue(0);
+                                            }
+                                        } 
+                                        Event.observe(window, 'load', function() {
+                                            Event.observe('amcart_general_enable', 'change', checkEnable);
+                                            checkEnable();
+                                        })
+                                    </script>
+                                ]]>
+                            </comment>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </use_product_page>
+                        <product_button translate="label comment">
+                            <label>Continue Button Action on Product View Pages</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>amcart/source_button</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_button>
+                        <display_options translate="label comment">
+                            <label>Custom Options Display Mode</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>amcart/source_option</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </display_options>
+                        <display_qty translate="label comment">
+                            <label>Allow to change product quantity in confirmation dialog</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </display_qty>
+                        <minicart translate="label comment">
+                            <label>Display floating cart window</label>
+                            <comment>When hovering "My Cart" link.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </minicart>
+                        <linkcompare translate="label comment">
+                            <label>Enable Adding Product to Comparison List with Ajax</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </linkcompare>
+                        <wishlist translate="label comment">
+                            <label>Enable Adding Product to Wishlist with Ajax</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </wishlist>
+                    </fields>
+                </general>
+                <display translate="label">
+                    <label>Display Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>15</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                         <type_loading translate="label comment">
+                            <label>Enable flying image effect</label>
+			    <comment>When set to 'Yes', the image of the product added to cart 'flies' to the 'My Cart' link in the top menu. Looks nice.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </type_loading>
+                        <align translate="label comment">
+                            <label>Dialog Box Align</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>amcart/source_align</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </align>
+                        <disp_product translate="label comment">
+                            <label>Display Product Details in Dialog</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disp_product>
+                        <disp_count translate="label comment">
+                            <label>Display Total Count of Products in Cart</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disp_count>
+                        <disp_sum translate="label comment">
+                            <label>Display Total Amount in Cart</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </disp_sum>
+                        <!--<color translate="label comment">
+                            <label>Background Color</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>amcart/source_color</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </color>-->
+                    </fields>
+                </display>
+                <configurable translate="label">
+                    <label>Adding Configurable Products to Cart Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <image translate="label comment">
+                            <label>Image to display after product was added:</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>amcart/source_conf</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </image>
+                        <name translate="label comment">
+                            <label>Name to display:</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>amcart/source_conf</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </name>
+                    </fields>
+                </configurable>
+                <selling translate="label">
+                    <label>Selling Options</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>40</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <related translate="label comment">
+                            <label>Display Related Products in Confirmation Dialog</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </related>
+                    </fields>
+                </selling>
+                <reloading translate="label">
+                    <label>Top Cart Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>50</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <selector translate="label comment">
+                            <label>CSS For Header Cart</label>
+                            <comment>CSS class selector for shopping cart (mini) block located in header</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </selector>
+                        <path translate="label comment">
+                            <label>Mini Cart Template Path</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </path>
+                    </fields>
+                </reloading>
+                <visual translate="label">
+                    <label>Visual Options</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>60</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <background translate="label">
+                            <label>Background Color</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <validate>color</validate>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </background>
+                        <header_background translate="label">
+                            <label>Header Background Color</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <validate>color</validate>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </header_background>
+                        <text translate="label">
+                            <label>Text Color</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <validate>color</validate>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </text>
+                        <button_text translate="label">
+                            <label>Button Text Color</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <validate>color</validate>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </button_text>
+                        <left_button translate="label comment">
+                            <label>Left Button Color</label>
+                            <frontend_type>text</frontend_type>
+                            <validate>color</validate>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </left_button>
+                        <right_button translate="label comment">
+                            <label>Right Button Color</label>
+                            <frontend_type>text</frontend_type>
+                            <validate>color</validate>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </right_button>
+                    </fields>
+                </visual>
+            </groups>
+        </amcart>
+    </sections>
+</config>

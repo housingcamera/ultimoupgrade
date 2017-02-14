@@ -1,0 +1,216 @@
+<?php
+/**
+* @author Amasty Team
+* @copyright Copyright (c) 2008-2012 Amasty (http://www.amasty.com)
+* @package Amasty_Feed
+*/
+?>
+<?php $code = 'Condition'; ?>
+<script type="text/javascript">
+//<![CDATA[
+<?php echo $this->getDynamicJs($code) ?>
+//]]>
+</script>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('State')?></h4>
+    <div class="form-buttons"></div>
+</div>
+    <div class="fieldset " id="state">
+    <div class="hor-scroll">
+                        <table cellspacing="0" class="form-list">
+            <tbody>
+                <tr>
+        <td class="label"><label for="is_new"><?php echo $this->__('Is New')?></label></td>
+    <td class="value">
+        <select id="is_new" name="is_new" class=" select">
+	<option value="0" <?php echo $this->getSelectedHtml('is_new',0)?> ><?php echo $this->__('Does not matter')?></option>
+	<option value="1" <?php echo $this->getSelectedHtml('is_new',1)?> ><?php echo $this->__('No')?></option>
+	<option value="2" <?php echo $this->getSelectedHtml('is_new',2)?> ><?php echo $this->__('Yes')?></option>
+</select>            </td>
+    </tr>
+<tr>
+        <td class="label"><label for="is_sale"><?php echo $this->__('Is on Sale')?></label></td>
+    <td class="value">
+        <select id="is_sale" name="is_sale" class=" select">
+	<option value="0" <?php echo $this->getSelectedHtml('is_sale',0)?> ><?php echo $this->__('Does not matter')?></option>
+	<option value="1" <?php echo $this->getSelectedHtml('is_sale',1)?> ><?php echo $this->__('No')?></option>
+	<option value="2" <?php echo $this->getSelectedHtml('is_sale',2)?> ><?php echo $this->__('Yes')?></option>
+</select>            </td>
+    </tr>
+            </tbody>
+        </table>
+            </div>
+        </div>
+<div class="entry-edit-head">
+    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Category')?></h4>
+    <div class="form-buttons"></div>
+</div>
+    <div class="fieldset " id="categories">
+    <div class="hor-scroll">
+                        <table cellspacing="0" class="form-list">
+            <tbody>
+                <tr>
+        <td class="label"><label for="category"><?php echo $this->__('Category Is')?></label></td>
+    <td class="value">
+        <select id="category" name="category" class="select">
+        <?php foreach ($this->getTree() as $_value => $_label): ?>
+                    <option value="<?php echo $_label['value'] ?>" <?php echo $this->getSelectedHtml('category', $_label['value'])?>><?php echo $this->htmlEscape($_label['label']) ?></option>
+		<?php endforeach; ?>
+                </select>        
+</select>            </td>
+    </tr>
+            </tbody>
+        </table>
+            </div>
+        </div>
+<div class="entry-edit-head">
+    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Stock')?></h4>
+    <div class="form-buttons"></div>
+</div>
+    <div class="fieldset " id="stock">
+    <div class="hor-scroll">
+                        <table cellspacing="0" class="form-list">
+            <tbody>
+                <tr>
+        <td class="label"><label for="stock_status">Status</label></td>
+    <td class="value">
+        <select id="stock_status" name="stock_status" class=" select">
+        <option value="0" <?php echo $this->getSelectedHtml('stock_status',0)?> ><?php echo $this->__('Does not matter')?></option>
+	<option value="2" <?php echo $this->getSelectedHtml('stock_status',2)?> ><?php echo $this->__('In Stock')?></option>	
+</select>            </td>
+    </tr>
+            </tbody>
+        </table>
+            </div>
+        </div>
+
+
+    <div class="entry-edit-head">
+    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Advanced Filter') ?></h4>
+    </div>
+    <?php
+    $attributesCache = array();
+     
+    ?>
+    <fieldset>
+        <legend><?php echo $this->__('Advanced_filter') ?></legend>
+                
+                <div class="hor-scroll">
+                    <table cellspacing="0" class="form-list">
+                        <tbody>
+                            <tr>
+                                <td class="label"><label for="advanced_filter_condition"><?php echo $this->__("Condition")?></label></td>
+                                <td class="value">
+                                    <select id="advanced_filter_condition" name="advanced_filter_condition" class=" select">
+                                    <option value="1" <?php echo $this->getSelectedHtml('advanced_filter_condition', 1)?> ><?php echo $this->__('AND')?></option>
+                                    <option value="0" <?php echo $this->getSelectedHtml('advanced_filter_condition', 0)?> ><?php echo $this->__('OR')?></option>	
+                                    </select>            
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div><br/><br/>
+                
+
+                <div id="<?php echo $code?>_container">
+                    
+                    <?php
+                    
+//                    $controls2values = array();
+                    
+                    $attribues = Mage::registry('amlanding_page')->getModifedAttributes();
+                    
+//                    foreach ($attribues as $i => $row){
+//                        if (!isset($attributesCache[$row['attribute']])) {
+//                            $attributesCache[$row['attribute']] = Mage::getModel('catalog/product')->getResource()->getAttribute($row['attribute']);
+//                        }
+//                        
+//                        $attribute = $attributesCache[$row['attribute']];
+//
+//                        if (!is_array( $row['value'])) {
+//                            $row['value'] = array($row['value']);
+//                        }
+//                        
+//
+//                        if ($attribute->getFrontendInput() === 'multiselect'
+//                                || $attribute->getFrontendInput() === 'select'){
+//                            $controls2values[] = array(
+//                                'code' => $row['code'],
+//                                'cond' => $row['cond'],
+//                                'value' => $row['value']
+//                            );
+//                        } else {
+//                            foreach ($row['value'] as $value){
+//                                $controls2values[] = array(
+//                                    'code' => $row['code'],
+//                                    'cond' => $row['cond'],
+//                                    'value' => $value
+//                                );
+//                            }
+//                        }   
+//                    }
+                   
+                   foreach ($attribues as $i => $row){
+                        
+                            $values = $row[$row['cond']];
+                            if (!is_array($values))
+                                $values = array($values);
+                         ?>
+                            <span class="field-row">
+                                <select name="attr_code[]" onchange="showOptions(this);">
+                                <?php foreach ($this->getAttributes() as $_value => $_label) { ?>
+                                    <option <?php if ($row['attribute'] == $_value):?>selected<?php endif;?> value="<?php echo $_value ?>"><?php echo $this->htmlEscape($_label) ?></option>
+                                <?php } ?>
+                                </select>
+                                <span>
+                                <?php
+                                if (!isset($attributesCache[$row['attribute']])) {
+                                    $attributesCache[$row['attribute']] = Mage::getModel('catalog/product')->getResource()->getAttribute($row['attribute']);
+                                }
+                                $attribute = $attributesCache[$row['attribute']];
+                                if (is_object($attribute)):?>
+                                        <?php echo $this->__('is')?>
+                                        <select name="attr_cond[<?php echo $attribute->getAttributeCode()?>][<?php echo $row['cond']?>]" style="width: 150px">
+                                        <?php foreach (Mage::helper('amlanding')->getOperations($attribute->getIsFilterable(), $attribute) as $_value => $_label){ ?>
+                                            <option <?php if ($row['cond'] == $_value):?>selected<?php endif;?> value="<?php echo $_value ?>"><?php echo $this->htmlEscape($_label) ?></option>
+                                        <?php } ?>
+                                        </select>                            
+                                        &nbsp;
+                                <?php 
+                                if ('select' === $attribute->getFrontendInput() || 'multiselect' === $attribute->getFrontendInput()) {
+                                    $options = $attribute->getFrontend()->getSelectOptions();
+                                    ?>
+                                    <select name="attr_value[<?php echo $attribute->getAttributeCode()?>][<?php echo $row['cond']?>][]" style="width: 205px" multiple="true">
+                                    <?php foreach ($options as $option):?>
+                                            <option <?php if(in_array($option['value'], $values)):?>selected<?php endif?> value="<?php echo $option['value']?>"><?php echo $option['label']?></option>
+                                    <?php endforeach;?>
+                                    </select>
+                                    <?php
+                                } else {
+                                    ?><input name="attr_value[<?php echo $attribute->getAttributeCode()?>][<?php echo $row['cond']?>][]" class="input-text" value="<?php echo $this->htmlEscape(implode('', $values)) ?>" style="width: 200px;" />
+                                    <?php 
+                                } ?></span>
+                                <?php endif;?>
+                                <?php echo $this->getRemoveDynamicButtonHtml($code) ?>
+                            </span>
+                        <?php
+                    }
+                ?>
+                </div>
+                <div id="<?php echo $code?>_template" style="display:none">
+                    <span class="field-row">
+                        <select name="attr_code[]" onchange="showCond(this);">
+                        <option value=""><?php echo $this->__('Please select') ?></option>
+                        <?php foreach ($this->getAttributes() as $_value => $_label): ?>
+                            <option value="<?php echo $_value ?>"><?php echo $this->htmlEscape($_label) ?></option>
+                        <?php endforeach ?>
+                        </select>
+                        <span></span>
+                        <span></span>
+                        <?php echo $this->getRemoveDynamicButtonHtml($code) ?>
+                    </span>
+                </div>                
+        <?php echo $this->getAddDynamicButtonHtml($code) ?>
+    </fieldset>
+</div>

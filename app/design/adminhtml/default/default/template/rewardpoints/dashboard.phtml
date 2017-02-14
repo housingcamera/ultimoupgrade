@@ -1,0 +1,75 @@
+<?php if (is_array($this->getChild('diagrams')->getTabsIds())) : ?>
+<script type="text/javascript">
+//<![CDATA[
+function changeDiagramsPeriodReward(periodObj) {
+    periodParamReward = periodObj.value ? 'period/' + periodObj.value + '/' : '';
+<?php foreach ($this->getChild('diagrams')->getTabsIds() as $tabId): ?>
+    ajaxBlockParamReward = 'block/tab_<?php echo $tabId ?>/';
+    ajaxBlockUrlReward = '<?php echo $this->getUrl('rewardpoints/adminhtml_dashboard/ajaxBlock', array('_current' => true, 'block' => '', 'period' => '')) ?>' + ajaxBlockParamReward + periodParamReward;
+    new Ajax.Request(ajaxBlockUrlReward, {
+        parameters: {isAjax: 'true', form_key: FORM_KEY},
+        onSuccess: function(transport) {
+            tabContentElementIdReward = '<?php echo $this->getChild('diagrams')->getId() ?>_<?php echo $tabId ?>_content';
+            try {
+                if (transport.responseText.isJSON()) {
+                    var response = transport.responseText.evalJSON()
+                    if (response.error) {
+                        alert(response.message);
+                    }
+                    if(response.ajaxExpired && response.ajaxRedirect) {
+                        setLocation(response.ajaxRedirect);
+                    }
+                } else {
+                    $(tabContentElementIdReward).update(transport.responseText);
+                }
+            }
+            catch (e) {
+                $(tabContentElementIdReward).update(transport.responseText);
+            }
+        }
+    });
+<?php endforeach; ?>
+    ajaxBlockUrlReward = '<?php echo $this->getUrl('rewardpoints/adminhtml_dashboard/ajaxBlock', array('_current' => true, 'block' => 'totals', 'period' => '')) ?>' + periodParamReward;
+    new Ajax.Request(ajaxBlockUrlReward, {
+        parameters: {isAjax: 'true', form_key: FORM_KEY},
+        onSuccess: function(transport) {
+            tabContentElementIdReward = 'rewardpoints_dashboard_diagram_totals';
+            try {
+                if (transport.responseText.isJSON()) {
+                    var response = transport.responseText.evalJSON()
+                    if (response.error) {
+                        alert(response.message);
+                    }
+                    if(response.ajaxExpired && response.ajaxRedirect) {
+                        setLocation(response.ajaxRedirect);
+                    }
+                } else {
+                    $(tabContentElementIdReward).replace(transport.responseText);
+                }
+            }
+            catch (e) {
+                $(tabContentElementIdReward).replace(transport.responseText);
+            }
+        }
+    });
+}
+
+function toggleCal(id) {
+    $('dashboard_'+id+'_cal_div').toggle();
+    $('dashboard_'+id+'_range_div').toggle();
+}
+//]]>
+</script>
+<?php endif; ?>
+
+<div class="entry-edit">
+    <?php echo $this->getChildHtml('diagrams') ?>
+    <img src="<?php echo $this->getSkinUrl('images/logo-rewards.png') ?>" alt="J2T Reward engine" style="height:26px; float: left; margin: 5px 20px 5px 27px;" />
+    <?php if (is_array($this->getChild('diagrams')->getTabsIds())) : ?>
+        <div id="reward_diagram_tab_content"></div>
+    <?php endif; ?>
+</div>
+
+<div style="margin:20px;">
+    <?php echo $this->getChildHtml('totals') ?> 
+</div>

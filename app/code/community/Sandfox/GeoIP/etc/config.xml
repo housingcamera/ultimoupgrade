@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Sandfox_GeoIP>
+            <version>0.2.0</version>
+        </Sandfox_GeoIP>
+    </modules>
+    <global>
+        <blocks>
+            <geoip>
+                <class>Sandfox_GeoIP_Block</class>
+            </geoip>
+        </blocks>
+        <models>
+            <geoip>
+                <class>Sandfox_GeoIP_Model</class>
+            </geoip>
+        </models>
+        <helpers>
+            <geoip>
+                <class>Sandfox_GeoIP_Helper</class>
+            </geoip>
+        </helpers>
+        <events>
+            <controller_front_init_before>
+                <observers>
+                    <geoip>
+                        <type>singleton</type>
+                        <class>geoip/observer</class>
+                        <method>controllerFrontInitBefore</method>
+                    </geoip>
+                </observers>
+            </controller_front_init_before>
+        </events>
+    </global>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <sandfox_geoip before="Mage_Adminhtml">Sandfox_GeoIP_Adminhtml</sandfox_geoip>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <geoip>
+                    <file>sandfox/geoip.xml</file>
+                </geoip>
+            </updates>
+        </layout>
+    </adminhtml>
+
+    <crontab>
+        <jobs>
+            <geoip_update>
+                <schedule><cron_expr>0 0 * * 5</cron_expr></schedule>
+                <run><model>geoip/cron::run</model></run>
+            </geoip_update>
+        </jobs>
+    </crontab>
+</config>

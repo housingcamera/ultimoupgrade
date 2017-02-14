@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <CEC_Contacts>
+            <active>true</active>
+            <codePool>local</codePool>
+        </CEC_Contacts>
+    </modules>
+</config>

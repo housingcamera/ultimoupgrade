@@ -1,0 +1,13 @@
+/**
+* This extension enhanced the admin order grid by adding a sku field, payment method field and segmenting the orders by open and closed ones to enable
+* sorting.
+* It also Enhances the Product grid with a view link and updated at column.
+* 
+**/
+
+/**
+* 
+* 
+* Also added in the config.xml file is making a pending payment order visibile on the front end.
+* 
+**/

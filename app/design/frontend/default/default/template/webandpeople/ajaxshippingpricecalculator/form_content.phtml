@@ -1,0 +1,85 @@
+<ul class="shipping-calculator-form" id="shipping-calculator-form">
+
+<?php echo $this->getBlockHtml('formkey'); ?>
+
+<?php if ($this->isFieldVisible('country')): ?>
+    <li class="item">
+        <label for="calculator_country" class="required"><em>*</em><?php echo Mage::helper('wp_ajaxshippingpricecalculator')->__('Country') ?></label>
+        <div class="input-box">
+            <?php echo Mage::getBlockSingleton('directory/data')->getCountryHtmlSelect(
+                    ($this->getFieldValue('country_id') ? $this->getFieldValue('country_id') : $this->getConfig()->getDefaultCountry()),
+                    'calculator[country_id]',
+                    'calculator_country'
+                );
+            ?>
+        </div>
+    </li>
+<?php else: ?>
+    <input type="hidden" id="calculator_country" name="calculator[country_id]" value="<?php echo $this->htmlEscape($this->getConfig()->getDefaultCountry())?>" />
+<?php endif; ?>
+
+<?php if ($this->isFieldVisible('region')): ?>
+    <li class="item">
+        <label for="calculator_region_id"<?php if ($this->isFieldRequired('region')):?> class="required" <?php endif;?>><?php if ($this->isFieldRequired('region')):?><em>*</em><?php endif;?><?php echo $this->__('State/Province') ?></label>
+        <div class="input-box">
+            <select id="calculator_region_id" name="calculator[region_id]" title="<?php echo Mage::helper('wp_ajaxshippingpricecalculator')->__('State/Province') ?>" style="display:none;"<?php echo ($this->isFieldRequired('region') ? ' class="validate-select"' : '') ?>>
+                <option value=""><?php echo  Mage::helper('wp_ajaxshippingpricecalculator')->__('Please select an option') ?></option>
+            </select>
+           <script type="text/javascript">
+           //<![CDATA[
+                var regionIdDefault = '<?php echo $this->jsQuoteEscape($this->getFieldValue('region_id')); ?>';
+                $('calculator_region_id').setAttribute('defaultValue',  regionIdDefault);
+           //]]>
+           </script>
+           <input type="text" id="calculator_region" name="calculator[region]" value="<?php echo $this->htmlEscape($this->getFieldValue('region')) ?>"  title="<?php echo  Mage::helper('wp_ajaxshippingpricecalculator')->__('State/Province') ?>" class="input-text" style="display:none;" />
+       </div>
+    </li>
+    <script type="text/javascript">
+    //<![CDATA[
+        var calcRegion = new RegionUpdater('calculator_country', 'calculator_region', 'calculator_region_id', <?php echo $this->helper('directory')->getRegionJson() ?>);
+        calcRegion.update();
+    //]]>
+    </script>
+<?php endif; ?>
+
+<?php if($this->isFieldVisible('city')): ?>
+    <li class="item">
+        <label for="calculator_city"<?php if ($this->isFieldRequired('city')):?> class="required" <?php endif;?>><?php if ($this->isFieldRequired('city')):?><em>*</em><?php endif;?><?php echo  Mage::helper('wp_ajaxshippingpricecalculator')->__('City') ?></label>
+        <div class="input-box">
+            <input class="input-text<?php if ($this->isFieldRequired('city')):?> required-entry<?php endif;?>" id="calculator_city" type="text" name="calculator[city]" value="<?php echo $this->htmlEscape($this->getFieldValue('city')) ?>" />
+        </div>
+    </li>
+<?php endif; ?>
+
+<?php if ($this->isFieldVisible('postcode')): ?>
+    <li class="item">
+        <label for="calculator_postcode"<?php if ($this->isFieldRequired('postcode')):?> class="required" <?php endif;?>><?php if ($this->isFieldRequired('postcode')):?><em>*</em><?php endif;?><?php echo Mage::helper('wp_ajaxshippingpricecalculator')->__('Zip/Postal Code') ?></label>
+        <div class="input-box">
+            <input class="input-text validate-postcode<?php if ($this->isFieldRequired('postcode')):?> required-entry<?php endif;?>" type="text" id="calculator_postcode" name="calculator[postcode]" value="<?php echo $this->htmlEscape($this->getFieldValue('postcode')) ?>" />
+        </div>
+    </li>
+<?php endif; ?>
+
+<?php if ($this->isFieldVisible('coupon_code')): ?>
+    <li class="item">
+        <label for="calculator_coupon_code"<?php if ($this->isFieldRequired('coupon_code')):?> class="required" <?php endif;?>><?php if ($this->isFieldRequired('coupon_code')):?><em>*</em><?php endif;?><?php echo Mage::helper('wp_ajaxshippingpricecalculator')->__('Coupon Code') ?></label>
+        <div class="input-box">
+            <input class="input-text <?php if ($this->isFieldRequired('coupon_code')):?> required-entry<?php endif;?>" type="text" id="calculator_coupon_code" name="calculator[coupon_code]" value="<?php echo $this->htmlEscape($this->getFieldValue('coupon_code')) ?>" />
+        </div>
+    </li>
+<?php endif; ?>
+
+<?php if ($this->isFieldVisible('cart')): ?>
+    <li class="item radio">
+        <label for="calculator_cart_yes"><?php echo Mage::helper('wp_ajaxshippingpricecalculator')->__('Include Cart Items') ?></label>
+        <div class="input-box">
+            <input type="radio" id="calculator_cart_yes" name="calculator[cart]" value="1" <?php if ($this->useShoppingCart()): ?> checked="checked"<?php endif;?> /><?php echo Mage::helper('wp_ajaxshippingpricecalculator')->__('Yes') ?>
+            <input type="radio" id="calculator_cart_no" name="calculator[cart]" value="0" <?php if (!$this->useShoppingCart()): ?> checked="checked"<?php endif;?> /> <?php echo Mage::helper('wp_ajaxshippingpricecalculator')->__('No') ?>
+        </div>
+    </li>
+<?php elseif ($this->useShoppingCart()):?>
+    <input id="calculator_cart_yes" type="hidden" name="calculator[cart]" value="1" />
+<?php endif; ?>
+
+</ul>
+<script type="text/javascript">decorateList('shipping-calculator-form');</script>

@@ -1,0 +1,241 @@
+Points,Punkte
+Reward points,Bonus Punkte
+You have %d point(s) available,Sie haben %d Punkt(e) verfügbar
+To get a discount you need at least %d points, "Um eine Ermäßigung zu erhalten, benötigen Sie mindestens %d Punkte."
+Enter quantity of credit you want to use.,"Geben Sie die Menge der Punkte an, die Sie verwenden möchten."
+%d points,%d Punkte
+Apply Points,Punkte benutzen
+Apply points,Punkte benutzen
+You are currently using %d point(s) of your %d point(s) available, "Sie benutzen zur Zeit %d Punkt(e) von insgesamt %d verfügbaren Punkten."
+Remove Points,Punkte entfernen
+Not enough points available.,Nicht genügend Punkte verfügbar.
+The minimum required points is not reached,Die mindest erforderlichen Punkte nicht sind nicht erreicht.
+Amount of points wrongly used,"Anzahl der Punkte wurde falsch verwendet"
+Your Points,Ihre Punkte
+Total Accumulated Points, Die gesamten akkumulierten Punkte
+Total Points Spent,Vergebene Punkte
+Points waiting for validation, Erworbene Punkte sind bei der Überprüfung.
+Your cart amount has not reached the minimum required points,"Ihr Warenkorb hat nicht die minimale Menge der erforderlichen Punkte erreicht."
+yes,ja
+no,nein
+Please enter a valid email address,Bitte geben Sie eine gültige E-Mail Adresse an
+Please enter your friend name,Bitte geben Sie den Namen Ihres Freunds an.
+This email has been already submitted,Diese E-Mail Adresse wurde bereits eingereicht.
+There was a problem with the invitation,Es gab ein Problem mit der Einladung.
+This email was successfully invited,Diese E-Mail Adresse wurde erfolgreich eingeladen.
+Friend's name,Name Ihres Freundes
+Statistics,Statistik
+Reward Points,Reward Points
+Customer full name,Vollständiger Kundenname
+Customer email,Kunden E-Mail Adresse
+Accumulated points,Kumulierte Punkte
+Spent points,Ausgegebene Punkte
+Add New,Hinzufügen
+Action Type,Aktionstyp
+Rule Title,Titel
+Type of action,Art der Aktion
+Check Order Points,Überprüfe Punkte
+Refresh customer points,Aktualisierung der Punkte
+Defaults,Grundeinstellung
+Points gathered per Money spent,Gesamelte Punkte ausgegeben
+"Points gathered for 1 unit of money spent. (e.g. if set to 2, you will obtain 100 points for $50 spent).","Punkt-Multiplikator für 1 Geld-Einheit festlegen. (Z.B. wenn auf 2 gesetzt, erhält der Kunde für 50 CHF/€ 100 Punkte)."
+Points to obtain 1 €,Punkte erhalten 1 €
+Amount of points required to obtain a discount.,"Anzahl der Punkte die erforderlich sind, um einen Rabatt zu erhalten."
+Apply points by step,Tragen Sie Punkte für Schritt
+"Apply credit points step by step. e.g. 250, 500, 750, etc.","Gestaffelte Punkte-Schritte benutzen (z.B. 250, 500, 750, etc.)"
+Step value,Schritt-Wert
+The step value, Schritt-Wert
+Use max amount of points,Verwenden Sie die max. Anzahl der Punkte.
+Apply the maximum amount of point to the order,Tragen Sie die maximale Punktzahl ein.
+Round up points,Punkte Aufrunden
+"If yes, the points will be rounded. Otherwise, it will be floored.","Wenn ja, werden die Punkte aufgerundet, sonst abgerundet "
+Referral points,Bonus Punkte
+Referral points (%s),Bonus Punkte (%s)
+Points earned when referred friend orders.,"Punkte die dein Freund bei seiner nächsten Bestellung durch dich erhält."
+Referral child points,Punkte für Freunde
+Points earned by referred friend for first order.,Die erhaltenen Punkte durch die erste Bestellungen deiner Freunde.
+Select email template (Referral subscribe),Wählen Sie die E-Mail-Vorlage (abonnieren)
+Select email template (Referral confirm),Wählen Sie per E-Mail-Vorlage (bestätigen)
+Referrals,Weiterleitung
+Catalog point rules,Katalog Punkte Regeln
+Cart point rules,Warenkorb Punkte Regeln
+Order details,Bestelldetails
+Customer ID,Kunden-ID
+Store ID,Shop-ID
+Points are,Deine Punkte sind
+Order ID,Bestell-ID
+Points Spent,Punkte ausgegeben
+Related to Order ID,Bezug zur ID
+Not related to Order ID,Nicht im Zusammenhang mit der ID bestellen
+Registration points,Punkte für die Anmeldung
+Points earned upon customer registration.,Die gesammelten Punkte für die Registrierung der Kunden.
+This shopping cart is worth %s loyalty point(s).,Dieser Warenkorb ist %s Bonus Punkte(e) Wert.
+You have %d loyalty point(s) available.,Sie haben %d Bonus-Punkt(e) zur Verfügung.
+To get a discount you need at least %d loyalty point(s).,"Um einen Rabatt zu erhalten, benötigen Sie mindestens %d Bonus-Punkt(e)."
+Enter quantity of loyalty point(s) you want to use.,Geben Sie die Menge der Bonus-Punkt (e) die Sie verwenden möchten.
+%d loyalty point(s), %d Bonus-Punkt(e)
+You are currently using %d point(s) of your %d loyalty point(s) available., Es stehen Ihnen zur Zeit %d Bonus-Punkt(e) zur Verfügung.
+Not enough points available.,Es stehen nicht genug Punkte zur Verfügung.
+The minimum required points is not reached.,Die mindestens erforderlichen Punkte wurde nicht erreicht.
+Amount of points wrongly used.,"Anzahl der Punkte, die fehlen."
+Please enter a valid email address.,Bitte geben Sie eine gültige E-Mail-Adresse ein.
+Please enter your friend name.,Bitte geben Sie den Namen Ihres Freundes ein.
+This email has been already submitted.,Diese E-Mail Adresse ist bereits registriert.
+This email was successfully invited.,Diese E-Mail Adresse wurde erfolgreich eingeladen.
+There was a problem with the invitation.,Es gab ein Problem mit der Einladung.
+Referral,Epfehlungen
+Referred Friends,Empfohlene Freunde
+Friend's name,Name des Freundes
+Friend's email address,Empfänger-Email-Adresse
+* Required Fields,* Pflichtfelder
+Refer a friend,Empfehlen Sie einen Freund
+Full Name,Vollständiger Name
+Email,E-Mail
+Coupon codes restriction,Gutscheincode Einschränkung
+"If yes, customers will not be able to use coupon codes and reward points at the same time within an order.","Wenn ja, werden die Kunden nicht in der Lage, Gutscheincodes und Bonuspunkte zur gleichen Zeit innerhalb einer Bestellung zu nutzen."
+"With this product, you earn <span id='j2t-pts'>%d</span> loyalty point(s).",Mit diesem Produkt verdienen Sie <span id='j2t-pts'>%d</span> Bonus-Punkt(e).
+Registered?,Registriert?
+First order?,Erster Auftrag?
+Show referral link,Zeige Empfehlungs-Link
+Show refer a friend link in user account.,Zeigen Sie den Freundes-Link im Benutzerkonto.
+Apply store scope,Bewerben Shop Umfang
+"If yes, the points collected will be available only for the store where the points were earned.","Wenn ja, können die gesammelt Punkte nur den entsprechenden Shop eingesetzt werden."
+Client points,Kunden-Punkte
+Type of points,Art der Punkte
+Type of point,Art der Punkte
+Points added,Punkte hinzugefügt
+Points used,Punkte verwendet
+Valid until,Gültig bis
+Order: %s,Auftrag: %s
+Referral order state: %s,Referral Ordnung Zustand: %s
+Order state: %s,Bestellen Zustand: %s
+Customer email,Kunden-E-Mail
+Accumulated points,Kumulierte Punkte
+Spent points,Ausgegebene Punkte
+Admin Gift,Admin-Geschenk
+"Store input %s","Admin-Punkte %s"
+Parent email,Aktuelle E-Mail Adresse
+Referred email,Bezogene E-Mail Adresse
+Referred Name,Bezogener Namen
+Status,Status
+Has ordered,"Hat bestellt,"
+Waiting for order,Warten auf die Bestellung
+Name,Name
+Rule details,Regel-Details
+Rule Name,Regel-Name
+To Date,Bis Datum
+Type of rule,Art der Regel
+Cart amount,Warenkorb Stückzahl
+Product sku,Produkt-SKU
+Rule condition,Regelbedingung
+Operator,Betreiber
+Between,Zwischen
+Test value,Testwert
+From,Aus
+To,Zu
+Points to be earned,Punkte die verdient werden
+Status,Status
+Inactive,Inaktiv
+Active,Aktiv
+Automatic use of points,Automatische Verwendung von Punkten
+Use maximum amount of point while in shopping cart.,Verwenden Höchstbetrag von Punkt während im Warenkorb.
+Referral order state : %s,Referral Ordnung Zustand: %s
+Order state : %s,Bestellen Zustand: %s
+new,neu
+processing,Verarbeitung
+complete,abschließen
+Points per validated review,Punkte pro validiert Rezension
+Points the customer get while sending a valid review.,Punkte der Kunde sich beim Senden eine gültige Kritik.
+Review points,Testbericht der Punkte
+User location,Standort
+User post code,Postleitzahl
+User region,Region
+User country,Land
+Cart Attributes,Zeige Attribute
+Action Type,Action Type
+Don't process points,Sie verarbeiten keine Punkte
+Add / remove points,Punkte hinzufügen / entfernen
+Points validity duration,Gültigkeitsdauer der Punkte
+Points validity duration in days (use 0 for unlimited).,Gültigkeitsdauer der Punkte in Tagen (Einsatz 0 für unbegrenzt).
+Maximum points collected per order,Maximale Punkte pro Bestellung
+Maximum points to be collected per order (use 0 for unlimited).,Maximale Punkte die pro Bestellung abgeholt werden können (0 für unbegrenzt).
+Maximum points used per order,Maximale Punkte pro Bestellung verwendet
+Maximum points to be used per order (use 0 for unlimited).,Maximale Punkte pro Bestellung verwendet werden (Verwendung 0 für unbegrenzt).
+"You tried to use %s loyalty points, but you can use a maximum of %s points per shopping cart.","Sie haben versucht, %s Treuepunkte verwenden, aber Sie können maximal %s Punkte pro Einkaufswagen benutzen zu können."
+Registration/Referral points,Anmeldung / Referral Punkte
+Points gathered / unit of money spent,Punkte gesammelt / Einheit Geld ausgegeben
+Points to obtain 1 unit of money,Anzahl Punkte die man für 1 CHF/€ erhält 
+Permanent Link,Permanent Link
+Share the following link with your friends: <br /><strong>%s</strong>,Teilen Sie den folgenden Link mit Ihren Freunden: <br /> <strong> %s </ strong>
+Share referring link,verweisender Link teilen
+Great deals here!,Unschlagbare Deals!
+Visit this for great deals!,Schauen Sie dieses Angebot unbedingt an!  
+Show referral permanent link,Zeige permanente Verlinkungen
+This will allow customers to share permanent their permanent link to refer friends.,"Dadurch wird es Kunden ermöglichen, permanente Links mit Freunden zu teilen."
+Share with addthis,Share mit addthis
+Allow customers to share permanent link using addthis. Visit addthis.com to create an account.,Lassen Sie Kunden zu verlinken teilen mit addthis. Besuchen Sie addthis.com ein Kundenkonto eröffnen.
+addthis account name,addthis Kontonamens
+Sharing title (may not be used),Sharing Titel (darf nicht verwendet werden)
+Sharing text (may not be used),Sharing Text (darf nicht verwendet werden)
+"For any first valid order placed by referred friend, you earn: <strong>%s points</strong>","Für die erste gültige Bestellung Ihres Freundes bekommen Sie: <strong> %s Punkte </ strong>"
+"For any first valid order placed by referred friend, your friend gets: <strong>%s extra points</strong>","Für die erste gültige Bestellung erhält Ihr Freund: <strong> %s Extra-Punkte </ strong>"
+Attribute restriction,Attribut Beschränkung
+Only process points when reward_points attribute is filled (reward_points attribute needs to be created and must containt integer).,"Nur Prozess Punkte, wenn reward_points Attribut wird gefüllt (reward_points Attribut muss erstellt werden und muss integer containt)."
+Include tax in reward point discounts (only when customer tax applied before discount in customer tax tab).,Mehrwertsteuer in der Bestellung enthalten (nur bei Kunden vor Steuern Rabatt in Customer Tax Registerkarte angewandt).
+Include Tax,Inkl. MwSt.
+Include shipping,Zzgl. Versand
+Include shipping price in discount (only for magento 1.4.x or greater).,Zzgl. Versand Preis in Rabatt (nur für Magento 1.4.x oder höher).
+"Math method applied to point calculation. (For exact point value, round up method might be used when necessary.)","Math-Methode angewenden, um Punkt-Berechnung durchzuführen. (Der genaue Punktwert, Rundungs-Methode kann verwendet werden, wenn dies nötig ist.)"
+Process currency rate,Prozess-Wechselkurs
+Use currency exchange rate while calculating points & discount (default magento base currency is used).,Verwenden des Wechselkurs bei der Berechnung Punkte & Rabatte (bei Standard Magento Basiswährung).
+Use slider,Verwenden Sie den Schieberegler
+Use slider to specify points.,"Verwenden Sie Schieberegler, um Punkte zu spezifizieren."
+Slide to specify the amount of points to be used.,"Schieben Sie, um die Menge der Punkten anzugeben."
+%s credit points, %s Kreditpunkte
+Minimum points balance to apply,Minimale Punkte die es zum Ausgleichen benötigt. 
+The minimum amount of points a customer must have to be able to use at checkout (use 0 for no-limit).,"Die minimale Anzahl der Punkte, die ein Kunde einsetzen muss. (verwenden Sie 0 für No-Limit)."
+You must have at least %s point(s) to apply points.,"Sie müssen mindestens %s (n) haben, um Punkte zu bekommen."
+You haven't invited any friend.,Sie haben keine Freundin eingeladen.
+Validity status field,Gültigkeitsdauer
+Only for magento 1.4.x or greater. Order status database field used (modify this only if you know what you are doing).,"Nur für Magento 1.4.x oder höher ist. Bestell-Status-Datenbank-Feld verwendet (diese ändern nur, wenn notwendig)."
+Valid statuses,Gültigkeits Status
+Order status database field used when checking points validity (modify this only if you know what you are doing).,"Prüfung der Punkte auf Gültigkeit (modifizieren Sie dieses nur, wenn notwendig)."
+Points availability delay,Verzögerung der Freigabe
+Delaying the points availability (use 0 for no-delay).,Die Verzögerung der Freigabe (Einsatz-0 für keine Verzögerung).
+Referral Email Sender,Referral-Email-Absender
+Referral confirmation Email Sender,Referral Bestätigung des E-Mailsenders
+Design and Graphics,Design und Grafik
+Setup graphic design of the module,Setup des Grafik-Moduls
+Small inline image,Kleines Inline-Bild
+Big inline image,Grosses Inline-Bild
+Show small image,Kleines Bild anzeigen
+Show small inline image on product views.,Zeige kleines Inline-Bild auf der Produktansicht.
+Show big image,Großes Bild anzeigen
+Show big image on shopping cart area.,Großes Bild anzeigen im Warenkorb.
+Email notification,E-Mail Benachrichtigung
+Email sent before points expiring,"E-Mail geschickt, bevor Punkte auslaufenden"
+In days.,In Tagen.
+Number of days before points expiring,Anzahl der Tage vor dem Punkte auslaufenden
+Email Sender notification,Email Sender Benachrichtigung
+Add/Remove points,Punkte hinzufügen / entfernen
+Points Balance,Punktestand
+You also have %s expired points.,Sie haben auch abgelaufene %s Punkte.
+Turbo Mode,Turbo-Modus
+Note that guest orders do not allow referral points to be collected.,"Beachten Sie, dass bei Bestellungen Gast keine Punkte gesammelt werden können."
+Unable guest orders,Kann nicht als Gast bestellen
+Unable guest orders when customer orders from referral url/email.,"Kann nicht als Gast Aufträge platzieren via Referral URL / E-Mail."
+Turbo Mode allow performance increases within cart process and customer account dashboard.,Turbo-Modus erlaubt Leistungssteigerungen im Warenkorb und Kundenkonto über die Systemeinstellungen.
+Step multiplier,Schritt Multiplikator
+"Multiplier for the step value. e.g. if the multiplier is 10 and step value 20, the steps will be: 20, 200, 2000, etc. Default value is 1.","Multiplikator für den Step-Wert. z.B. wenn der Multiplikator 10 und Step-Wert 20, werden die Schritte multilpiziert mit 20, 200, 2000, etc. Ihr Standardwert."
+Show onepage checkout summary,Zeige onepage Kasse Zusammenfassung
+Show summary of point usage within onepage checkout review (compatible with magento 1.4.x or greater).,Zeigt eine Zusammenfassung der Punkt Nutzung innerhalb der Kasse (kompatibel mit Magento 1.4.x oder höher).
+Review your <a href='%s'>shopping cart</a> to apply or modify points usage.,Überprüfen Sie Ihre <a href='%s'> Warenkorb </ a> Bitte anwenden oder ändern Sie die Punkte Nutzung.
+* Points are gathered only for registered clients.,* Punkte werden nur für registrierte Kunden gesammelt.
+Points cannot be redeemed within multiple shipping orders.,Punkte können nicht innerhalb mehrerer Versandaufträge eingelöst werden.
+Wrong email address (%s).,Falsche E-Mail-Adresse ( %s).
+Friend name is required for email: %s on line %s., %s in Zeile %s: Für den Name ist eine E-Mail erforderlich.
+Email %s has been already submitted.,E-Mail %s wurde bereits eingereicht.
+Email %s was successfully invited.,E-Mail %s wurde erfolgreich eingeladen.
+There was a problem with the invitation email %s.,Es gab ein Problem mit der Einladung per E-Mail %s.
+%s points used, %s Punkte verwenden 
+"Birthday points","Ihre Geburtstags-Punkte"

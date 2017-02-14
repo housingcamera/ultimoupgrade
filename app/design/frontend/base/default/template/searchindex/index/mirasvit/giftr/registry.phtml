@@ -1,0 +1,11 @@
+<div class="searchindex-result">
+	<?php if (($block = $this->getLayout()->getBlockSingleton($this->getBlockType()))): ?>
+		<?php
+            echo $block->setName($this->getBlockName())
+                ->setChild('pager', $this->getLayout()->getBlock('pager'))
+                ->setTemplate($this->getBlockTemplate())
+                ->setCollection($this->getCollection())
+                ->toHtml();
+        ?>
+	<?php endif ?>
+</div>

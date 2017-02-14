@@ -1,0 +1,5 @@
+2016-04-21 vav
+* Images are not displayed in Gmail
+Changed files:
+/app/code/local/Mirasvit/EmailReport/Helper/Data.php
+/app/code/local/Mirasvit/EmailDesign/Helper/Variables/Image.php

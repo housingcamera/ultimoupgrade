@@ -1,0 +1,23 @@
+<?php
+	$logoExists = FALSE;
+
+	//Get default logo
+	$logoSrc = Mage::getStoreConfig('design/header/logo_src');
+	$logoAlt = Mage::getStoreConfig('design/header/logo_alt');
+
+	//Get sticky logo
+	$info = pathinfo($logoSrc);
+	$stickyLogoSrc = $info['dirname'] . DS . $info['filename'] . '_sticky' . '.' . $info['extension'];
+	$stickyLogoDir = Mage::getSingleton('core/design_package')->getSkinBaseDir() . DS . $stickyLogoSrc;
+
+	//If sticky logo image file exists
+	if (file_exists($stickyLogoDir))
+	{
+		$logoExists = TRUE;
+	}
+?>
+<?php if ($logoExists): ?>
+	<li class="nav-item nav-item--stickylogo level0 level-top nav-holder">
+		<img src="<?php echo $this->getSkinUrl($stickyLogoSrc) ?>"<?php if ($logoAlt) echo " alt=\"{$logoAlt}\""; ?> />
+	</li>
+<?php endif; ?>

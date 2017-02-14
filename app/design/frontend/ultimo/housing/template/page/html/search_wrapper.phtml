@@ -1,0 +1,23 @@
+<?php
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+?>
+<?php
+    $theme = Mage::helper('ultimo');
+
+    //Additional search wrapper classes
+    $searchClasses = '';
+    if (! $theme->getCfg('header/mode')) //Deprecated: option header/mode is deprecated and will be removed
+    {
+        //If mobile header disabled, add a class to style the search box on mobile devices
+        $searchClasses .= ' search-wrapper-mobile';
+    }
+
+    //Important: class "search-wrapper" needs to be applied one level lower than "skip-content" to style the search box correctly inside main menu holders
+?>
+<div id="header-search" class="skip-content skip-content--style">
+    <div class="search-wrapper<?php echo $searchClasses; ?>">
+        <?php echo $this->getChildHtml('top.search'); ?>
+    </div>
+</div>

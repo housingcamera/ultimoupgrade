@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <placeholders>
+        <awcountdown>
+            <block>awcountdown/countdown</block>
+            <placeholder>AW_CD_TIMER</placeholder>
+            <container>AW_Countdown_Model_PageCache_Container_Countdown</container>
+        </awcountdown>
+    </placeholders>
+</config>

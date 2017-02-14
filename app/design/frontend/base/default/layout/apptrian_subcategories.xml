@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @category   Apptrian
+ * @package    Apptrian_Subcategories
+ * @author     Apptrian
+ * @copyright  Copyright (c) 2015 Apptrian (http://www.apptrian.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<layout version="0.1.0">
+    <catalog_category_default>
+        <reference name="head">
+            <action method="addItem" ifconfig="apptrian_subcategories/general/enabled">
+                <type>skin_css</type>
+                <name>css/apptrian_subcategories.css</name>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="core/template" name="apptrian_subcategories_category_page_after" after="-" >
+                <action method="setTemplate" ifconfig="apptrian_subcategories/category_page/show_after_content">
+                    <template>apptrian/subcategories/grid_list.phtml</template>
+                </action>
+            </block>
+        </reference>
+        <reference name="content">
+            <block type="core/template" name="apptrian_subcategories_category_page_before" before="-" >
+                <action method="setTemplate" ifconfig="apptrian_subcategories/category_page/show_before_content">
+                    <template>apptrian/subcategories/grid_list.phtml</template>
+                </action>
+            </block>
+        </reference>
+    </catalog_category_default>
+    <catalog_category_layered>
+        <reference name="head">
+            <action method="addItem" ifconfig="apptrian_subcategories/general/enabled">
+                <type>skin_css</type>
+                <name>css/apptrian_subcategories.css</name>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="core/template" name="apptrian_subcategories_category_page_layered_after" after="-" >
+                <action method="setTemplate" ifconfig="apptrian_subcategories/category_page/show_after_content">
+                    <template>apptrian/subcategories/grid_list.phtml</template>
+                </action>
+            </block>
+        </reference>
+        <reference name="content">
+            <block type="core/template" name="apptrian_subcategories_category_page_layered_before" before="-" >
+                <action method="setTemplate" ifconfig="apptrian_subcategories/category_page/show_before_content">
+                    <template>apptrian/subcategories/grid_list.phtml</template>
+                </action>
+            </block>
+        </reference>
+    </catalog_category_layered>
+    <cms_index_index>
+        <reference name="head">
+            <action method="addItem" ifconfig="apptrian_subcategories/general/enabled">
+                <type>skin_css</type>
+                <name>css/apptrian_subcategories.css</name>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="core/template" name="apptrian_subcategories_home_page_after" after="-" >
+                <action method="setTemplate" ifconfig="apptrian_subcategories/home_page/show_after_content">
+                    <template>apptrian/subcategories/grid_list.phtml</template>
+                </action>
+            </block>
+        </reference>
+        <reference name="content">
+            <block type="core/template" name="apptrian_subcategories_home_page_before" before="-" >
+                <action method="setTemplate" ifconfig="apptrian_subcategories/home_page/show_before_content">
+                    <template>apptrian/subcategories/grid_list.phtml</template>
+                </action>
+            </block>
+        </reference>
+    </cms_index_index>
+</layout>

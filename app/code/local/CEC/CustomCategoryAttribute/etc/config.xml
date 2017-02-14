@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <CEC_CustomCategoryAttribute>
+            <version>0.0.3</version>
+        </CEC_CustomCategoryAttribute>
+    </modules>
+ 
+    <global>
+        <resources>
+            <customcategoryattribute_setup>
+                <setup>
+                    <module>CEC_CustomCategoryAttribute</module>
+                    <class>Mage_Catalog_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </customcategoryattribute_setup>
+            <customcategoryattribute_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </customcategoryattribute_write>
+            <customcategoryattribute_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </customcategoryattribute_read>
+        </resources>
+	   
+    </global>
+</config>

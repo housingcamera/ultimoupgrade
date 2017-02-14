@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <CEC_ExtendedGrid>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends></depends>
+        </CEC_ExtendedGrid>
+    </modules>
+</config>

@@ -1,0 +1,48 @@
+<?php $testimonial=$this->getTestimonial(); ?>
+<div class="customer-testimonials">
+	<div class="page-title">
+		<h1><?php echo $this->__('Customer Testimonials');?></h1>
+        <?php if(Mage::getStoreConfig('testimonial/testimonial_options/allow_customers_write_testimonial') == 1):?>
+		<div class="submit-testimonial">
+				<button class="button" onclick="setLocation('<?php echo $this->getFormUrl(); ?>')">
+					<span>
+						<span>
+							<?php echo $this->__('Submit Your Testimonial');?>					
+						</span>
+					</span>
+				</button>
+		</div>
+        <?php endif ?>
+    </div>
+	<?php echo $this->getPagerHtml();?>
+	<?php if ($testimonial->getSize()): ?>
+		<?php $i==0; foreach ($testimonial as $obj):?>
+			<?php if($obj->getStatus()==1): ?>
+			<div class="customer-testimonials-content<?php if($i==0):?> first<?php endif;?><?php if($i==(count($testimonial)-1)):?> last<?php endif;?>" name="<?php echo $obj->getName(); ?>" id="<?php echo $obj->getName(); ?>">
+				<div class="testimonial-content">
+                    <div class="testimonial-content-avatar">
+                        <?php
+                            if($obj->getAvatarName() != ''){
+                                $avatarLink = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) .'magebuzz/avatar/'.$obj->getAvatarName();
+                                ?><img src="<?php echo $avatarLink ?>" alt="test" height="120" width="120" /><?php
+                            }
+                        ?>
+                    </div>
+					<?php echo $obj->getTestimonial();?>
+				</div>
+				<div class="testimonial-source">
+					<span class="testimonial-author"><?php echo $obj->getName(); ?></span>
+					<span class="testimonial-date">
+						<?php echo date('F d, Y', Mage::getModel('core/date')->gmtTimestamp($obj->getCreatedTime())); ?>
+					</span>
+				</div>
+			</div>
+			<?php endif ?>
+			<?php $i++; ?>
+		<?php endforeach;?>
+		<?php echo $this->getPagerHtml(); ?>
+	<?php else: ?>
+		<p class="note-msg"><?php echo $this->__('There is no testimonial submitted.'); ?></p>
+	<?php endif ?>
+</div>
+

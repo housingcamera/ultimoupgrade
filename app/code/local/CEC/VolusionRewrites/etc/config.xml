@@ -1,0 +1,12 @@
+<stores>
+    <default>
+    <web>
+      <routers>
+         <volusionrewrites_myrouter>
+             <area>frontend</area>
+             <class>CEC_VolusionRewrites_Controller_Router</class>
+         </volusionrewrites_myrouter>
+     </routers>
+    </web>
+</default>
+</stores>

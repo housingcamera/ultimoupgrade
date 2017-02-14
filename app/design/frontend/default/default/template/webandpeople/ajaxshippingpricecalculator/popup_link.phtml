@@ -1,0 +1,18 @@
+<?php if ($this->isOutsideBlock()) : ?>
+
+<div class="block block-shipping-calculator">
+    <div class="block-title">
+        <strong><span><?php echo Mage::helper('wp_ajaxshippingpricecalculator')->__('Estimate Shipping') ?></span></strong>
+    </div>
+    <div class="block-content">
+        <p class="empty">
+            <a href="javascript:;" onclick="wpPopupCalculator();"><?php echo Mage::helper('wp_ajaxshippingpricecalculator')->__('Calculate Shipping Price') ?></a>
+        </p>
+    </div>
+</div>
+
+<?php else : ?>
+<p class="shipping_price">
+    <a href="javascript:;" onclick="wpPopupCalculator();"><?php echo Mage::helper('wp_ajaxshippingpricecalculator')->__('Calculate Shipping Price') ?></a>
+</p>
+<?php endif; ?>

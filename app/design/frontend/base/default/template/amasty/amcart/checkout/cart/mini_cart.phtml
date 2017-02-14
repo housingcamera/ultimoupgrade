@@ -1,0 +1,35 @@
+
+    <?php $_cartQty = $this->getSummaryCount() ?>
+    <?php $_items = $this->getRecentItems(); ?>
+    <?php if(count($_items)): ?>
+    	<div class="block-content">
+        
+			<?php if ($tmp_html = $this->getChildHtml('i_block_mini_cart_above_products')): ?> <?php //Predefined CMS block ?>
+                <div class="mini-cart-above-products-wrapper"><?php echo $tmp_html; ?></div>
+            <?php endif; ?>
+        
+            <p class="block-subtitle"><?php echo $this->__('Recently added item(s)') ?></p>
+            <ol id="cart-sidebar" class="mini-products-list">
+            <?php foreach($_items as $_item): ?>
+                <?php echo $this->getItemHtml($_item) ?>
+            <?php endforeach; ?>
+            </ol>
+            <script type="text/javascript">decorateList('cart-sidebar', 'none-recursive')</script>
+            
+            <div class="actions">
+            	<button type="button" title="<?php echo $this->__('View contents of your shopping cart') ?>" class="button btn-inline" onclick="setLocation('<?php echo $this->getUrl('checkout/cart') ?>')"><span><span><?php echo $this->__('View shopping cart') ?></span></span></button>
+            	<?php echo $this->getChildHtml('extra_actions') ?>
+            </div>
+
+        </div>
+    <?php else: ?>
+    	<div class="block-content">
+        
+        	<?php if ($tmp_html = $this->getChildHtml('i_block_mini_cart_above_products')): ?> <?php //Predefined CMS block ?>
+                <div class="mini-cart-above-products-wrapper"><?php echo $tmp_html; ?></div>
+			<?php else: ?>
+            	<p class="empty"><?php echo $this->__('You have no items in your shopping cart.') ?></p>
+            <?php endif; ?>
+		</div>
+    <?php endif ?>
+

@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+
+<config>
+  <modules>
+    <stamped_core>
+      <version>1.0.0</version>
+    </stamped_core>
+  </modules>
+
+  <global>
+    <blocks>
+      <stamped>
+        <class>stamped_core_Block</class>
+      </stamped>
+    </blocks>
+    <models>
+      <stamped>
+        <class>stamped_core_Model</class>
+        <resourceModel>stamped_mysql4</resourceModel>
+      </stamped>
+
+      <stamped_mysql4>
+        <class>stamped_core_Model_Mysql4</class>
+        <entities>
+          <richsnippet>
+            <table>stamped_rich_snippets</table>
+          </richsnippet>
+        </entities>
+      </stamped_mysql4>
+    </models>
+    <helpers>
+      order_status_trigger
+      <stamped>
+        <class>stamped_core_Helper</class>
+      </stamped>
+    </helpers>
+    <events>
+      <sales_order_save_after>
+        <observers>
+          <stamped_core_order_observer>
+            <type>singleton</type>
+            <class>Stamped_Core_Model_Order_Observer</class>
+            <method>add_review_request</method>
+          </stamped_core_order_observer>
+        </observers>
+      </sales_order_save_after>
+    </events>
+    <resources>
+      <stamped_setup>
+        <setup>
+          <module>stamped_core</module>
+          <class>stamped_core_Model_Resource_Mysql4_Setup</class>
+        </setup>
+        <connection>
+          <use>core_setup</use>
+        </connection>
+      </stamped_setup>
+      <stamped_write>
+        <connection>
+          <use>core_write</use>
+        </connection>
+      </stamped_write>
+      <stamped_read>
+        <connection>
+          <use>core_read</use>
+        </connection>
+      </stamped_read>
+    </resources>
+  </global>
+
+  <admin>
+    <routers>
+      <adminhtml>
+        <args>
+          <modules>
+            <stamped_core before="Mage_Adminhtml">stamped_core</stamped_core>
+          </modules>
+        </args>
+      </adminhtml>
+    </routers>
+  </admin>
+
+  <frontend>
+    <layout>
+      <updates>
+        <stamped>
+          <file>stamped.xml</file>
+        </stamped>
+      </updates>
+    </layout>
+  </frontend>
+
+  <adminhtml>
+    <acl>
+      <resources>
+        <admin>
+          <children>
+            <system>
+              <children>
+                <config>
+                  <children>
+                    <stamped>
+                      <title>Stamped Module Section</title>
+                    </stamped>
+                  </children>
+                </config>
+              </children>
+            </system>
+          </children>
+        </admin>
+      </resources>
+    </acl>
+  </adminhtml>
+
+  <default>
+    <stamped>
+      <stamped_settings_group>
+        <order_status_trigger>complete</order_status_trigger>
+      </stamped_settings_group>
+    </stamped>
+  </default>
+</config>

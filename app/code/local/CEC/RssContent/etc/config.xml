@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<modules>
+		<CEC_RssContent>
+			<active>true</active>
+			<codePool>local</codePool>
+			<version>1.2.0</version>
+		</CEC_RssContent>
+	</modules>
+	<global>
+		<blocks>
+			<rsscontent>
+				<class>CEC_RssContent_Block</class>
+			</rsscontent>
+		</blocks>
+		<helpers>
+			<rsscontent>
+				<class>CEC_RssContent_Helper</class>
+			</rsscontent>
+		</helpers>
+	</global>
+</config>

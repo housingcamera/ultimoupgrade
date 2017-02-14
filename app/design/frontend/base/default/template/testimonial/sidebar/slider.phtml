@@ -1,0 +1,32 @@
+<?php if(Mage::getStoreConfig('testimonial/general_option/enable_sidebar') == 1):?>	
+	<div class="block block-testimonial-sidebar">			
+		<?php $latestTestimonial = $this->getTestimonialsLast()?>
+		<?php if(count($latestTestimonial) > 0):?>
+			<div class="block-title">
+				<strong><span><?php echo $this->__('Latest Testimonials')?></span></strong>
+			</div>
+			<div class="block-content">
+				<ul id="testimonialSidebar">			
+					<?php foreach($latestTestimonial as $_item):?>							
+						<li class="testimonial-list">									
+							<div class="testimonial-sidebar-content">						
+								<div class="std">							
+									<a href="<?php echo $this->getUrl('testimonial')?>#<?php echo $_item->getName(); ?>" title="">							    
+									<?php									
+										$_description = $_item->getTestimonial();									
+										$short_desc = $this->getContentTestimonialSidebar($_description, 100);									
+										echo $short_desc;							    ?>						   
+									</a>					
+								</div>						
+								<div class="post-by">							
+									<span class="testimonial-author"><?php echo $_item->getName(); ?></span>							
+									<span class="testimonial-date"><?php echo date('F d, Y', Mage::getModel('core/date')->gmtTimestamp($_item->getCreatedTime())); ?></span>						
+								</div>				
+							</div>				
+						</li>							
+					<?php endforeach;?>		
+				</ul>
+			</div>	
+		<?php endif ?>	
+	</div>
+<?php endif ?>

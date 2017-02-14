@@ -1,0 +1,59 @@
+<?php
+/**
+ * - Each review title: "a" replaced with "span.heading"
+ * - Replaced h2 tag
+ */
+?>
+
+<?php $_items = $this->getReviewsCollection()->getItems();?>
+<div class="box-collateral box-reviews" id="customer-reviews">
+    <?php
+        $reviewsTotalNumber = 0;
+        $reviewsLimitPerPage = 10;
+        $toolbar = $this->getChild('toolbar');
+        if ($toolbar)
+        {
+            $reviewsTotalNumber = $toolbar->getTotalNum();
+            $reviewsLimitPerPage = $toolbar->getLimit();
+        }
+    ?>
+    <?php if (count($_items)): ?>
+        <strong class="section-title"><?php echo $this->__('Customer Reviews') . " ({$reviewsTotalNumber})"?></strong>
+        <?php //if ($reviewsTotalNumber > $reviewsLimitPerPage) echo $this->getChildHtml('toolbar'); ?>
+        <dl>
+        <?php foreach ($_items as $_review):?>
+            <dt>
+            	<span class="heading"><?php echo $this->escapeHtml($_review->getTitle()) ?></span>
+            </dt>
+            <dd>
+                <?php $_votes = $_review->getRatingVotes(); ?>
+                <?php if (count($_votes)): ?>
+                <table class="ratings-table">
+                    <col width="1" />
+                    <col />
+                    <tbody>
+                        <?php foreach ($_votes as $_vote): ?>
+                        <tr>
+                            <th><?php echo $this->escapeHtml($_vote->getRatingCode()) ?></th>
+                            <td>
+                                <div class="rating-box">
+                                    <div class="rating" style="width:<?php echo $_vote->getPercent() ?>%;"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+                <?php endif; ?>
+                <span class="review-content" itemprop="description"><?php echo nl2br($this->escapeHtml($_review->getDetail())) ?></span>
+                <span class="review-details">
+                    <span class="review-author"><?php echo $this->__('Review by <span>%s</span>', $this->escapeHtml($_review->getNickname())) ?></span>
+                    <span class="review-date"><?php echo $this->__('(Posted on %s)', $this->formatDate($_review->getCreatedAt()), 'long') ?></span>
+                </span>
+            </dd>
+        <?php endforeach; ?>
+        </dl>
+        <?php if ($reviewsTotalNumber > $reviewsLimitPerPage) echo $this->getChildHtml('toolbar'); ?>
+    <?php endif;?>
+    <?php echo $this->getChildHtml('review_form') ?>
+</div>

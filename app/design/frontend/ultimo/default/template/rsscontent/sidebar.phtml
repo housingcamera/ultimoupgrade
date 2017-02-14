@@ -1,0 +1,57 @@
+<?php
+/**
+ * Magento
+ *
+ * @category   design_default
+ * @package    
+ * @copyright  
+ * @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php 
+function myTruncate($string, $limit, $break=".", $pad="...") {
+        if(strlen($string) <= $limit) return $string; 
+        if(false !== ($breakpoint = strpos($string, $break, $limit))) { 
+            if($breakpoint < strlen($string) - 1) { 
+                $string = substr($string, 0, $breakpoint) . $pad; } 
+            } return $string; 
+}
+?>
+<?php  if($this->getItemCount() > 0): ?>
+<div class="block block-feed-reader">
+	<div class="block-content">
+		<ul id="feed-items">
+		<?php
+                    $itemCount = 0;
+                    foreach($this->getItems() as $item): ?>
+			<li class="block-feed-item <?php echo (++$itemCount % 2 == 0 ? 'even' : 'odd'); ?><?php if($itemCount == 1): ?> first<?php endif;?><?php if($itemCount >= $this->getItemCount()): ?> last<?php endif; ?> grid12-6">
+                            <?php preg_match('/< *img[^>]*src *= *["\']?([^"\']*)/i', $item->description(), $matches); ?>    
+                            <div class="block-feed-item-img grid12-5">
+                              <a href="<?php echo $this->escapeHtml($item->link()); ?>">    
+                                <img src="<?php echo str_replace("http:","",$matches[1]); ?>">
+                                 
+                              </a>
+                            </div>
+                            <div class="block-feed-item-txt grid12-7">
+                                <h5>
+                                    <a href="<?php echo $this->escapeHtml($item->link()); ?>">
+                                            <?php echo $this->escapeHtml($item->title()); ?>
+                                    </a>
+                                </h5>
+                                <p class="date">
+                                    <?php //echo Mage::getModel('core/date')->date('F j, Y, g:i a', strtotime($item->pubDate())); ?>
+                                </p>
+                                <p class="summary">  
+                                    <?php  $exerpt = strip_tags($item->description());
+                                    echo substr($exerpt,0,150) . " ..."; ?>
+                                    <a href="<?php echo $this->escapeHtml($item->link()); ?>" class="finder_contact" style="float:right;">Read More!</a>
+                                </p>
+                            </div>
+			</li>
+		<?php if ($itemCount==4) break;
+                      endforeach; ?>
+		</ul>
+	</div>
+</div>
+<?php endif;  ?>
+

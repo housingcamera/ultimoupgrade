@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @category   Apptrian
+ * @package    Apptrian_Subcategories
+ * @author     Apptrian
+ * @copyright  Copyright (c) 2015 Apptrian (http://www.apptrian.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+	<tabs>
+		<apptrian_extensions>
+			<label>Apptrian Extensions</label>
+			<sort_order>100</sort_order>
+		</apptrian_extensions>
+	</tabs>
+    <sections>
+        <apptrian_info translate="label">
+            <label>Info</label>
+            <tab>apptrian_extensions</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>1000000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <info>
+                    <frontend_model>apptrian_subcategories/info</frontend_model>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                </info>
+            </groups>
+        </apptrian_info>
+        <apptrian_subcategories translate="label" >
+            <label>Subcategories Grid / List</label>
+            <tab>apptrian_extensions</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>1</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+				<about translate="label">	
+					<label>About</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>					
+                    <fields>
+                        <info translate="label">
+                            <frontend_model>apptrian_subcategories/about</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </info>
+                    </fields>
+				</about>
+                <general translate="label">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label comment">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enables or disables extension.</comment>
+                        </enabled>
+                    </fields>
+                </general>
+                <category_page>
+                    <label>Category Pages</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <show_after_content translate="label comment">
+                            <label>Show Subcategories After Content</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Whether or not to show subcategories grid/list after content block.</comment>
+                        </show_after_content>
+                        <show_before_content translate="label comment">
+                            <label>Show Subcategories Before Content</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Whether or not to show subcategories grid/list before content block.</comment>
+                        </show_before_content>
+                        <subcategories_layout translate="label comment">
+                            <label>Subcategories Layout</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>apptrian_subcategories/config_layout</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>The way subcategories are presented. Can be either "Grid" or "List". Default is "Grid".</comment>
+                        </subcategories_layout>
+                        <sort_attribute translate="label comment">
+                            <label>Sort Subcategories By</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>apptrian_subcategories/config_sortattribute</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>The way subcategories are sorted. Available options are "Name", "Position", and "Created Date". Default is "Position".</comment>
+                        </sort_attribute>
+                        <sort_direction translate="label comment">
+                            <label>Sort Direction</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>apptrian_subcategories/config_sortdirection</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Direction of sorting. Available options are "Ascending" and "Descending". Default is "Ascending".</comment>
+                        </sort_direction>
+                        <show_subcategories_heading translate="label comment">
+                            <label>Show "Subcategories" Heading</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enables or disables "Subcategories" heading.</comment>
+                        </show_subcategories_heading>
+                        <show_category_name translate="label comment">
+                            <label>Show Category Name</label>                           
+                            <frontend_type>select</frontend_type>
+                            <source_model>apptrian_subcategories/config_showcategoryname</source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>To show category name or not, and at what position. Options are "Do not show", "Bottom", and "Top". Default is "Bottom".</comment>
+                        </show_category_name>
+                        <show_description translate="label comment">
+                            <label>Show Category Description</label>                            
+                            <frontend_type>select</frontend_type>
+                            <source_model>apptrian_subcategories/config_showdescription</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>To show category description or not, and what database field to use. Options are "Do not show", "Description", and "Meta Description". Default is "Do not show".</comment>
+                        </show_description>
+                        <show_image translate="label comment">
+                            <label>Show Category Image</label>                          
+                            <frontend_type>select</frontend_type>
+                            <source_model>apptrian_subcategories/config_showimage</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>To show category image or not, and what image to use. Options are "Do not show", "Image", and "Thumbnail". Default is "Image".</comment>
+                        </show_image>
+                        <height translate="label comment">
+                            <label>Image Height</label>
+                            <frontend_type>text</frontend_type>
+                            <validate>validate-digits validate-greater-than-zero</validate>
+                            <backend_model>apptrian_subcategories/config_height</backend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Fill this field and "height" HTML attribute will be added to the image tag. Default is "135". If you want to use CSS leave this field empty.</comment>
+                        </height>
+                        <width translate="label comment">
+                            <label>Image Width</label>
+                            <frontend_type>text</frontend_type>
+                            <validate>validate-digits validate-greater-than-zero</validate>
+                            <backend_model>apptrian_subcategories/config_width</backend_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Fill this field and "width" HTML attribute will be added to the image tag. Default is "135". If you want to use CSS leave this field empty.</comment>
+                        </width>
+                        <exclude_ids translate="label comment tooltip">
+                            <label>Exclude IDs</label>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>apptrian_subcategories/config_excludeids</backend_model>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Type in comma separated list of category IDs for which you do not want to show subcategories. Example: 5,4,19 If you leave this field empty, every category page will show first level of subcategories (children), which is a default behavior.</comment>
+                            <tooltip>There is no limit on number of IDs in this comma separated list.</tooltip>
+                        </exclude_ids>
+                    </fields>
+                </category_page>
+                <home_page>
+                    <label>Home Page</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>4</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <show_after_content translate="label comment">
+                            <label>Show Subcategories After Content</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Whether or not to show subcategories grid/list after content block.</comment>
+                        </show_after_content>
+                        <show_before_content translate="label comment">
+                            <label>Show Subcategories Before Content</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Whether or not to show subcategories grid/list before content block.</comment>
+                        </show_before_content>
+                        <subcategories_layout translate="label comment">
+                            <label>Subcategories Layout</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>apptrian_subcategories/config_layout</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>The way subcategories are presented. Can be either "Grid" or "List". Default is "Grid".</comment>
+                        </subcategories_layout>
+                        <sort_attribute translate="label comment">
+                            <label>Sort Subcategories By</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>apptrian_subcategories/config_sortattribute</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>The way subcategories are sorted. Available options are "Name", "Position", and "Created Date". Default is "Position".</comment>
+                        </sort_attribute>
+                        <sort_direction translate="label comment">
+                            <label>Sort Direction</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>apptrian_subcategories/config_sortdirection</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Direction of sorting. Available options are "Ascending" and "Descending". Default is "Ascending".</comment>
+                        </sort_direction>
+                        <show_subcategories_heading translate="label comment">
+                            <label>Show "Subcategories" Heading</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enables or disables "Subcategories" heading.</comment>
+                        </show_subcategories_heading>
+                        <show_category_name translate="label comment">
+                            <label>Show Category Name</label>                           
+                            <frontend_type>select</frontend_type>
+                            <source_model>apptrian_subcategories/config_showcategoryname</source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>To show category name or not, and at what position. Options are "Do not show", "Bottom", and "Top". Default is "Bottom".</comment>
+                        </show_category_name>
+                        <show_description translate="label comment">
+                            <label>Show Category Description</label>                            
+                            <frontend_type>select</frontend_type>
+                            <source_model>apptrian_subcategories/config_showdescription</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>To show category description or not, and what database field to use. Options are "Do not show", "Description", and "Meta Description". Default is "Do not show".</comment>
+                        </show_description>
+                        <show_image translate="label comment">
+                            <label>Show Category Image</label>                          
+                            <frontend_type>select</frontend_type>
+                            <source_model>apptrian_subcategories/config_showimage</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>To show category image or not, and what image to use. Options are "Do not show", "Image", and "Thumbnail". Default is "Image".</comment>
+                        </show_image>
+                        <height translate="label comment">
+                            <label>Image Height</label>
+                            <frontend_type>text</frontend_type>
+                            <validate>validate-digits validate-greater-than-zero</validate>
+                            <backend_model>apptrian_subcategories/config_height</backend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Fill this field and "height" HTML attribute will be added to the image tag. Default is "135". If you want to use CSS leave this field empty.</comment>
+                        </height>
+                        <width translate="label comment">
+                            <label>Image Width</label>
+                            <frontend_type>text</frontend_type>
+                            <validate>validate-digits validate-greater-than-zero</validate>
+                            <backend_model>apptrian_subcategories/config_width</backend_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Fill this field and "width" HTML attribute will be added to the image tag. Default is "135". If you want to use CSS leave this field empty.</comment>
+                        </width>
+                        <category_ids translate="label comment tooltip">
+                            <label>Category IDs</label>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>apptrian_subcategories/config_categoryids</backend_model>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Type in comma separated list of category IDs. Example: 5,4,19 If you leave this empty, home page will show first level of categories, which is a default behavior.</comment>
+                            <tooltip>There is no limit on number of IDs in this comma separated list. This comma separated list is also sort order sensitive if you choose "Position" from "Sort Subcategories By" configuration option.</tooltip>
+                        </category_ids>
+                        <mode translate="label comment">
+                            <label>Mode</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>apptrian_subcategories/config_mode</source_model>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>This field is used only in conjunction with above "Category IDs" field. Default is "Specific". See a tooltip for more information.</comment>
+                            <tooltip><![CDATA[- If you select "Random" and type only one ID in the above "Category IDs" field, children categories of the category with that ID will be shown on the home page.<br />- If you select "Random" and type several IDs in the above "Category IDs" field, with every request to the home page, one ID will be used and children categories of the category with that ID will be shown on the home page.<br />- If you select "Specific" and type only one ID in the above "Category IDs" field, category with that ID will be shown on the home page.<br />- If you select "Specific" and type several IDs in the above "Category IDs" field, categories with these IDs will be shown on the home page.]]></tooltip>
+                        </mode>
+                    </fields>
+                </home_page>
+            </groups>
+        </apptrian_subcategories>
+    </sections>
+</config>
