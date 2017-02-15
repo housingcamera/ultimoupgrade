@@ -25,7 +25,7 @@
 	$breakpoints = $this->getBreakpoints(); //param: breakpoints
 	if ($breakpoints === NULL) //Param not set
 	{
-		$breakpoints = '[0, 1], [320, 2], [480, 2], [768, 3], [960, 4], [1280, 5]'; //Set default breakpoints
+		$breakpoints = '[0, 1], [320, 2], [480, 2], [768, 3], [992, 4], [1200, 5]'; //Set default breakpoints
 	}
 
 	//Number of items in a row displayed if responsive mode is off
@@ -204,7 +204,8 @@
 			pagination: false,
 		<?php endif; ?>
 
-			navigation: true
+			navigation: true,
+			navigationText: false
 
 		}); //end: owl
 

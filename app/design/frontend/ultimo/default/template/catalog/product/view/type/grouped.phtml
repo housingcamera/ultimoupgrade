@@ -30,21 +30,20 @@
  * @see Mage_Catalog_Block_Product_View_Media
  * @see Mage_Catalog_Block_Product_View_Type_Grouped
  */
-/**
- * - Remove availability box if product is in stock
- */
 ?>
 <?php $this->setPreconfiguredValue(); ?>
 <?php $_product = $this->getProduct(); ?>
 <?php $_associatedProducts = $this->getAssociatedProducts(); ?>
 <?php $_hasAssociatedProducts = count($_associatedProducts) > 0; ?>
-<?php if ($this->displayProductStockStatus()): ?>
+<?php //if ($this->displayProductStockStatus()): ?>
     <?php if ($_product->isAvailable() && $_hasAssociatedProducts): ?>
         <p class="availability in-stock"><?php echo $this->__('Availability:') ?> <span><?php echo $this->__('In stock') ?></span></p>
+        <meta itemprop="availability" content="http://schema.org/InStock">
     <?php else: ?>
         <p class="availability out-of-stock"><?php echo $this->__('Availability:') ?> <span><?php echo $this->__('Out of stock') ?></span></p>
+        <meta itemprop="availability" content="http://schema.org/OutOfStock">
     <?php endif; ?>
-<?php endif; ?>
+<?php //endif; ?>
 <?php echo $this->getChildHtml('product_type_data_extra') ?>
 <table class="data-table grouped-items-table" id="super-product-table">
     <col />
@@ -78,7 +77,7 @@
             <?php if ($_product->isSaleable()): ?>
             <td class="a-center">
             <?php if ($_item->isSaleable()) : ?>
-                <input type="text" name="super_group[<?php echo $_item->getId() ?>]" maxlength="12" value="<?php echo $_item->getQty()*1 ?>" title="<?php echo $this->__('Qty') ?>" class="input-text qty" />
+                <input type="text" name="super_group[<?php echo $_item->getId() ?>]" maxlength="12" value="<?php echo $_item->getQty()*1 ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Qty')) ?>" class="input-text qty" />
             <?php else: ?>
                 <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
             <?php endif; ?>

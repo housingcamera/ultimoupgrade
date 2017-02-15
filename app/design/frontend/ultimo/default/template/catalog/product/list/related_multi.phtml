@@ -68,7 +68,7 @@
 
 ?>
 <div class="block block-related block-related-thumbnails">
-    <h4 class="section-title padding-right"><?php echo $this->__('Related Products'); ?></h4>
+    <strong class="section-title padding-right"><?php echo $this->__('Related Products'); ?></strong>
     <div class="itemslider-wrapper itemslider-related-wrapper slider-arrows1 slider-arrows1-pos-top-right slider-pagination1">
         <div id="<?php echo $sliderId; ?>" class="itemslider <?php if($sliderClasses) echo $sliderClasses; ?>">
         <?php foreach ($_productCollection as $_item): ?>
@@ -82,7 +82,7 @@
                     <img src="<?php echo $helpImg->getImg($_item, $imgWidth, $imgHeight, 'thumbnail'); ?>" alt="<?php echo $this->escapeHtml($_item->getName()); ?>" />
                 </a>
                 <div class="product-details">
-                    <div class="product-name"><a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->stripTags($_item->getName(), null, true) ?>"><?php echo $this->escapeHtml($_item->getName()); ?></a></div>
+                    <strong class="product-name"><a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->stripTags($_item->getName(), null, true) ?>"><?php echo $this->escapeHtml($_item->getName()); ?></a></strong>
                     
                     <?php if ($theme->getCfg('magento_blocks/related_products_checkbox')): ?>
                         <?php if(!$_item->isComposite() && $_item->isSaleable()): ?>
@@ -155,7 +155,8 @@
                 pagination: false,
             <?php endif; ?>
 
-                navigation: true
+                navigation: true,
+                navigationText: false
 
             }); //end: owl
 
@@ -178,13 +179,13 @@
                         elem.checked = true;
                     });
                     relatedProductsCheckFlag = true;
-                    txt.innerHTML="<?php echo $this->__('unselect all') ?>";
+                    txt.innerHTML="<?php echo Mage::helper('core')->jsQuoteEscape($this->__('unselect all')) ?>";
                 } else {
                     $$('.related-checkbox').each(function(elem){
                         elem.checked = false;
                     });
                     relatedProductsCheckFlag = false;
-                    txt.innerHTML="<?php echo $this->__('select all') ?>";
+                    txt.innerHTML="<?php echo Mage::helper('core')->jsQuoteEscape($this->__('select all')) ?>";
                 }
                 addRelatedToProduct();
             }

@@ -30,11 +30,9 @@
 ?>
 <?php if($this->isMsgVisible()): ?>
 
-	<a class="availability-only feature feature-icon-hover v-centered-content" href="#" id="<?php echo $this->getPlaceholderId() ?>" title="<?php echo $this->__('Only %s left', ($this->getStockQty())) ?>">
-		<span class="v-center">
-			<span class="icon i-lowstock-bw icon-color-productview"></span>
-		</span>
-		<span class="v-center"><?php echo $this->__('Only %s left', "<strong>{$this->getStockQty()}</strong>") ?><div class="caret">&nbsp;</div></span>
+	<a class="availability-only product-action feature feature-icon-hover" href="#" id="<?php echo $this->getPlaceholderId() ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Only %s left', ($this->getStockQty()))) ?>">
+        <span class="ic ic-lowstock icon-color-productview"></span>
+		<span class="label"><?php echo $this->__('Only %s left', "<strong>{$this->getStockQty()}</strong>") ?><div class="caret">&nbsp;</div></span>
 	</a>
 	<table id="<?php echo $this->getDetailsPlaceholderId() ?>" class="availability-only-details no-display">
         <col />

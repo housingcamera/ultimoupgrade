@@ -4,20 +4,17 @@
 	<default>
 	
 		<reference name="head">
+
 			<!-- CSS -->
 			<action method="addItem"><type>skin_css</type><name>css/infortis/_shared/itemslider.css</name><params/></action>
 			<action method="addItem"><type>skin_css</type><name>css/infortis/_shared/generic-nav.css</name><params/></action>
 			<action method="addItem"><type>skin_css</type><name>css/infortis/brands/brands.css</name></action>
 			
 			<!-- js -->
-			<action method="addJs"><script>infortis/jquery/jquery-1.7.2.min.js</script></action>
+			<action method="addJs"><script>infortis/jquery/jquery.min.js</script></action>
 			<action method="addJs"><script>infortis/jquery/jquery-noconflict.js</script></action>
 			<action method="addJs"><script>infortis/jquery/plugins/jquery.owlcarousel.min.js</script></action>
-			
-			<!--
-			<action method="addJs"><script>infortis/jquery/plugins/jquery.easing.min.js</script></action>
-			<action method="addJs"><script>infortis/jquery/plugins/jquery.flexslider.min.js</script></action>
-			-->
+
 		</reference>
 		
 	</default>

@@ -4,38 +4,38 @@
 	<default>
 	
 		<reference name="head">
+
 			<!-- CSS -->
-			<action method="addItem"><type>skin_css</type><name>css/infortis/_shared/itemgrid.css</name><params/></action>
 			<action method="addItem"><type>skin_css</type><name>css/infortis/_shared/accordion.css</name><params/></action>
-			<action method="addItem"><type>skin_css</type><name>css/infortis/ultra-megamenu/ultra-megamenu.css</name></action>
-			<action method="addItem"
-				ifconfig="ultramegamenu/mainmenu/classic_menu"><type>skin_css</type><name>css/infortis/ultra-megamenu/classic.css</name><params/></action>
-			<action method="addItem"
-				ifconfig="ultramegamenu/mainmenu/wide_menu"><type>skin_css</type><name>css/infortis/ultra-megamenu/wide.css</name><params/></action>
+			<action method="addItem"><type>skin_css</type><name>css/infortis/ultra-megamenu/menu.css</name></action>
 			
 			<!-- js -->
-			<action method="addJs"><script>infortis/jquery/jquery-1.7.2.min.js</script></action>
+			<action method="addJs"><script>infortis/jquery/jquery.min.js</script></action>
 			<action method="addJs"><script>infortis/jquery/jquery-noconflict.js</script></action>
-			
 			<action method="addJs"><script>infortis/jquery/plugins/jquery.easing.min.js</script></action>
 			<action method="addJs"><script>infortis/jquery/plugins/jquery.accordion.min.js</script></action>
+			<action method="addItem"><type>skin_js</type><name>js/ultramegamenu.js</name></action>
 			
-			<!-- TODO: -->
-			<action method="removeItem"
-				ifconfig="ultramegamenu/mainmenu/wide_menu"><type>js</type><name>varien/menu.js</name><params/></action>
+			<!-- Remove Magento's default menu script -->
+			<action method="removeItem"><type>js</type><name>varien/menu.js</name><params/></action>
+
 		</reference>
 
 		<reference name="top.menu">
 			<action method="unsetChild"><name>catalog.topnav</name></action>
-			<block type="ultramegamenu/navigation" name="catalog.topnav.menu" template="infortis/ultramegamenu/mainmenu.phtml"/>
+			<block type="ultramegamenu/mainmenu" name="catalog.topnav.menu" template="infortis/ultramegamenu/mainmenu.phtml">
+				<block type="ultramegamenu/navigation" name="catalog.topnav.navigation" template="infortis/ultramegamenu/navigation.phtml" />
+			</block>
 		</reference>
 		
 		<reference name="catalog.topnav.menu">
-			<block type="cms/block" name="block_header_nav_dropdown">
-				<action method="setBlockId"><block_id>block_header_nav_dropdown</block_id></action>
-			</block>
+			<!-- Deprecated block. Add custom links via category manager. -->
 			<block type="cms/block" name="block_nav_links">
 				<action method="setBlockId"><block_id>block_nav_links</block_id></action>
+			</block>
+			<!-- Deprecated block. Add custom content directly to category blocks, not to this static block. -->
+			<block type="cms/block" name="block_header_nav_dropdown">
+				<action method="setBlockId"><block_id>block_header_nav_dropdown</block_id></action>
 			</block>
 		</reference>
 

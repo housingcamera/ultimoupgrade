@@ -16,7 +16,8 @@
     $sliderClasses = '';
     $gridClasses = '';
 
-    $sliderId = "itemslider-featured-{$this->getFrontendHash()}";
+    $hash = $this->getFrontendHash();
+    $sliderId = "itemslider-featured-{$hash}";
 
     //Slider parameters
     //--------------------------------------------------------------
@@ -32,7 +33,7 @@
     $breakpoints = $this->getBreakpoints(); //param: breakpoints
     if ($breakpoints === NULL) //Param not set
     {
-        $breakpoints = '[0, 1], [320, 2], [480, 3], [768, 4], [960, 5], [1280, 6]'; //Set default breakpoints
+        $breakpoints = '[0, 1], [320, 2], [480, 3], [768, 4], [992, 5], [1200, 6]'; //Set default breakpoints
     }
 
     //Number of items in a row displayed if responsive mode is off
@@ -162,8 +163,7 @@
         $gridClasses .= ' equal-height';
     }
 ?>
-
-<h3 class="section-title padding-right"><?php echo $this->getBlockName(); ?></h3>
+<strong class="section-title padding-right"><?php echo $this->getBlockName(); ?></strong>
 <div class="itemslider-wrapper slider-arrows1 slider-arrows1-pos-top-right slider-pagination1">
     <div id="<?php echo $sliderId; ?>" class="itemslider<?php if($sliderClasses) echo $sliderClasses; ?> products-grid<?php if($gridClasses) echo $gridClasses; ?>">
     <?php foreach ($_productCollection as $_product): ?>
@@ -192,12 +192,12 @@
                     {
                         if ($theme->getCfg('category_grid/display_addtolinks') == 1) //Display on hover
                         {
-                            echo $helpTemplate->getCategoryAddtoLinksComplex_2(
+                            echo $helpTemplate->getCategoryAddtoLinksIcons(
                             $_product, $this->getAddToCompareUrl($_product), 'addto-links-icons addto-onimage visible-onhover');
                         }
                         else //Always display
                         {
-                            echo $helpTemplate->getCategoryAddtoLinksComplex_2(
+                            echo $helpTemplate->getCategoryAddtoLinksIcons(
                             $_product, $this->getAddToCompareUrl($_product), 'addto-links-icons addto-onimage');
                         }
                     }
@@ -205,24 +205,21 @@
                 
             </div> <!-- end: product-image-wrapper -->
 
-            <h3 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h3>
+            <strong class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></strong>
             <?php if($_product->getRatingSummary()): ?>
                 <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
             <?php endif; ?>
-            <?php echo $this->getPriceHtml($_product, true) ?>
+            <?php echo $this->getPriceHtml($_product, true, $hash) ?>
             <div class="actions">
-                <?php if($_product->isSaleable()): ?>
-                
-                    <?php if ($this->getHideButton() == false): ?>
-                        <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
-                    <?php endif; ?>
-                    
-                <?php else: ?>
-                
-                    <?php if ($this->getHideButton() == false): ?>
+
+                <?php if (!$this->getHideButton()): ?>
+                    <?php if(!$_product->canConfigure() && $_product->isSaleable()): ?>
+                        <button type="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Add to Cart')) ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+                    <?php elseif($_product->getStockItem() && $_product->getStockItem()->getIsInStock()): ?>
+                        <a title="<?php echo $this->__('View Details') ?>" class="button btn-cart" href="<?php echo $_product->getProductUrl() ?>"><?php echo $this->__('View Details') ?></a>
+                    <?php else: ?>
                         <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
                     <?php endif; ?>
-                    
                 <?php endif; ?>
 
                 <?php //Add-to links
@@ -234,6 +231,7 @@
                         echo $helpTemplate->getCategoryAddtoLinks($_product, $this->getAddToCompareUrl($_product), 'addto-gaps-right addto-texticons');
                 }
                 ?>
+
             </div>
             
         </div>
@@ -292,7 +290,8 @@
             pagination: false,
         <?php endif; ?>
 
-            navigation: true
+            navigation: true,
+            navigationText: false
 
         }); //end: owl
 

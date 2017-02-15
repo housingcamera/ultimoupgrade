@@ -45,25 +45,8 @@
         $thumbImgHeight = 0;
     }
 ?>
-<?php if ($_product->getExpressShipping()==true){ $expressship = true; } else {$expressship = false; } ?>
-<?php if ($_product->getFinalPrice()>=499){ $freeship = true; } else {$freeship = false; } ?>
-  <?php  /////////////////////////GEO IP //////////////////////////
-                    $geoIP = Mage::getSingleton('geoip/country');          
-                    $visitorCountry = $geoIP->getCountry();
-                    $freeShipBar = "";
-                     switch ($visitorCountry){
-                        case "US":
-                            if ($expressship) $freeShipBar = "<div class='free-ship-bar'><strong>FREE 3-DAY SHIPPING </strong> in the USA</div>";
-                            else if ($freeship) $freeShipBar = "<div class='free-ship-bar'>This product <strong>SHIPS FREE</strong> in the USA</div>";
-                            break;
-                        case "CA":
-                            if ($freeship) $freeShipBar = "<div class='free-ship-bar'>This product <strong>SHIPS FREE</strong> in Canada</div>";
-                            break;
-                        default:
-                            if ($freeship) $freeShipBar = "<div class='free-ship-bar'>This product <strong>SHIPS FREE</strong> to the USA & Canada</div>";
-                            break;
-                    } 
-                    ?>
+
+
 
 <?php //Main image ?>
 
@@ -88,8 +71,17 @@
         
         <p class="product-image<?php echo $zoomClasses; ?>" style="max-width: <?php echo $imgWidth; ?>px;">
         
-            <a href="<?php echo $helpImg->getImg($_product, $bigImageWidth, $bigImageHeight); ?>" class="cloud-zoom" id="zoom1" rel="<?php echo $helpZoom->getCloudZoomOptions(); ?>">
-                <img src="<?php echo $helpImg->getImg($_product, $imgWidth, $imgHeight); ?>" alt="<?php echo $this->escapeHtml($this->getImageLabel());?>" title="<?php echo $this->escapeHtml($this->getImageLabel());?>" />
+            <a  href="<?php echo $helpImg->getImg($_product, $bigImageWidth, $bigImageHeight); ?>"
+                class="cloud-zoom product-image-gallery" <?php //TODO: SWAT: added class product-image-gallery, check if required ?>
+                id="zoom1"
+                rel="<?php echo $helpZoom->getCloudZoomOptions(); ?>">
+
+                <img id="image-main" <?php //TODO: SWAT: added id ?>
+                    class="gallery-image visible" <?php //TODO: SWAT: added classes ?>
+                    src="<?php echo $helpImg->getImg($_product, $imgWidth, $imgHeight); ?>"
+                    alt="<?php echo $this->escapeHtml($this->getImageLabel()); ?>"
+                    title="<?php echo $this->escapeHtml($this->getImageLabel()); ?>"
+                    itemprop="image" />
             </a>
             
             <?php if($helpZoom->useLightbox()): ?>
@@ -100,31 +92,18 @@
                     else
                         $zoomBtnClasses .= ' zoom-btn-small';
                 ?>
-                <a id="zoom-btn" class="lightbox-group<?php echo $zoomBtnClasses; ?>" href="<?php echo $helpImg->getImg($_product, $bigImageWidth, $bigImageHeight); ?>" title="<?php echo $this->getImageLabel(); ?>"><?php echo $this->__('Zoom'); ?></a>
+                <a id="zoom-btn" class="lightbox-group<?php echo $zoomBtnClasses; ?>" href="<?php echo $helpImg->getImg($_product, $bigImageWidth, $bigImageHeight); ?>" title="<?php echo $this->escapeHtml($this->getImageLabel()); ?>"><?php echo $this->__('Zoom'); ?></a>
                 
             <?php endif; ?>
-            <?php echo $freeShipBar; ?>
         </p>
-        
+    
     <?php else: //Module disabled. Show images in Magento default style ?>
     
         <p class="product-image" style="max-width: <?php echo $imgWidth; ?>px;">
-            <img src="<?php echo $helpImg->getImg($_product, $imgWidth, $imgHeight); ?>" alt="<?php echo $this->escapeHtml($this->getImageLabel());?>" title="<?php echo $this->escapeHtml($this->getImageLabel());?>" />
-            <?php echo $freeShipBar; ?>
+            <img src="<?php echo $helpImg->getImg($_product, $imgWidth, $imgHeight); ?>" alt="<?php echo $this->escapeHtml($this->getImageLabel());?>" title="<?php echo $this->escapeHtml($this->getImageLabel());?>" itemprop="image" />
         </p>
-        
+    
     <?php endif; ?>
-
-<?php /* ?>
-<?php else: //No image ?>
-        <p class="product-image" style="max-width: <?php echo $imgWidth; ?>px;">
-            <?php
-                $_img = '<img src="'.$this->helper('catalog/image')->init($_product, 'image')->resize($imgWidth).'" alt="'.$this->escapeHtml($this->getImageLabel()).'" title="'.$this->escapeHtml($this->getImageLabel()).'" />';
-                echo $_helper->productAttribute($_product, $_img, 'image');
-            ?>
-        </p>
-<?php endif; ?>
-<?php */ ?>
 
 
 
@@ -236,7 +215,7 @@
     ?>
     <div class="more-images slider-arrows3<?php echo $sliderWrapperClasses; ?>">
         <div id="<?php echo $sliderId; ?>" class="thumbnails<?php if($sliderClasses) echo $sliderClasses; ?>">
-        <?php $i=1; ?>
+        
         <?php //Display thumbnails with cloud zoom or lightbox ?>
         <?php if ($helpZoom->isCloudZoomEnabled()): ?>
         
@@ -244,31 +223,17 @@
                 <?php //Skip, if no image
                     if ($_image->getFile() == NULL)
                         continue; ?>
-                 <?php //Automatically create alt tags for secondary images - Tal Added
-                       $altimg="";
-                       if ($i==1){
-                           $altimg = $_product->getSku() . "-" . $_product->getGoogleProductType();
-                       } else if ($i==2){
-                           $altimg = $_product->getSku() . "-2";
-                       } else if ($i==3){
-                           $altimg = $_product->getAttributeText('manufacturer') . "-". $_product->getGoogleProductType();
-                       } 
-                       if ($this->escapeHtml($_image->getLabel())!=""){
-                           $altimg = $this->escapeHtml($_image->getLabel());
-                       }  
-                         ?>
                 <div class="item"<?php echo " {$itemWidthStyle}"; ?>>
                     <a href="<?php echo $helpImg->getImg($_product, $bigImageWidth, $bigImageHeight, 'image', $_image->getFile()); ?>" class="cloud-zoom-gallery lightbox-group" title="<?php echo $this->escapeHtml($_image->getLabel()); ?>"
                         rel="useZoom:'zoom1', smallImage: '<?php echo $helpImg->getImg($_product, $imgWidth, $imgHeight, 'image', $_image->getFile()); ?>'">
                         <?php if ($lazy): ?>
-                            <img class="lazyOwl" data-src="<?php echo $helpImg->getImg($_product, $thumbImgWidth, $thumbImgHeight, 'thumbnail', $_image->getFile()); ?>" alt="<?php echo $altimg; ?>"/>
+                            <img class="lazyOwl" data-src="<?php echo $helpImg->getImg($_product, $thumbImgWidth, $thumbImgHeight, 'thumbnail', $_image->getFile()); ?>" alt="<?php echo $this->escapeHtml($_image->getLabel()); ?>"/>
                         <?php else: ?>
-                            <img src="<?php echo $helpImg->getImg($_product, $thumbImgWidth, $thumbImgHeight, 'thumbnail', $_image->getFile()); ?>" alt="<?php echo $altimg; ?>"/>
+                            <img src="<?php echo $helpImg->getImg($_product, $thumbImgWidth, $thumbImgHeight, 'thumbnail', $_image->getFile()); ?>" alt="<?php echo $this->escapeHtml($_image->getLabel()); ?>"/>
                         <?php endif; ?>
                     </a>
                 </div>
-               
-            <?php $i++; endforeach; ?>
+            <?php endforeach; ?>
         
         <?php else: //Show thumbnails in Magento default style, without cloud zoom and lightbox ?>
         
@@ -276,25 +241,12 @@
                 <?php //Skip, if no image
                     if ($_image->getFile() == NULL)
                         continue; ?>
-             <?php //Automatically create alt tags for secondary images - Tal Added
-                       $altimg="";
-                       if ($i==1){
-                           $altimg = $_product->getSku() . "-" . $_product->getGoogleProductType();
-                       } else if ($i==2){
-                           $altimg = $_product->getSku() . "-2";
-                       } else if ($i==3){
-                           $altimg = $_product->getManufacturer() . $_product->getGoogleProductType();
-                       } 
-                       if ($this->escapeHtml($_image->getLabel())!=""){
-                           $altimg = $this->escapeHtml($_image->getLabel());
-                       }  
-                         ?>
                 <div class="item"<?php echo " {$itemWidthStyle}"; ?>>
                     <a href="#" onclick="popWin('<?php echo $this->getGalleryUrl($_image) ?>', 'gallery', 'width=300,height=300,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes'); return false;" title="<?php echo $this->escapeHtml($_image->getLabel()) ?>">
-                        <img src="<?php echo $helpImg->getImg($_product, $thumbImgWidth, $thumbImgHeight, 'thumbnail', $_image->getFile()); ?>" alt="<?php echo $altimg; ?>"/>
+                        <img src="<?php echo $helpImg->getImg($_product, $thumbImgWidth, $thumbImgHeight, 'thumbnail', $_image->getFile()); ?>" alt="<?php echo $this->escapeHtml($_image->getLabel()) ?>"/>
                     </a>
                 </div>
-            <?php $i++;  endforeach; ?>
+            <?php endforeach; ?>
         
         <?php endif; ?>
         </div>
@@ -311,7 +263,51 @@
 
     jQuery(function($) {
 
-        var t; $(window).resize(function() { clearTimeout(t); t = setTimeout(function() { $(".more-images .cloud-zoom-gallery").first().click(); }, 200); });
+        var $cz = $('.cloud-zoom');
+        var czInstance = $('.cloud-zoom').data('zoom');
+
+        //On image change
+        $(document).on('product-media-manager-image-updated', function(e, data) {
+
+            var img = data.img;
+
+            czInstance.destroy();
+
+            //Add new image's URL to the CloudZoom element's href attribute
+            $cz.attr('href', img.attr('src'));
+
+            //Remove mousetrap
+            var $mt = $('.mousetrap');
+            $mt.unbind();
+            $mt.remove();
+            $mt = null;
+
+            //Reinitialize CloudZoom
+            $cz.CloudZoom();
+
+        }); //end: on event
+
+        //On resize
+        var t;
+        $(window).resize(function() {
+            clearTimeout(t); 
+            t = setTimeout(function() {
+
+                czInstance.destroy();
+
+                //Remove mousetrap and other elements
+                var $mt = $('.mousetrap');
+                $mt.unbind();
+                $mt.remove();
+                $mt = null;
+                $('.cloud-zoom-lens').remove();
+                $('#cloud-zoom-big').remove();
+
+                //Reinitialize CloudZoom
+                $cz.CloudZoom();
+
+            }, 200);
+        });
 
     <?php if ($useSlider): ?>
         var owl = $('#<?php echo $sliderId; ?>');
@@ -353,7 +349,8 @@
         <?php endif; ?>
 
             pagination: false,
-            navigation: true
+            navigation: true,
+            navigationText: false
 
         }); //end: owl
     <?php endif; ?>
@@ -361,3 +358,5 @@
     });
 //]]>
 </script>
+
+<?php echo $this->getChildHtml('after'); ?>

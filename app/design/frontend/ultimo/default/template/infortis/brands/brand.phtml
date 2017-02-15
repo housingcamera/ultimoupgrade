@@ -41,12 +41,13 @@
 		?>
 		<?php if ($brandDetailsHtml): ?>
 
-			<div class="box-brand feature-wrapper bottom-border">
+			<div class="box-brand">
 				<?php if ($brandPageUrl): ?>
 					<a class="fade-on-hover" href="<?php echo $brandPageUrl; ?>" title="<?php echo $this->__('Click to see more products from %s', $brand); ?>"><?php echo $brandDetailsHtml; ?></a>
 				<?php else: ?>
 					<?php echo $brandDetailsHtml; ?>
 				<?php endif; ?>
+				<meta itemprop="brand" content="<?php echo $brand; ?>" />
 			</div>
 		
 		<?php endif; ?>

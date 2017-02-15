@@ -24,27 +24,26 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
-<?php
-/*
- * - Added grid class
- */
-?>
 <?php if($crumbs && is_array($crumbs)): ?>
-<div class="grid-full breadcrumbs">
+<div class="breadcrumbs">
     <ul>
         <?php foreach($crumbs as $_crumbName=>$_crumbInfo): ?>
-            <li class="<?php echo $_crumbName ?>">
             <?php if($_crumbInfo['link']): ?>
-                <a href="<?php echo $_crumbInfo['link'] ?>" title="<?php echo $this->escapeHtml($_crumbInfo['title']) ?>"><?php echo $this->escapeHtml($_crumbInfo['label']) ?></a>
+                <li class="<?php echo $_crumbName ?>" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <a href="<?php echo $_crumbInfo['link'] ?>" title="<?php echo $this->escapeHtml($_crumbInfo['title']) ?>" itemprop="url"><span itemprop="title"><?php echo $this->escapeHtml($_crumbInfo['label']) ?></span></a>
             <?php elseif($_crumbInfo['last']): ?>
-                <strong><?php echo $this->escapeHtml($_crumbInfo['label']) ?></strong>
+                <li class="<?php echo $_crumbName ?>">
+                    <span class="last-crumb"><?php echo $this->escapeHtml($_crumbInfo['label']) ?></span>
             <?php else: ?>
-                <?php echo $this->escapeHtml($_crumbInfo['label']) ?>
+                <li class="<?php echo $_crumbName ?>">
+                    <?php echo $this->escapeHtml($_crumbInfo['label']) ?>
             <?php endif; ?>
+
             <?php if(!$_crumbInfo['last']): ?>
-                <span>/ </span>
+                    <span class="sep"></span>
             <?php endif; ?>
-            </li>
+                    
+                </li>
         <?php endforeach; ?>
     </ul>
 </div>

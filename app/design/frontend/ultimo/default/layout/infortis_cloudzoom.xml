@@ -5,6 +5,7 @@
 	<catalog_product_view>
 
 		<reference name="head">
+
 			<!-- CSS -->
 			<action method="addItem"><type>skin_css</type><name>css/infortis/cloud-zoom/cloud-zoom.css</name></action>
 			<action method="addItem"><type>skin_css</type><name>css/infortis/_shared/generic-nav.css</name><params/></action>
@@ -13,7 +14,7 @@
 				ifconfig="cloudzoom/lightbox/enable"><type>skin_css</type><name>css/infortis/_shared/colorbox.css</name></action>
 			
 			<!-- js -->
-			<action method="addJs"><script>infortis/jquery/jquery-1.7.2.min.js</script></action>
+			<action method="addJs"><script>infortis/jquery/jquery.min.js</script></action>
 			<action method="addJs"><script>infortis/jquery/jquery-noconflict.js</script></action>
 			<action method="addJs"><script>infortis/jquery/plugins/jquery.owlcarousel.min.js</script></action>
 			
@@ -21,11 +22,7 @@
 				ifconfig="cloudzoom/general/enable"><script>infortis/jquery/plugins/jquery.cloudzoom.min.js</script></action>
 			<action method="addJs"
 				ifconfig="cloudzoom/lightbox/enable"><script>infortis/jquery/plugins/jquery.colorbox.min.js</script></action>
-			
-			<!--
-			<action method="addJs"><script>infortis/jquery/plugins/jquery.easing.min.js</script></action>
-			<action method="addJs"><script>infortis/jquery/plugins/jquery.flexslider.min.js</script></action>
-			-->
+
 		</reference>
 
 		<reference name="product.info">
@@ -36,9 +33,5 @@
 		</reference>
 
 	</catalog_product_view>
-	
-	<!-- Reviews page -->
-	<!--<review_product_list>
-	</review_product_list>-->
 	
 </layout>

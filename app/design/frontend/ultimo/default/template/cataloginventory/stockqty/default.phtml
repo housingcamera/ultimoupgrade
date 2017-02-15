@@ -29,11 +29,9 @@
  */
 ?>
 <?php if($this->isMsgVisible()): ?>
-	<span class="availability-only feature v-centered-content">
-		<span class="v-center">
-			<span class="icon i-lowstock icon-color-productview"></span>
-		</span>
-		<span class="v-center"
-        	title="<?php echo $this->__('Only %s left', ($this->getStockQty())) ?>"><?php echo $this->__('Only %s left', "<strong>{$this->getStockQty()}</strong>") ?></span>
-	</span>
+    <span class="availability-only product-action">
+        <span class="ic ic-lowstock icon-color-productview"></span>
+        <span class="label"
+            title="<?php echo $this->__('Only %s left', ($this->getStockQty())) ?>"><?php echo $this->__('Only %s left', "<strong>{$this->getStockQty()}</strong>") ?></span>
+    </span>
 <?php endif ?>

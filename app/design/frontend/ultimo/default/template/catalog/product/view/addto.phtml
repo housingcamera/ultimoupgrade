@@ -26,15 +26,13 @@
 ?>
 <?php $_product = $this->getProduct(); ?>
 <?php $_wishlistSubmitUrl = $this->helper('wishlist')->getAddUrl($_product); ?>
-<ul class="add-to-links addto-gaps-right">
+<ul class="add-to-links">
 <?php if ($this->helper('wishlist')->isAllow()) : ?>
 
 	<li>
-        <a class="feature feature-icon-hover first v-centered-content" href="<?php echo $_wishlistSubmitUrl ?>" onclick="productAddToCartForm.submitLight(this, this.href); return false;" title="<?php echo $this->__('Add to Wishlist') ?>">
-			<span class="v-center">
-				<span class="icon i-wishlist-bw icon-color-productview"></span>
-			</span>
-            <span class="v-center"><?php echo $this->__('Add to Wishlist') ?></span>
+        <a class="link-wishlist feature feature-icon-hover first" href="<?php echo $_wishlistSubmitUrl ?>" onclick="productAddToCartForm.submitLight(this, this.href); return false;" title="<?php echo $this->__('Add to Wishlist') ?>">
+			<span class="ic ic-heart ib icon-color-productview"></span>
+			<span class="label"><?php echo $this->__('Add to Wishlist') ?></span>
 		</a>
 	</li>
 
@@ -45,23 +43,20 @@
 <?php if($_compareUrl) : ?>
 
 	<li>
-        <a class="feature feature-icon-hover first v-centered-content" href="<?php echo $_compareUrl ?>" title="<?php echo $this->__('Add to Compare') ?>">
-			<span class="v-center">
-				<span class="icon i-compare-bw icon-color-productview"></span>
-			</span>
-            <span class="v-center"><?php echo $this->__('Add to Compare') ?></span>
+        <a class="link-compare feature feature-icon-hover first" href="<?php echo $_compareUrl ?>" title="<?php echo $this->__('Add to Compare') ?>">
+			<span class="ic ic-compare ib icon-color-productview"></span>
+			<span class="label"><?php echo $this->__('Add to Compare') ?></span>
 		</a>
 	</li>
 
 <?php endif; ?>
 <?php if ($this->canEmailToFriend()): ?>
 
-	<li style="padding:9px;">
-            <a href="http://www.addthis.com/bookmark.php"
-            class="addthis_button"
-            style="text-decoration:none;">
-            <img src="http://s7.addthis.com/static/btn/sm-plus.gif"
-            width="16" height="16" border="0" alt="Share" /> Share</a> 
+	<li>
+    	<a class="link-share feature feature-icon-hover first" href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>" title="<?php echo $this->__('Email to a Friend') ?>">
+			<span class="ic ic-share ib icon-color-productview"></span>
+			<span class="label"><?php echo $this->__('Email to a Friend') ?></span>
+		</a>
 	</li>
 
 <?php endif; ?>

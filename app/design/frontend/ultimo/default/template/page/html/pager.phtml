@@ -35,18 +35,12 @@
     <?php endif ?>
 
     <?php if($this->getLastPageNum()>1): ?>
-    <div class="pages gen-direction-arrows1">
+    <div class="pages">
         <strong><?php echo $this->__('Page:') ?></strong>
         <ol>
         <?php if (!$this->isFirstPage()): ?>
             <li class="previous">
-                <a class="previous<?php if(!$this->getAnchorTextForPrevious()): ?> i-previous<?php endif;?>" href="<?php echo $this->getPreviousPageUrl() ?>" title="<?php echo $this->__('Previous') ?>">
-                    <?php if(!$this->getAnchorTextForPrevious()): ?>
-                    	<?php echo $this->__('Previous'); ?>
-                    <?php else: ?>
-                        <?php echo $this->getAnchorTextForPrevious() ?>
-                    <?php endif;?>
-                </a>
+                <a class="previous ic ic-left" href="<?php echo $this->getPreviousPageUrl() ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Previous')) ?>"></a>
             </li>
         <?php endif;?>
 
@@ -55,7 +49,7 @@
         <?php endif;?>
 
         <?php if ($this->canShowPreviousJump()): ?>
-            <li><a class="previous_jump" title="" href="<?php echo $this->getPreviousJumpUrl() ?>">...</a></li>
+            <li><a class="previous_jump" href="<?php echo $this->getPreviousJumpUrl() ?>">...</a></li>
         <?php endif;?>
 
         <?php foreach ($this->getFramePages() as $_page): ?>
@@ -68,7 +62,7 @@
 
 
         <?php if ($this->canShowNextJump()): ?>
-            <li><a class="next_jump" title="" href="<?php echo $this->getNextJumpUrl() ?>">...</a></li>
+            <li><a class="next_jump" href="<?php echo $this->getNextJumpUrl() ?>">...</a></li>
         <?php endif;?>
 
         <?php if ($this->canShowLast()): ?>
@@ -77,14 +71,7 @@
 
         <?php if (!$this->isLastPage()): ?>
             <li class="next">
-                <a class="next<?php if(!$this->getAnchorTextForNext()): ?> i-next<?php endif; ?>" href="<?php echo $this->getNextPageUrl() ?>" title="<?php echo $this->__('Next') ?>">
-                    <?php if(!$this->getAnchorTextForNext()): ?>
-                    	<?php echo $this->__('Next'); ?>
-                        
-                    <?php else: ?>
-                        <?php echo $this->getAnchorTextForNext() ?>
-                    <?php endif;?>
-                </a>
+                <a class="next ic ic-right" href="<?php echo $this->getNextPageUrl() ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Next')) ?>"></a>
             </li>
         <?php endif;?>
         </ol>

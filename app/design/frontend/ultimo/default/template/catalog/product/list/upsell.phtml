@@ -22,7 +22,11 @@
     $isResponsive = true;
 
     //Assign number of items in a row to specific viewport width
-    $breakpoints = '[0, 1], [320, 2], [480, 3], [960, 4], [1280, 5]';
+    $breakpoints = $theme->getCfg('product_page/upsell_breakpoints');
+    if (empty($breakpoints)) //Param not set
+    {
+        $breakpoints = '[0, 1], [320, 2], [480, 3], [992, 4], [1200, 5]'; //Set default breakpoints
+    }
 
     //Pagination on/off
     $pagination = false;
@@ -79,86 +83,89 @@
         $gridClasses .= ' centered';
     }
 ?>
+<div class="block block-upsell">
+    <strong class="section-title padding-right"><?php echo $this->__('You may also be interested in the following product(s)'); ?></strong>
+    <div class="itemslider-wrapper itemslider-upsell-wrapper slider-arrows1 slider-arrows1-pos-top-right slider-pagination1">
+        <div id="<?php echo $sliderId; ?>" class="itemslider <?php if($sliderClasses) echo $sliderClasses; ?> products-grid<?php if($gridClasses) echo $gridClasses; ?>">
+        <?php $this->resetItemsIterator() ?>
+        <?php foreach($this->getItemCollection()->getItems() as $_product): //$_link replaced with $_product ?>    
+            <div class="item">
+                <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_product->getName()) ?>" class="product-image">
 
-<h3 class="section-title padding-right"><?php echo $this->__('You may also be interested in the following product(s)'); ?></h3>
-<div class="itemslider-wrapper itemslider-upsell-wrapper slider-arrows1 slider-arrows1-pos-top-right slider-pagination1">
-    <div id="<?php echo $sliderId; ?>" class="itemslider <?php if($sliderClasses) echo $sliderClasses; ?> products-grid<?php if($gridClasses) echo $gridClasses; ?>">
-    <?php $this->resetItemsIterator() ?>
-    <?php foreach($this->getItemCollection()->getItems() as $_product): //$_link replaced with $_product ?>    
-        <div class="item">
-            <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_product->getName()) ?>" class="product-image">
+                    <?php if ($lazy): ?>
+                        <img class="lazyOwl" data-src="<?php echo $helpImg->getImg($_product, $imgWidth, $imgHeight, 'small_image'); ?>" alt="<?php echo $this->escapeHtml($_product->getName()) ?>" />
+                    <?php else: ?>
+                        <img src="<?php echo $helpImg->getImg($_product, $imgWidth, $imgHeight, 'small_image'); ?>" alt="<?php echo $this->escapeHtml($_product->getName()) ?>" />
+                    <?php endif; ?>
 
-                <?php if ($lazy): ?>
-                    <img class="lazyOwl" data-src="<?php echo $helpImg->getImg($_product, $imgWidth, $imgHeight, 'small_image'); ?>" alt="<?php echo $this->escapeHtml($_product->getName()) ?>" />
-                <?php else: ?>
-                    <img src="<?php echo $helpImg->getImg($_product, $imgWidth, $imgHeight, 'small_image'); ?>" alt="<?php echo $this->escapeHtml($_product->getName()) ?>" />
-                <?php endif; ?>
+                </a>
+                <strong class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_product->getName()) ?>"><?php echo $this->escapeHtml($_product->getName()) ?></a></strong>
+                <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+                <?php echo $this->getPriceHtml($_product, true, '-upsell') ?>
+            </div>
+        <?php endforeach; ?>
+        </div> <!-- end: itemslider -->
+    </div> <!-- end: itemslider-wrapper -->
+    <script type="text/javascript">
+    //<![CDATA[
+        jQuery(function($) {
 
-            </a>
-            <h3 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_product->getName()) ?>"><?php echo $this->escapeHtml($_product->getName()) ?></a></h3>
-            <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
-            <?php echo $this->getPriceHtml($_product, true, '-upsell') ?>
-        </div>
-    <?php endforeach; ?>
-    </div> <!-- end: itemslider -->
-</div> <!-- end: itemslider-wrapper -->
-<script type="text/javascript">
-//<![CDATA[
-    jQuery(function($) {
+            var owl = $('#<?php echo $sliderId; ?>');
+            owl.owlCarousel({
 
-        var owl = $('#<?php echo $sliderId; ?>');
-        owl.owlCarousel({
+            <?php if ($lazy): ?>
+                lazyLoad: true,
+            <?php endif; ?>
 
-        <?php if ($lazy): ?>
-            lazyLoad: true,
-        <?php endif; ?>
+            <?php if(!$isResponsive): ?>
+                responsive: false,
+                items: <?php echo $showItems; ?>,
+            <?php else: ?>
+                itemsCustom: [ <?php echo $breakpoints; ?> ],
+                responsiveRefreshRate: 50,
+            <?php endif; ?>
 
-        <?php if(!$isResponsive): ?>
-            responsive: false,
-            items: <?php echo $showItems; ?>,
-        <?php else: ?>
-            itemsCustom: [ <?php echo $breakpoints; ?> ],
-            responsiveRefreshRate: 50,
-        <?php endif; ?>
+            <?php if ($speed): ?>
+                slideSpeed: <?php echo $speed; ?>,
+            <?php endif; ?>
 
-        <?php if ($speed): ?>
-            slideSpeed: <?php echo $speed; ?>,
-        <?php endif; ?>
+            <?php if ($autoSpeed): ?>
+                paginationSpeed: <?php echo $autoSpeed; ?>,
+            <?php endif; ?>
 
-        <?php if ($autoSpeed): ?>
-            paginationSpeed: <?php echo $autoSpeed; ?>,
-        <?php endif; ?>
+            <?php if ($move !== 1): ?>
+                scrollPerPage: true,
+            <?php endif; ?>
 
-        <?php if ($move !== 1): ?>
-            scrollPerPage: true,
-        <?php endif; ?>
+            <?php if ($timeout): ?>
+                autoPlay: <?php echo $timeout; ?>,
+            <?php endif; ?>
 
-        <?php if ($timeout): ?>
-            autoPlay: <?php echo $timeout; ?>,
-        <?php endif; ?>
+            <?php if ($pause): ?>
+                stopOnHover: true,
+            <?php endif; ?>
 
-        <?php if ($pause): ?>
-            stopOnHover: true,
-        <?php endif; ?>
+            <?php if ($loop): ?>
+                rewindNav: true,
+                rewindSpeed: 600,
+            <?php else: ?>
+                rewindNav: false,
+            <?php endif; ?>
 
-        <?php if ($loop): ?>
-            rewindNav: true,
-            rewindSpeed: 600,
-        <?php else: ?>
-            rewindNav: false,
-        <?php endif; ?>
+            <?php if ($pagination): ?>
+                pagination: true,
+            <?php else: ?>
+                pagination: false,
+            <?php endif; ?>
 
-        <?php if ($pagination): ?>
-            pagination: true,
-        <?php else: ?>
-            pagination: false,
-        <?php endif; ?>
+                navigation: true,
+                navigationText: false
 
-            navigation: true
+            }); //end: owl
 
-        }); //end: owl
+        });
+    //]]>
+    </script>
 
-    });
-//]]>
-</script>
+</div> <!-- end: block -->
 <?php endif; ?>
