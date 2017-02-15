@@ -1,0 +1,26 @@
+<?php
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+?>
+<?php
+    $theme = Mage::helper('ultimo');
+    $accountLinksHtml = '';
+
+    //Default Magento Top Links
+    if ($theme->getCfg('magento_blocks/top_links'))
+    {
+        $accountLinksHtml .= $this->getChildHtml('topLinks');
+    }
+
+    //Additional custom links
+    if ($tmpHtml = $this->getChildHtml('block_header_top_links'))
+    {
+        $accountLinksHtml .= $tmpHtml;
+    }
+?>
+<?php if ($accountLinksHtml): ?>
+    <div id="header-account" class="account-links top-links links-wrapper-separators-left skip-content skip-content--style">
+        <?php echo $accountLinksHtml; ?>
+    </div>
+<?php endif; ?>

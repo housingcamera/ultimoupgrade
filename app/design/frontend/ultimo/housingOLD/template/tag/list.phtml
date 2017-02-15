@@ -1,0 +1,42 @@
+<?php
+/**
+ * - Replaced h2 tag and other heading tags
+ */
+?>
+<div class="box-collateral box-tags">
+    <strong class="section-title"><?php echo $this->__('Product Tags') ?></strong>
+    <?php echo $this->getChildHtml('list_before')?>
+    <?php if( $this->getCount() ): ?>
+    <div><?php echo $this->__('Other people marked this product with these tags:') ?></div>
+    <ul id="<?php echo $this->getUniqueHtmlId('product-tags_'); ?>" class="product-tags">
+        <?php echo $this->renderTags('<li><a href="%1$s">%2$s</a> (%3$s)</li>') ?>
+    </ul>
+    <script type="text/javascript">
+        decorateGeneric($("<?php echo $this->getUniqueHtmlId('product-tags_'); ?>").select('li'), ['first', 'last']);
+    </script>
+    <?php endif; ?>
+    <form id="addTagForm" action="<?php echo $this->getFormAction(); ?>" method="get">
+        <div class="form-add">
+            <label for="productTagName"><?php echo $this->__('Add Your Tags:') ?></label>
+            <div class="input-box">
+                <input type="text" class="input-text required-entry" name="productTagName" id="productTagName" />
+            </div>
+            <button type="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Add Tags')) ?>" class="button" onclick="submitTagForm()">
+                <span>
+                    <span><?php echo $this->__('Add Tags') ?></span>
+                </span>
+            </button>
+        </div>
+    </form>
+    <p class="note"><?php echo $this->__("Use spaces to separate tags. Use single quotes (') for phrases.") ?></p>
+    <script type="text/javascript">
+    //<![CDATA[
+        var addTagFormJs = new VarienForm('addTagForm');
+        function submitTagForm(){
+            if(addTagFormJs.validator.validate()) {
+                addTagFormJs.form.submit();
+            }
+        }
+    //]]>
+    </script>
+</div>
