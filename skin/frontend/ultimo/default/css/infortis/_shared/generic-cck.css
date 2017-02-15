@@ -61,10 +61,18 @@
 /* Vertical links %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 
-.links > li,
-.links > li > a { line-height:3em; } /* line-height:36px; */ /*2.6666em = 32px;*/
-.links > li > a { padding:0 0.5833em; } /* padding:0 7px; */
-.links > li.label { padding-right:0.5833em; } /* 7px */
+.links > li > a,
+.links > li.label {
+    line-height: 36px;
+    padding: 0px 7px;
+}
+.links > li.label {
+	padding-left: 0;
+}
+.rtl .links > li.label {
+	padding-right: 0;
+	padding-left: 7px;
+}
 
 /* Basic links, no separators
 -------------------------------------------------------------- */

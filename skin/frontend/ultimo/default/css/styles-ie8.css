@@ -10,29 +10,40 @@
 .lte-ie8 .hide-below-1280 { display:inherit !important; }
 
 
-/* Borders instead of dropdown shadows
+/* Borders instead of shadow
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 */
+/* Dropdowns
+-------------------------------------------------------------- */
+/* Dropdowns */
+.dropdown.open .dropdown-content,
 
-/* Main menu drop-down */
-#nav .level0-wrapper,
-
-/* Main menu drop-down (classic style) */
-#nav.classic .parent > ul,
-
-/* Search autocomplete */
-.header .form-search .search-autocomplete ul,
-
-/* Dropdown */
-.dropdown-menu
+/* Menu dropdowns - to have the same style of shadow as other dropdowns */
+.nav-regular .nav-panel--dropdown
 {
-	border:1px solid #e5e5e5;
+	border-left:1px solid #eee;
+	border-right:1px solid #eee;
+	border-bottom:1px solid #eee;
 }
 
-/* Remember Me popup, MAP popup, credit card number */
+/* Popups
+-------------------------------------------------------------- */
+/* Mini cart options */
+.truncated .truncated_full_value .item-options,
+
+/* Search autocomplete */
+.form-search .search-autocomplete ul,
+
+/* Remember Me popup, MAP popup */
 .remember-me-popup,
-.map-popup,
-.tool-tip { border:1px solid #e5e5e5; }
+.map-popup
+{
+	border:1px solid #eee;
+}
+
+/* Other
+-------------------------------------------------------------- */
+.sticky-header .sticky-container { border-bottom:1px solid #eee; }
 
 
 /* Caption

@@ -62,9 +62,6 @@ li.level0 > a > span > .cat-label {	top:-24px; right:5px; }
 	display:block; clear:both; height:auto; overflow:hidden;
 	/*font-size:12px; line-height:15px;*/
 }
-.header .clearer {}
-
 .cart .crosssell {
 	display:block; clear:both; height:auto; overflow:hidden;
-	/*font-size:12px; line-height:15px;*/
 }

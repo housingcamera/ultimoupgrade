@@ -1,24 +1,21 @@
 /**
- * Common styles
+ * Common styles for multiple elements
  */
 
+/* Added for magento 2 */
+.owl-item .product-image-wrapper {
+    height: auto;
+}
 
 
-/* Common styles %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+/* Blocks and headings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-
-/* Sizes
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-*/
-.header-top,
-.header .dropdown { line-height:3em; } /* line-height:36px; */
-.header .dropdown { max-height:3em; } /* Set static height to improve layout of inline elements */
-
 
 /* Blocks
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 */
-/**/
 .sidebar .block:first-child { margin-top:6px; } /* To align with page title */
 .cms-index-index .sidebar .block:first-child { margin-top:0; } /* Remove margin on home page */
 
@@ -37,8 +34,12 @@
 /* Sidebar blocks */
 .block .block-title,
 
+/* Filters */
+.block-layered-nav .block-subtitle--filter,
+
 /* Section title */
 .section-title,
+strong.section-title, /* To override default styles of "strong" tag */
 
 /* Cart */
 .cart .crosssell h2,
@@ -50,8 +51,8 @@
 	padding-bottom:7px;
 	border-bottom:1px solid #e5e5e5;
 	font-weight:normal;
-	font-size:1.5em; /*18px*/
-	line-height:1.2222em; /*22px*/
+	font-size:19px;
+	line-height:29px;
 }
 
 /* Secondary headings
@@ -67,12 +68,12 @@
 .multiple-checkout .col2-set h2.legend,
 .info-set h2.legend
 {
-	font-size:1.5em; /*18px*/
-	line-height:1.3333em; /*24px*/
-	font-weight:normal;
-	text-transform:uppercase;
+	padding-bottom:7px;
 	border-bottom:1px solid #e5e5e5;
-	padding-bottom:10px;
+	font-weight:normal;
+	font-size:1.5em; /*18px*/
+	line-height:1.2222em; /*22px*/
+	margin-bottom:15px;
 }
 
 /* Account headings
@@ -110,14 +111,20 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 */
 
-/* Elements with horizontal border - normal
+/* Elements with horizontal border - standard
 -------------------------------------------------------------- */
+/* Blocks */
+.block .actions,
+
 /* CMS */
 .section-line,
 
 /* Misc */
+.buttons-set,
 .toolbar 
-{ border-color:#e5e5e5; }
+{
+	border-color:#e5e5e5;
+}
 
 /* Elements with horizontal border - lighter
 -------------------------------------------------------------- */
@@ -139,8 +146,11 @@
 	border-color:#f5f5f5;
 }
 
-/* Elements with vertical border - normal
+/* Elements with vertical border - standard
 -------------------------------------------------------------- */
+/* Ratings separator */
+.product-view .ratings .rating-links .separator,
+
 /* Product page */
 .custom-sidebar-right .inner,
 .custom-sidebar-left .inner
@@ -166,6 +176,12 @@
 .availability-only-details thead
 {
 	border-color:#e5e5e5; /*Currently the same color as other borders*/
+}
+
+/* Other elements with border
+-------------------------------------------------------------- */
+.swatch-link {
+	border-color:#cccccc;
 }
 
 
@@ -204,12 +220,12 @@
 .products-list .ratings a,
 .products-grid .ratings a,
 
+/* Layered navigation count */
+.block-layered-nav dl dd ol > li > a .count,
+
 /* Breadcrumbs */
 .breadcrumbs li,
 .breadcrumbs a,
-
-/* Layered nav */
-.block-layered-nav dd li,
 
 /* Product page */
 .block-related-simple .related-add-to-wishlist,
@@ -219,22 +235,13 @@
 .availability,
 
 /* Reviews */
-.product-view .box-reviews dd .date,
+.product-view .box-reviews .review-date,
 
 /* Product options */
 .item-options dd,
-.product-options p.note,
-
-/* Prices */
-.price-notice .price,
-
-/* MSRP price and old price */
-.old-price,
-.product-view .price-box .old-price .price,
-#map-popup-msrp,
-.map-popup-msrp .price
+.product-options p.note
 {
-	color:#aaa;
+	color:#bbb;
 }
 
 
@@ -254,38 +261,6 @@
 .product-options ul.options-list:hover { color:#333; }
 
 
-/* Selected interface icons:
-   text color - icons on hover: toolbar icons, pager, prev/next slide etc.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-*/
-
-/* Hover item color */
-/* Toolbar */
-.sorter .view-mode a:hover,
-.sorter .sort-by .category-asc:hover,
-.sorter .sort-by .category-desc:hover,
-.pager .pages li a:hover,
-
-/* Add-to links */
-.add-to-links.addto-icons a:hover,
-
-/* Slider arrows */
-.gen-slider-arrows1 .direction-nav a:hover,
-.gen-slider-arrows2 .direction-nav a:hover,
-.gen-slider-arrows3 .direction-nav a:hover,
-
-/* Lightbox */
-#cboxPrevious:hover,
-#cboxNext:hover,
-#cboxClose:hover,
-
-/* Scroll to top button */
-#scroll-to-top:hover
-{
-	color:#fff; /*Color of text*/
-}
-
-
 
 /* Fonts %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -302,39 +277,6 @@
 /* Effects %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 
-/* Shadows: for pop-ups, drop-downs etc.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-*/
-/* IE version included */
-#nav .level0-wrapper,
-#nav.classic .parent > ul,
-
-/* Mini cart */
-#mini-cart .block-content,
-.truncated .truncated_full_value .item-options,
-
-/* Compare drop-down */
-.header .block-compare .block-content,
-
-/* Search autocomplete */
-.header .form-search .search-autocomplete ul,
-
-/* Dropdown */
-.open > .dropdown-toggle.cover,
-.dropdown-menu,
-
-/* Pop-ups and tooltips */
-.remember-me-popup,
-.map-popup,
-.tool-tip,
-#subscribe-form .input-box .validation-advice
-{
-	-moz-box-shadow:0 2px 10px rgba(0,0,0, 0.15);
-	-webkit-box-shadow:0 2px 10px rgba(0,0,0, 0.15);
-	box-shadow:0 2px 10px rgba(0,0,0, 0.15);
-}
-
-
 /* Transitions
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 */
@@ -343,17 +285,25 @@
 -------------------------------------------------------------- */
 /* IMPORTANT: link transitions should be placed before other transitions */
 a,
-#mobnav-trigger .trigger-icon .line,
-.accordion .opener /*Main menu accordion*/
+.menu-trigger .menu-trigger-inner,
+.menu-trigger .menu-trigger-inner .trigger-icon .line,
+.opener,
+a > .ib,
+a.feature-icon-hover > .ib
+/*, .header-mobile .skip-link*/
 {
-	transition:			color 450ms ease-in-out, background-color 450ms ease-in-out;
-	-moz-transition:	color 450ms ease-in-out, background-color 450ms ease-in-out;
-	-webkit-transition:	color 450ms ease-in-out, background-color 450ms ease-in-out;
-	-o-transition:		color 450ms ease-in-out, background-color 450ms ease-in-out;
+	transition:			color 300ms ease-in-out, background-color 300ms ease-in-out;
+	-moz-transition:	color 300ms ease-in-out, background-color 300ms ease-in-out;
+	-webkit-transition:	color 300ms ease-in-out, background-color 300ms ease-in-out;
+	-o-transition:		color 300ms ease-in-out, background-color 300ms ease-in-out;
 }
 a:hover,
-#mobnav-trigger:hover .trigger-icon .line,
-.accordion .opener:hover
+.menu-trigger .menu-trigger-inner:hover,
+.menu-trigger .menu-trigger-inner:hover .trigger-icon .line,
+.opener:hover,
+.nav-item > a:hover + .opener, /* Opener following a link in mobile menu */
+a:hover > .ib,
+a.feature-icon-hover:hover > .ib
 {
 	transition-duration:			100ms;
 	-moz-transition-duration:		100ms;
@@ -361,30 +311,35 @@ a:hover,
 	-o-transition-duration:			100ms;
 }
 
-/* Opacity
+/* Carets - in menu
 -------------------------------------------------------------- */
-/*
-.form-search .button span
-{
-	transition:			opacity 450ms ease-in-out;
-	-moz-transition:	opacity 450ms ease-in-out;
-	-webkit-transition:	opacity 450ms ease-in-out;
-	-o-transition:		opacity 450ms ease-in-out;
+.nav-regular a > .caret {
+	transition:			border-color 300ms ease-in-out, opacity 300ms ease-in-out;
+	-moz-transition:	border-color 300ms ease-in-out, opacity 300ms ease-in-out;
+	-webkit-transition:	border-color 300ms ease-in-out, opacity 300ms ease-in-out;
+	-o-transition:		border-color 300ms ease-in-out, opacity 300ms ease-in-out;
 }
-.form-search .button:hover span
-{
+.nav-regular a:hover > .caret {
 	transition-duration:			100ms;
 	-moz-transition-duration:		100ms;
 	-webkit-transition-duration:	100ms;
 	-o-transition-duration:			100ms;
 }
-*/
-.form-search .button span {
-	transition:			opacity 300ms ease-in-out;
-	-moz-transition:	opacity 300ms ease-in-out;
-	-webkit-transition:	opacity 300ms ease-in-out;
-	-o-transition:		opacity 300ms ease-in-out;
+
+/* Carets - in dropdown-heading
+-------------------------------------------------------------- */
+/*.dropdown > .dropdown-heading .caret {
+	transition:			border-color 0ms ease-in-out, opacity 0ms ease-in-out;
+	-moz-transition:	border-color 0ms ease-in-out, opacity 0ms ease-in-out;
+	-webkit-transition:	border-color 0ms ease-in-out, opacity 0ms ease-in-out;
+	-o-transition:		border-color 0ms ease-in-out, opacity 0ms ease-in-out;
 }
+.dropdown.open > .dropdown-heading .caret {
+	transition-duration:			100ms;
+	-moz-transition-duration:		100ms;
+	-webkit-transition-duration:	100ms;
+	-o-transition-duration:			100ms;
+}*/
 
 /* Interface icons: toolbar icons, pager, prev/next slide etc.
 -------------------------------------------------------------- */
@@ -393,16 +348,8 @@ a:hover,
 .sorter .sort-by .category-asc,
 .sorter .sort-by .category-desc,
 
-/* Back link */
-.buttons-set .back-link small,
-
 /* Add-to links */
 .add-to-links.addto-icons a,
-
-/* Accordion and collapsible: opener */
-.accordion-style1 .opener,
-.accordion-style1 .opener:hover, /*Override: .accordion .opener:hover */
-.collapsible .opener,
 
 /* Scroll to top */
 #scroll-to-top
@@ -413,40 +360,14 @@ a:hover,
 	-o-transition:		background-color 300ms ease-in-out, background-position 300ms ease-in-out;
 }
 
-/* Accordions, tabs & other components
--------------------------------------------------------------- */
-/* TODO: del
-.gen-tabs .tabs a,
-.gen-tabs .acctab,
-.opc .step-title
-{
-	transition:			color 300ms ease-in-out, background-color 300ms ease-in-out, border-color 300ms ease-in-out;
-	-moz-transition:	color 300ms ease-in-out, background-color 300ms ease-in-out, border-color 300ms ease-in-out;
-	-webkit-transition:	color 300ms ease-in-out, background-color 300ms ease-in-out, border-color 300ms ease-in-out;
-	-o-transition:		color 300ms ease-in-out, background-color 300ms ease-in-out, border-color 300ms ease-in-out;
-}
-*/
-
-/* Carets
--------------------------------------------------------------- */
-#nav a.level-top .caret {
-	transition:			border-top-color 450ms ease-in-out;
-	-moz-transition:	border-top-color 450ms ease-in-out;
-	-webkit-transition:	border-top-color 450ms ease-in-out;
-	-o-transition:		border-top-color 450ms ease-in-out;
-}
-#nav > li:hover a.level-top .caret {
-	transition-duration:			100ms;
-	-moz-transition-duration:		100ms;
-	-webkit-transition-duration:	100ms;
-	-o-transition-duration:			100ms;
-}
-
 /* Elements with animated color, background color and borders
 -------------------------------------------------------------- */
 /* Forms */
 input.input-text, select, textarea,
 .product-options ul.options-list,
+
+/* Search */
+.form-search .button,
 
 /* Product image thumbnails */
 .product-view .product-img-box .more-views .thumbnails li a,
@@ -466,23 +387,4 @@ input.input-text, select, textarea,
 	-moz-transition:	color 300ms ease-in-out, background-color 300ms ease-in-out, border-color 300ms ease-in-out;
 	-webkit-transition:	color 300ms ease-in-out, background-color 300ms ease-in-out, border-color 300ms ease-in-out;
 	-o-transition:		color 300ms ease-in-out, background-color 300ms ease-in-out, border-color 300ms ease-in-out;
-}
-
-
-/* Shadow for the main containers
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-*/
-
-/* Elements which have backgr. color can be marked with "show-bg". They will drop shadow if "shadow" class was added to the containing block. */
-.drop-shadow,
-.shadow .show-bg,
-
-/* Conditional shadow for main menu bar */
-.shadow .nav-bar-drop-shadow #mobnav-trigger,
-.shadow .nav-bar-drop-shadow .vertnav-top,
-.shadow .nav-bar-drop-shadow #nav
-{
-	-moz-box-shadow:	0 2px 3px rgba(0, 0, 0, 0.1);
-	-webkit-box-shadow:	0 2px 3px rgba(0, 0, 0, 0.1);
-	box-shadow:			0 2px 3px rgba(0, 0, 0, 0.1);
 }

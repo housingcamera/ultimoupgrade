@@ -1,3 +1,4 @@
+/* TODO: caret modifications */
 /**
  * Infortis themes styles
  */
@@ -41,20 +42,15 @@
 */
 .caret {
 	display:inline-block;
-	width:0;
-	height:0;
-	margin-bottom:2px;
 	vertical-align:middle;
-	content:"";
-	border-style:solid solid none;
-	border-width:4px 4px 0;
-	border-color:#333 transparent transparent;
+	font-size:14px;
+	line-height: initial; /* Important: avoid caret exceeding height of the item */
 }
 .dropdown .caret {
 	opacity:0.3;
 	filter:alpha(opacity=30);
 }
-.dropdown:hover .caret {
+.dropdown.open .caret {
 	opacity:1;
 	filter:alpha(opacity=100);
 }
@@ -92,7 +88,7 @@
 	line-height:1em;
 	font-weight:bold;
 	text-align:center;
-	display:table-cell !important;
+	display:table-cell !important; /* Add "important" to override inherited styles of parent elements */
 	vertical-align:middle !important;
 
 	transition:			all 150ms ease-in-out;
@@ -151,6 +147,7 @@
 /* Page banners
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 */
+.banner-wrapper { position: relative; display: block; }
 .page-banners .banner a { display:block; }
 .page-banners .banner a img { display:block; margin:0 auto; }
 
@@ -308,4 +305,96 @@ a:hover .caption.light3 p { background-color:rgba(255,255,255, 1); color:#000; }
 	-moz-transition:	none;
 	-webkit-transition:	none;
 	-o-transition:		none;
+}
+
+
+
+/* Selected components from Bootstrap %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* "Code" (code.less)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+code,
+kbd,
+pre,
+samp {
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+}
+kbd {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #fff;
+  background-color: #333;
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .25);
+          box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .25);
+}
+kbd kbd {
+  padding: 0;
+  font-size: 100%;
+  font-weight: bold;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+pre {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  color: #333;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  /*border-radius: 4px;*/
+}
+pre code {
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+  white-space: pre-wrap;
+  background-color: transparent;
+  border-radius: 0;
+}
+.pre-scrollable {
+  max-height: 340px;
+  overflow-y: scroll;
+}
+
+
+/* Part of "Table" (table.less)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+.table-responsive {
+	min-height: .01%; /* Workaround for IE9 bug (see https://github.com/twbs/bootstrap/issues/14837) */
+	overflow-x: auto;
+}
+@media screen and (max-width: 767px) {
+	.table-responsive {
+		width: 100%;
+		margin-bottom: 15px;
+		overflow-y: hidden;
+		-ms-overflow-style: -ms-autohiding-scrollbar;
+		border: 1px solid #ddd;
+	}
+	.table-responsive > .table {
+		margin-bottom: 0;
+	}
+	.table-responsive > .table > thead > tr > th,
+	.table-responsive > .table > tbody > tr > th,
+	.table-responsive > .table > tfoot > tr > th,
+	.table-responsive > .table > thead > tr > td,
+	.table-responsive > .table > tbody > tr > td,
+	.table-responsive > .table > tfoot > tr > td {
+		white-space: nowrap;
+	}
 }

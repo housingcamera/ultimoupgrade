@@ -96,6 +96,7 @@
 /* Default skin
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 */
+.img-box { margin-bottom: 15px; }
 .img-box .product-image { margin: 0 auto; position:relative; /* Labels (e.g. "sale") are positioned relative to this box */ }
 .img-box .product-image.product-image-zoom { z-index:9; } /*TODO: obsolete*/
 
@@ -147,7 +148,10 @@
 	padding:4px;
 	border:1px solid #eee;
 }
-.img-box-style1 .more-images .thumbnails .item a:hover { border-color:#999; position:relative; z-index:1; }
+.img-box-style1 .more-images .thumbnails .item a:hover {
+	border-color:#999; 
+	/*position:relative; z-index:1;*/ /*TODO: Not needed if items not adjacent? */
+}
 
 
 /* Thumbnails carousel %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

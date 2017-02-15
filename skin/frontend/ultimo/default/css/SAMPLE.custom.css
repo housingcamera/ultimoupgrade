@@ -11,44 +11,21 @@
  */
 
 
-/* Products
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-*/
 
-/* Product labels
+/* Stock indicator on product page: icon color
 -------------------------------------------------------------- */
+
 /*
-.sticker.new {
-	background-color:#555;
-	color:#fff;
-}
-.sticker.sale {
-	background-color:orange;
-	color:#fff;
-}
+.availability-only .ic { color: green; }
 */
 
-/* Stock indicator on product page (configurable products):
-icon background color
+
+
+/* Product counter in the mini cart drop-down
 -------------------------------------------------------------- */
+
 /*
-a.availability-only span.icon { background-color:orange; }
-*/
-
-
-/* Miscellaneous
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-*/
-
-/* Number of products in category (sidebar menu) */
-/*
-.vertnav .number { color: #000; }
-*/
-
-/* Drop-down caret */
-/*
-.caret {
-	opacity:1;
-	filter:alpha(opacity=100);
+.header .skip-link .count {
+	background-color: deepskyblue;
 }
 */

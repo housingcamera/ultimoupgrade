@@ -13,8 +13,8 @@
 	list-style-type:none;
 }
 .accordion ul {
+	display:block; /*display:none;*/
 	float:left;
-	display:block;
 	width:100%;
 	padding:0;
 	margin:0;
@@ -30,8 +30,6 @@
 	position:relative;
 }
 
-.accordion li.active {}
-.accordion li.current {}
 .accordion li a {
 	display:block;
 	padding:15px 10px;
@@ -54,19 +52,18 @@
 	top:0;
 	display:block;
 	cursor:pointer;
+	text-align:center;
 	
 	width:49px;
 	height:49px;
-	background: url(../../../images/infortis/ultra-megamenu/opener.png) center center no-repeat;
+	line-height:49px;
 }
 .accordion .opener:hover {
 	background-color:rgba(0,0,0, 0.05);
 }
 
 /* Active */
-.accordion li.active > .opener {
-	background-image:url(../../../images/infortis/ultra-megamenu/opener-active.png);
-}
+.accordion li.item-active > .opener {}
 
 
 /* Accordion - Style 1
@@ -74,10 +71,10 @@
 */
 /* Padding
 -------------------------------------------------------------- */
-.accordion-style1 li a { padding:5px 10px; }
-.accordion-style1 li li a { padding-left:20px; }
-.accordion-style1 li li li a { padding-left:35px; }
-.accordion-style1 li li li li a { padding-left:50px; }
+.accordion-style1 li a { padding: 0px 10px; }
+.accordion-style1 li li a { padding-left: 20px; }
+.accordion-style1 li li li a { padding-left: 35px; }
+.accordion-style1 li li li li a { padding-left: 50px; }
 
 /* Space for openner if item has children.
    Space has to be a few pixels wider than openner */
@@ -100,20 +97,11 @@
 .accordion-style1 .opener {
 	width:28px;
 	height:28px;
-	/*background-image:url(../../../images/infortis/ultra-megamenu/opener-small.png);*/
-	background-color:rgba(0,0,0, 0.03);
+	line-height:28px;
+	background-color:rgba(0,0,0, 0.03) !important;
 }
 .accordion-style1 .opener:hover {
 	background-color:rgba(0,0,0, 0.10);
-	background-image: url(../../../images/infortis/ultra-megamenu/opener-w.png);
-}
-
-/* Active */
-/*.accordion-style1 li.active > .opener {
-	background-image:url(../../../images/infortis/ultra-megamenu/opener-small-active.png);
-}*/
-.accordion-style1 li.active > .opener:hover {
-	background-image:url(../../../images/infortis/ultra-megamenu/opener-active-w.png);
 }
 
 
@@ -121,10 +109,15 @@
 /* Collapsible %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 
-.collapsible { position:relative; }
 .collapsible .block-title {
+	cursor: pointer;
+}
+
+.collapsible .block-title,
+.mobile-collapsible .block-title
+{
 	padding-top:8px;
-	padding-right:35px; /* Space for opener */
+	/*padding-right:35px;*/ /* Rremoved space for opener */
 	padding-bottom:8px;
 	border-bottom:1px solid #f2f2f2;
 	border-color:rgba(0,0,0, 0.05);
@@ -140,7 +133,7 @@
 	margin-top:0; /* Prevent animation jumping */
 }
 
-/* Opener
+/* Deprecated: opener
 -------------------------------------------------------------- */
 .collapsible .opener {
 	position:absolute;
@@ -148,28 +141,18 @@
 	top:2px;
 	display:block;
 	cursor:pointer;
+	text-align:center;
 	
 	width:30px;
 	height:30px;
-	background-color:#f2f2f2; /*IE*/
-	background-color:rgba(0,0,0, 0.05);
-	background-image:url(../../../images/infortis/ultra-megamenu/opener.png);
+	line-height:30px;
+
 	background-position:center center;
 	background-repeat:no-repeat;
-	/*border-radius:50%;*/
+	background-color:#f2f2f2; /*IE*/
+	background-color:rgba(0,0,0, 0.05);
 }
 .collapsible .opener:hover {
 	background-color:#e5e5e5; /*IE*/
 	background-color:rgba(0,0,0, 0.1);
-	background-image:url(../../../images/infortis/ultra-megamenu/opener-w.png);
 }
-.collapsible.active .opener {
-	background-image:url(../../../images/infortis/ultra-megamenu/opener-active.png);
-}
-.collapsible.active .opener:hover {
-	background-image:url(../../../images/infortis/ultra-megamenu/opener-active-w.png);
-}
-
-/* Mobile accordion
--------------------------------------------------------------- */
-.mobile-collapsible { position: static; }

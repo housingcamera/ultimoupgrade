@@ -269,4 +269,18 @@
 .itemslider .owl-item.loading .product-image { min-height: 70px; }
 
 /* If slider inside menu */
-#nav .itemslider .price-box span { display: inline; }
+.navi .itemslider .price-box span { display: inline; }
+
+
+/* FEATURE: equal height items
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+/* Buttons aligned at the bottom */
+/*.itemslider.equal-height .item {
+    position: static;
+    padding-bottom: 50px;
+}
+.itemslider.equal-height .actions {
+    position: absolute;
+    bottom: 0;
+}*/
