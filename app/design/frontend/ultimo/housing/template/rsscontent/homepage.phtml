@@ -1,0 +1,49 @@
+<?php
+/**
+ * Magento
+ *
+ * @category   design_default
+ * @package    
+ * @copyright  
+ * @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+
+<?php  if($this->getItemCount() > 0): ?>
+<div class="block block-feed-reader feed-on-homepage">
+	<div class="block-content">
+		<ul id="feed-items">
+		<?php
+                    $itemCount = 0;
+                    foreach($this->getItems() as $item): ?>
+			<li class="block-feed-item <?php echo (++$itemCount % 2 == 0 ? 'even' : 'odd'); ?><?php if($itemCount == 1): ?> first<?php endif;?><?php if($itemCount >= $this->getItemCount()): ?> last<?php endif; ?> ">
+                               <?php preg_match('/< *img[^>]*src *= *["\']?([^"\']*)/i', $item->description(), $matches); ?>    
+                               <a href="<?php echo $this->escapeHtml($item->link()); ?>">    
+                                    <div class="image" style="background:url('<?php echo str_replace("http:","",$matches[1]); ?>') center no-repeat;" >                                                                                                          	
+                                    </div>
+                                 </a>
+                                <h5>
+                                    <a href="<?php echo $this->escapeHtml($item->link()); ?>">
+                                            <?php echo $this->escapeHtml($item->title()); ?>
+                                    </a>
+				</h5>
+				 <p class="date">
+                                    <?php echo Mage::getModel('core/date')->date('F j, Y', strtotime($item->pubDate())); ?>
+				</p>
+				<?php /*<p class="summary">  
+                                    <?php echo strip_tags(Mage::helper('core/string')->truncate($item->description(), 400, '...', $remainder, false)); ?>
+                                    <a href="<?php echo $this->escapeHtml($item->link()); ?>"> Read More</a>
+				</p> */?>
+			</li>
+		<?php
+                        $max_num = 4;
+                        if ($this->getMaxNum()){
+                            $max_num = $this->getMaxNum();
+                        }
+                        if ($itemCount==$max_num) break;
+                      endforeach; ?>
+		</ul>
+	</div>
+</div>
+<?php endif;  ?>
+
