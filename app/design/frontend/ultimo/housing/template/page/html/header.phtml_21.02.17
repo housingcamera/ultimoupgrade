@@ -212,87 +212,6 @@
 <div id="header-container" class="header-container header-mobile<?php if ($classes['root']) echo $classes['root']; ?>" style="display:none;">
 <div class="header-container2">
 <div class="header-container3">
-    <!-- Part of the header displayed only in regular mode -->
-    <div class="header-top-container">
-        <div class="header-top header container clearer">
-            <div class="inner-container">
-
-                <?php
-                    //Central column is displayed above left and right columns to avoid incorrect layout
-                    //because all columns contain inline elements.
-                    $containerHeaderTopCentral = $this->getChildHtml('container_header_top_central_1'); 
-                ?>
-                <?php if (isset($html['topCentral']) || $containerHeaderTopCentral): ?>
-                    <div class="central-column">
-
-                        <?php if (isset($html['topCentral'])): ?>
-                            <?php foreach ($html['topCentral'] as $element): ?>
-                                <div class="item item-interface"><?php echo $element; ?></div>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
-
-                        <?php echo $containerHeaderTopCentral; ?>
-
-                    </div> <!-- end: central column -->
-                <?php endif; ?>
-
-                <div class="left-column">
-
-                    <?php if (isset($html['topLeft'])): ?>
-                        <?php foreach ($html['topLeft'] as $element): ?>
-                            <div class="item item-left item-interface"><?php echo $element; ?></div>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-
-                    <?php echo $this->getChildHtml('container_header_top_left_1'); ?>
-
-                    <?php if ($tmpHtml = $this->getChildHtml('block_header_top_left')): ?>
-                        <div class="item item-left block_header_top_left"><?php echo $tmpHtml; ?></div>
-                    <?php endif; ?>
-                    <?php if ($tmpHtml = $this->getChildHtml('block_header_top_left2')): ?>
-                        <div class="item item-left block_header_top_left2"><?php echo $tmpHtml; ?></div>
-                    <?php endif; ?>
-
-                </div> <!-- end: left column -->
-
-                <div class="right-column">
-
-                    <?php if (isset($html['topRight'])): ?>
-                        <?php foreach ($html['topRight'] as $element): ?>
-                            <div class="item item-right item-interface"><?php echo $element; ?></div>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-
-                    <?php echo $this->getChildHtml('container_header_top_right_1'); ?>
-                    
-                    <?php if ($tmpHtml = $this->getChildHtml('block_header_top_right')): ?>
-                        <div class="item item-right block_header_top_right"><?php echo $tmpHtml; ?></div>
-                    <?php endif; ?>
-
-                    <?php /*
-                    <div id="currency-switcher-wrapper-regular" class="item item-right"><?php echo $currencySwitcherHtml; ?></div>
-                    <div id="lang-switcher-wrapper-regular" class="item item-right"><?php echo $languageSwitcherHtml; ?></div>
-                    */ ?>
-
-                    <?php if ($tmpHtml = $this->getChildHtml('block_header_top_right2')): ?>
-                        <div class="item item-right block_header_top_right2"><?php echo $tmpHtml; ?></div>
-                    <?php endif; ?>
-                    
-                                        <div class="item item-left hide-below-960">
-                        <?php
-                        $loggedIn = $this->helper("customer")->isLoggedIn();
-                        if($loggedIn == 1){
-                            echo "<a href=\"".Mage::getBaseUrl()."customer/account/logout/\" class='welcome-msg'>&nbsp;Logout</a>";
-                        }?>
-                        <p class="welcome-msg"><?php echo $this->getChildHtml('welcome'); ?> <?php echo $this->getAdditionalHtml(); ?></p>
-                    </div>
-
-
-                </div> <!-- end: right column -->
-
-            </div> <!-- end: inner-container -->
-        </div> <!-- end: header-top -->
-    </div> <!-- end: header-top-container -->
 
     <?php if ($mobileHeaderMode): ?>
     <!-- Part of the header displayed only in mobile mode -->
@@ -302,17 +221,14 @@
             <div class="header-m-top header container clearer">
                 <div class="inner-container">
 
-                    
-                        <?php echo $this->getChildHtml('container_mobile_header_top'); ?>
-    
-                    <div class="lang-cur-swtich">    
-                        <?php if ($currencySwitcherHtml): ?>
-                            <div id="currency-switcher-wrapper-mobile" class="item item-right"><?php echo $currencySwitcherHtml; ?></div>
-                        <?php endif; ?>
-                        <?php if ($languageSwitcherHtml): ?>
-                            <div id="lang-switcher-wrapper-mobile" class="item item-right"><?php echo $languageSwitcherHtml; ?></div>
-                        <?php endif; ?>
-                    </div>
+                    <?php echo $this->getChildHtml('container_mobile_header_top'); ?>
+
+                    <?php if ($currencySwitcherHtml): ?>
+                        <div id="currency-switcher-wrapper-mobile" class="item item-right"><?php echo $currencySwitcherHtml; ?></div>
+                    <?php endif; ?>
+                    <?php if ($languageSwitcherHtml): ?>
+                        <div id="lang-switcher-wrapper-mobile" class="item item-right"><?php echo $languageSwitcherHtml; ?></div>
+                    <?php endif; ?>
 
                 </div> <!-- end: inner-container -->
             </div> <!-- end: header-m-top -->
@@ -334,7 +250,6 @@
                         <a class="logo logo--mobile" href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>">
                             <img src="<?php echo (($small = $this->getLogoSrcSmall()) ? $small : $this->getLogoSrc()); ?>" alt="<?php echo $this->getLogoAlt() ?>" />
                         </a>
-                        <h3 class="statement">Inspiring Divers to Become Photographers</h3>
                     </div>
                     <div class="clearer after-mobile-logo"></div>
 
@@ -411,7 +326,80 @@
     </div> <!-- end: header-m-container -->
     <?php endif; //end: mode ?>
 
+    <!-- Part of the header displayed only in regular mode -->
+    <div class="header-top-container">
+        <div class="header-top header container clearer">
+            <div class="inner-container">
 
+                <?php
+                    //Central column is displayed above left and right columns to avoid incorrect layout
+                    //because all columns contain inline elements.
+                    $containerHeaderTopCentral = $this->getChildHtml('container_header_top_central_1'); 
+                ?>
+                <?php if (isset($html['topCentral']) || $containerHeaderTopCentral): ?>
+                    <div class="central-column">
+
+                        <?php if (isset($html['topCentral'])): ?>
+                            <?php foreach ($html['topCentral'] as $element): ?>
+                                <div class="item item-interface"><?php echo $element; ?></div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+
+                        <?php echo $containerHeaderTopCentral; ?>
+
+                    </div> <!-- end: central column -->
+                <?php endif; ?>
+
+                <div class="left-column">
+
+                    <?php if (isset($html['topLeft'])): ?>
+                        <?php foreach ($html['topLeft'] as $element): ?>
+                            <div class="item item-left item-interface"><?php echo $element; ?></div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+
+                    <?php echo $this->getChildHtml('container_header_top_left_1'); ?>
+
+                    <?php if ($tmpHtml = $this->getChildHtml('block_header_top_left')): ?>
+                        <div class="item item-left block_header_top_left"><?php echo $tmpHtml; ?></div>
+                    <?php endif; ?>
+                    <?php if ($tmpHtml = $this->getChildHtml('block_header_top_left2')): ?>
+                        <div class="item item-left block_header_top_left2"><?php echo $tmpHtml; ?></div>
+                    <?php endif; ?>
+                    <div class="item item-left hide-below-960">
+                        <p class="welcome-msg"><?php echo $this->getChildHtml('welcome'); ?> <?php echo $this->getAdditionalHtml(); ?></p>
+                    </div>
+
+                </div> <!-- end: left column -->
+
+                <div class="right-column">
+
+                    <?php if (isset($html['topRight'])): ?>
+                        <?php foreach ($html['topRight'] as $element): ?>
+                            <div class="item item-right item-interface"><?php echo $element; ?></div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+
+                    <?php echo $this->getChildHtml('container_header_top_right_1'); ?>
+                    
+                    <?php if ($tmpHtml = $this->getChildHtml('block_header_top_right')): ?>
+                        <div class="item item-right block_header_top_right"><?php echo $tmpHtml; ?></div>
+                    <?php endif; ?>
+
+                    <?php /*
+                    <div id="currency-switcher-wrapper-regular" class="item item-right"><?php echo $currencySwitcherHtml; ?></div>
+                    <div id="lang-switcher-wrapper-regular" class="item item-right"><?php echo $languageSwitcherHtml; ?></div>
+                    */ ?>
+
+                    <?php if ($tmpHtml = $this->getChildHtml('block_header_top_right2')): ?>
+                        <div class="item item-right block_header_top_right2"><?php echo $tmpHtml; ?></div>
+                    <?php endif; ?>
+
+                </div> <!-- end: right column -->
+
+            </div> <!-- end: inner-container -->
+        </div> <!-- end: header-top -->
+    </div> <!-- end: header-top-container -->
 
     <div class="header-primary-container">
         <div class="header-primary header container">

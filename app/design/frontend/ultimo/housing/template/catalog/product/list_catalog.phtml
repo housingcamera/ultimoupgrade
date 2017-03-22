@@ -1,0 +1,316 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Product list template
+ *
+ * @see Mage_Catalog_Block_Product_List
+ */
+?>
+
+<?php
+    $_productCollection=$this->getLoadedProductCollection();
+    $_collectionSize = $_productCollection->count();
+?>
+
+<?php if(!$_collectionSize): ?>
+    <?php if ($tmpHtml = $this->getChildHtml('block_category_above_empty_collection')): ?>
+        <div class="block_category_above_empty_collection std"><?php echo $tmpHtml; ?></div>
+    <?php else: ?>
+        <p class="note-msg empty-catalog"><?php echo $this->__('There are no products matching the selection.') ?></p>
+    <?php endif; ?>
+<?php else: ?>
+
+<?php
+    $_helper = $this->helper('catalog/output');
+    $theme = $this->helper('ultimo');
+    $helpLabels = $this->helper('ultimo/labels');
+    $helpTemplate = $this->helper('ultimo/template');
+    $helpImg = $this->helper('infortis/image');
+    $_coreHelper = $this->helper('core');
+    
+    //Default image size
+    $imgWidth = 150;
+    $imgHeight = 150;
+    
+    //Aspect ratio settings
+    if ($theme->getCfg('category/aspect_ratio'))
+        $imgHeight = 0; //Height will be computed automatically (based on width) to keep the aspect ratio
+
+    //Hide toolbar
+    $hideToolbar = true;
+   ?>
+
+<div class="category-products">
+      <?php
+        //Get grid configuration array
+        $gc = $theme->getCfgGroup('category_grid');
+        
+        //Get number of columns (from parameter or from theme config)
+        $columnCount = 2;
+       
+        //Grid classes
+        $gridClasses = '';
+        if ($gc['display_name'] == 2 && $gc['display_name_single_line'] == true)
+            $gridClasses .= ' single-line-name';
+        if ($gc['centered'])
+            $gridClasses .= ' centered';
+        if ($gc['hover_effect'])
+            $gridClasses .= ' hover-effect';
+        if ($gc['equal_height'])
+            $gridClasses .= ' equal-height';
+
+        //Size of grid elements
+        if ($gc['elements_size'])
+        {
+            $gridClasses .= ' size-' . $gc['elements_size'];
+        }
+        else
+        {
+            //Calculate size based on number of columns
+            if ($columnCount >= 6)
+            {
+                $gridClasses .= ' size-xs';
+            }
+            elseif ($columnCount >= 4)
+            {
+                $gridClasses .= ' size-s';
+            }
+        }
+
+        //Container "actions" at the bottom of the grid item stores button and add-to links
+        //If at least one of those elements was set as "Display on hover" but no element was set as "Display":
+        //apply appropriate classes to the container.
+        $actionsClasses = '';
+        if ($gc['display_addtocart'] == 1 || ($gc['display_addtolinks'] == 1 && !$gc['addtolinks_simple']))
+        {
+            $actionsClasses = ' display-onhover';
+        }
+        if ($gc['display_addtocart'] == 2 || ($gc['display_addtolinks'] == 2 && !$gc['addtolinks_simple']))
+        {
+            $actionsClasses = '';
+        }
+    ?>
+    
+    <?php $i=0; ?>
+    <table style="border-collapse:collapse; border-spacing:0; ">
+         <?php foreach ($_productCollection as $_product): ?>
+            <?php if ($i % 3==0): ?>
+                <tr>
+            <?php endif; ?>
+                    <td style="font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;border-color:#cccccc;overflow:hidden;word-break:normal;">
+                        <table style="">
+                            <tr>
+                              <td style=""><img width=80 style="float:left; margin-right:75px;" src="http://www.housingcamera.com/media/wysiwyg/infortis/brands/<?php echo str_replace(" ","-",strtolower($_product->getAttributeText('manufacturer'))); ?>.png"></td>
+                            </tr>
+                            <tr>
+                              <td style=""><div class="product-name" style="text-align:left; "><a href="<?php echo $_product->getProductUrl() ?>" style="color:#676767; ; font-weight:bold; margin-top:-20px; font-size:14px; text-decoration:none; font-family:Arial, sans-serif;" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo substr($_helper->productAttribute($_product, $_product->getName(), 'name'),0,40) ?></a></div></td>
+                            </tr>
+                            <tr>
+                                <td style="">
+                                    <div class="product-image-wrapper" style="max-width:<?php echo $imgWidth; ?>px;">
+                                    <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true); ?>" class="product-image">
+                                        <img src="<?php echo $helpImg->getImg($_product, $imgWidth, $imgHeight, 'small_image'); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true); ?>" />
+                                    </a>
+                                    </div> <!-- end: product-image-wrapper -->    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="">
+                                    <div style="text-align:left;">
+                                        <?php //echo $this->getPriceHtml($_product, true);
+                                            $textdecoraddon = "";
+                                            if ($_product->getSpecialPrice()!=null){
+                                                $textdecoraddon = "text-decoration:line-through;";
+                                            }
+                                            echo "Original Price: <span style='font-size:14px; font-weight:bold; color:#2E6AAE; font-family:Arial, sans-serif;" . $textdecoraddon . "'>" . $_coreHelper->formatPrice($_product->getPrice(), false) . "</span>";
+                                            if ($_product->getSpecialPrice()!=null){
+                                                 echo "<br />Final Price: <span style='font-size:16px; font-weight:bold; color:#58AE2E; font-family:Arial, sans-serif;'>" . $_coreHelper->formatPrice($_product->getSpecialPrice(), false). "</span>";
+                                            }
+                                        ?>   
+                                   </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+            <?php if ($i % 3==2): ?>
+                </tr>
+            <?php endif; ?>
+        <?php $i++; endforeach; ?>    
+    </table>
+	
+	
+    <?php /* List Mode */ ?>
+    <h1> List mode </h1>
+        <?php $_iterator = 0; ?>
+        <ul class="products-list<?php if($listClasses) echo $listClasses; ?>" id="products-list">
+        <?php foreach ($_productCollection as $_product): ?>
+            <li class="item<?php if( ++$_iterator == sizeof($_productCollection) ): ?> last<?php endif; ?>">
+
+                <?php //Product Image ?>
+                <div class="product-image-wrapper grid12-4 mobile-grid-half">
+
+                    <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image" style="max-width:<?php echo $imgWidth; ?>px;">
+                        <img src="<?php echo $helpImg->getImg($_product, $imgWidth, $imgHeight, 'small_image'); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+
+                        <?php if ($theme->getCfg('category/alt_image')): ?>
+                            <?php echo $theme->getAltImgHtml($_product, $imgWidth, $imgHeight); ?>
+                        <?php endif; ?>
+
+                        <?php echo $helpLabels->getLabels($_product); //Product labels ?>
+                    </a>
+
+                </div> <!-- end: product-image-wrapper -->
+
+                <?php //Product description ?>
+                <div class="product-shop grid12-5 mobile-grid-half">
+                    <div class="product-shop-inner">
+                        <?php $_productNameStripped = $this->stripTags($_product->getName(), null, true); ?>
+                        <div class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped; ?>"><?php echo $_helper->productAttribute($_product, $_product->getName() , 'name'); ?></a></div>
+                        <?php if($_product->getRatingSummary()): ?>
+                            <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+                        <?php endif; ?>
+
+                        <div class="desc std">
+                            <?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
+                            <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped ?>" class="link-learn"><?php echo $this->__('Learn More') ?></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right-column grid12-3 mobile-grid-half">
+                    <?php echo $this->getPriceHtml($_product, true) ?>
+                    <?php if($_product->isSaleable()): ?>
+                        <p><button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></p>
+                        <img width=80 style="" src="http://www.housingcamera.com/media/wysiwyg/infortis/brands/<?php echo str_replace(" ","-",strtolower($_product->getAttributeText('manufacturer'))); ?>.png">
+                    <?php else: ?>
+                        <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                    <?php endif; ?>
+                </div>
+
+            </li>
+        <?php endforeach; ?>
+        </ul>
+    <?php /* END List Mode */ ?>
+	
+	<?php /* Newsletter Mode */ 
+		//Default image size
+		$imgWidth = 250;
+		$imgHeight = 250;
+	?>
+	 <?php $i=0; ?>
+	 <?php foreach ($_productCollection as $_product): ?>
+            <?php if ($i % 2==0): ?>
+                <table style="border-spacing: 0;border-collapse: collapse;vertical-align: top;background-color: #FFFFFF" cellpadding="0" cellspacing="0" align="center" width="100%" border="0">
+                    <tbody><tr style="vertical-align: top">
+                        <td style="word-break: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;border-collapse: collapse !important;vertical-align: top" width="100%">
+                            <!--[if (gte mso 9)|(IE)]>
+                            <table width='500' class="ieCell" align="center" cellpadding="0" cellspacing="0" border="0">
+                                <tr>
+                                    <td>
+                            <![endif]-->
+                            <table class="container" style="border-spacing: 0;border-collapse: collapse;vertical-align: top;max-width: 500px;margin: 0 auto;text-align: inherit" cellpadding="0" cellspacing="0" align="center" width="100%" border="0">
+                                <tbody><tr style="vertical-align: top">
+                                    <td style="word-break: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;border-collapse: collapse !important;vertical-align: top" width="100%">
+                                        <table class="block-grid two-up" style="border-spacing: 0;border-collapse: collapse;vertical-align: top;width: 100%;max-width: 500px;color: #333;background-color: transparent" cellpadding="0" cellspacing="0" width="100%" bgcolor="transparent">
+                                            <tbody><tr style="vertical-align: top">
+                                                <td style="word-break: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;border-collapse: collapse !important;vertical-align: top;text-align: center;font-size: 0">
+                                                   
+            <?php endif; ?>
+                   <!--[if (gte mso 9)|(IE)]>
+                                                    <table width="100%" align="center" cellpadding="0" cellspacing="0" border="0">
+                                                        <tr>
+                                                    <![endif]-->
+ <!--[if (gte mso 9)|(IE)]><td class='' valign="top" width='250'><![endif]--><div class="col num6" style="display: inline-block;vertical-align: top;width: 250px;text-align: center">
+                                                        <table style="border-spacing: 0;border-collapse: collapse;vertical-align: top" cellpadding="0" cellspacing="0" align="center" width="100%" border="0">
+                                                            <tbody><tr style="vertical-align: top">
+                                                                <td style="word-break: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;border-collapse: collapse !important;vertical-align: top;background-color: transparent;padding-top: 5px;padding-right: 0px;padding-bottom: 5px;padding-left: 0px;border-top: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-left: 0px solid transparent">
+<table style="border-spacing: 0;border-collapse: collapse;vertical-align: top" cellpadding="0" cellspacing="0" width="100%" border="0">
+    <tbody><tr style="vertical-align: top">
+        <td style="word-break: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;border-collapse: collapse !important;vertical-align: top;width: 100%;padding-top: 5px;padding-right: 5px;padding-bottom: 5px;padding-left: 5px" align="center">
+            <div align="center">
+                <a href="<?php echo $_product->getProductUrl() ?>" target="_blank">
+                    <img class="center fullwidth" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block;border: none;height: auto;line-height: 100%;margin: 0 auto;float: none;width: 100% !important;max-width: 240px" align="center" border="0" data-custom-width="240" src="<?php echo $helpImg->getImg($_product, $imgWidth, $imgHeight, 'small_image'); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" title="Image">
+                </a>
+
+            </div>
+        </td>
+    </tr>
+</tbody></table>
+<table style="border-spacing: 0;border-collapse: collapse;vertical-align: top" cellpadding="0" cellspacing="0" width="100%">
+  <tbody><tr style="vertical-align: top">
+    <td style="word-break: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;border-collapse: collapse !important;vertical-align: top;padding-top: 20px;padding-right: 10px;padding-bottom: 5px;padding-left: 10px">
+        <div style="color:#61626F;line-height:120%;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;">            
+        	<div style="font-size:18px;line-height:22px;text-align:center;color:#61626F;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;"><strong><?php echo $_productNameStripped; ?></strong></div>
+        </div>
+    </td>
+  </tr>
+</tbody></table>
+<table style="border-spacing: 0;border-collapse: collapse;vertical-align: top" cellpadding="0" cellspacing="0" width="100%">
+  <tbody><tr style="vertical-align: top">
+    <td style="word-break: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;border-collapse: collapse !important;vertical-align: top;padding-top: 0px;padding-right: 10px;padding-bottom: 10px;padding-left: 10px">
+        <div style="color:#9D9DA1;line-height:120%;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;">            
+        	<div style="font-size:14px;line-height:17px;text-align:center;color:#9D9DA1;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;"><span style="font-size:14px; line-height:17px;">Price:&nbsp;<span style="text-decoration: line-through; font-size: 14px; line-height: 16px;" data-mce-style="text-decoration: line-through;"><?php echo $_coreHelper->formatPrice($_product->getPrice(), false); ?></span></span></div><div style="font-size:14px;line-height:17px;text-align:center;color:#9D9DA1;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;"><span style="font-size:14px; line-height:17px;">On Sale: <?php echo $_coreHelper->formatPrice($_product->getSpecialPrice(), false); ?></span></div>
+        </div>
+    </td>
+  </tr>
+</tbody></table>
+<table style="border-spacing: 0;border-collapse: collapse;vertical-align: top" cellpadding="0" cellspacing="0" width="100%">
+  <tbody><tr style="vertical-align: top">
+    <td style="word-break: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;border-collapse: collapse !important;vertical-align: top;padding-top: 10px;padding-right: 10px;padding-bottom: 20px;padding-left: 10px">
+        <div style="color:#C7702E;line-height:120%;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;">            
+        	<div style="font-size:14px;line-height:17px;text-align:center;color:#C7702E;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;"><a style="color:#C7702E" href="<?php echo $_product->getProductUrl() ?>"><span style="text-decoration: underline; font-size: 14px; line-height: 16px;" data-mce-style="text-decoration: underline;"><strong>Show more</strong></span></a> → </div>
+        </div>
+    </td>
+  </tr>
+</tbody></table>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody></table>
+                                                    </div>
+            <?php if (($i % 2==1) | $i==$_collectionSize-1): ?>
+                
+                                                </td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+                            </tbody></table>
+                            <!--[if (gte mso 9)|(IE)]>
+                                       </td>
+                                </tr>
+                            </table>
+                            <![endif]-->
+                        </td>
+                    </tr>
+                </tbody></table>
+            <?php endif; ?>
+        <?php $i++; endforeach; ?>    
+		
+		<?php /* End Newsletter Mode */ ?>
+</div>
+<?php endif; // Collection Size ?>

@@ -212,6 +212,120 @@
 <div id="header-container" class="header-container header-mobile<?php if ($classes['root']) echo $classes['root']; ?>" style="display:none;">
 <div class="header-container2">
 <div class="header-container3">
+
+    <?php if ($mobileHeaderMode): ?>
+    <!-- Part of the header displayed only in mobile mode -->
+    <div class="header-m-container">
+
+        <div class="header-m-top-container">
+            <div class="header-m-top header container clearer">
+                <div class="inner-container">
+
+                    <?php echo $this->getChildHtml('container_mobile_header_top'); ?>
+
+                    <?php if ($currencySwitcherHtml): ?>
+                        <div id="currency-switcher-wrapper-mobile" class="item item-right"><?php echo $currencySwitcherHtml; ?></div>
+                    <?php endif; ?>
+                    <?php if ($languageSwitcherHtml): ?>
+                        <div id="lang-switcher-wrapper-mobile" class="item item-right"><?php echo $languageSwitcherHtml; ?></div>
+                    <?php endif; ?>
+
+                </div> <!-- end: inner-container -->
+            </div> <!-- end: header-m-top -->
+        </div> <!-- end: header-m-top-container -->
+
+        <div class="header-m-primary-container">
+            <div class="header-m-primary header container">
+                <div class="inner-container">
+
+                    <?php if ($moveSwitchers && ($currencySwitcherHtml || $languageSwitcherHtml)): ?>
+                        <div id="header-collateral" class="header-collateral">
+                            <?php echo $languageSwitcherHtml; ?>
+                            <?php echo $currencySwitcherHtml; ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <!-- Mobile logo -->
+                    <div class="logo-wrapper--mobile">
+                        <a class="logo logo--mobile" href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>">
+                            <img src="<?php echo (($small = $this->getLogoSrcSmall()) ? $small : $this->getLogoSrc()); ?>" alt="<?php echo $this->getLogoAlt() ?>" />
+                        </a>
+                    </div>
+                    <div class="clearer after-mobile-logo"></div>
+
+                    <!-- Skip links -->
+                    <div class="skip-links-wrapper skip-links--<?php echo $skipLinksCount; ?>">
+
+                        <?php if (!empty($menuHtml)): ?>
+                            <a href="#header-nav" class="skip-link skip-nav">
+                                <span class="icon ic ic-menu"></span>
+                                <span class="label"><?php echo $this->__('Menu'); ?></span>
+                            </a>
+                        <?php endif; ?>
+
+                        <?php if (!empty($searchHtml)): ?>
+                            <a href="#header-search" class="skip-link skip-search">
+                                <span class="icon ic ic-search"></span>
+                                <span class="label"><?php echo $this->__('Search'); ?></span>
+                            </a>
+                        <?php endif; ?>
+
+                        <?php if (!empty($accountLinksHtml)): ?>
+                            <a href="#header-account" class="skip-link skip-account">
+                                <span class="icon ic ic-user"></span>
+                                <span class="label"><?php echo $this->__('My Account'); ?></span>
+                            </a>
+                        <?php endif; ?>
+
+                        <?php if (!empty($compareHtml)): ?>
+                            <a href="#header-compare" class="skip-link skip-compare">
+                                <span class="icon ic ic-compare"></span>
+                                <?php if (($compareCount = Mage::registry('miniCompareProductCount')) > 0): ?>
+                                    <span class="count"><?php echo $compareCount; ?></span>
+                                <?php endif; ?>
+                                <span class="label"><?php echo $this->__('Compare'); ?></span>
+                            </a>
+                        <?php endif; ?>
+
+                        <?php //Skip content - ontainers for blocks displayed on mobile devices ?>
+
+                        <?php //Mini cart (and its skip link) on mobile devices - it has to be just after the other skip links and before other blocks ?>
+                        <?php if (!empty($cartHtml)): ?>
+                            <div id="mini-cart-marker-mobile"></div>
+                            <?php echo $cartHtml; ?>
+                        <?php endif; ?>
+
+                        <?php //Menu on mobile devices ?>
+                            <div id="header-nav" class="skip-content skip-content--style">
+                                <div id="nav-marker-mobile"></div>
+                            </div>
+
+                        <?php if (!empty($searchHtml)): ?>
+                            <div id="search-marker-mobile"></div>
+                            <?php echo $searchHtml; ?>
+                        <?php endif; ?>
+
+                        <?php if (!empty($accountLinksHtml)): ?>
+                            <div id="account-links-marker-mobile"></div>
+                            <?php echo $accountLinksHtml; ?>
+                        <?php endif; ?>
+
+                        <?php if (!empty($compareHtml)): ?>
+                            <div id="mini-compare-marker-mobile"></div>
+                            <?php echo $compareHtml; ?>
+                        <?php endif; ?>
+
+                            <div class="skip-links-clearer clearer"></div>
+
+                    </div> <!-- end: skip-links-wrapper -->
+
+                </div> <!-- end: inner-container -->
+            </div> <!-- end: header-m-primary -->
+        </div> <!-- end: header-m-primary-container -->
+
+    </div> <!-- end: header-m-container -->
+    <?php endif; //end: mode ?>
+
     <!-- Part of the header displayed only in regular mode -->
     <div class="header-top-container">
         <div class="header-top header container clearer">
@@ -293,125 +407,6 @@
             </div> <!-- end: inner-container -->
         </div> <!-- end: header-top -->
     </div> <!-- end: header-top-container -->
-
-    <?php if ($mobileHeaderMode): ?>
-    <!-- Part of the header displayed only in mobile mode -->
-    <div class="header-m-container">
-
-        <div class="header-m-top-container">
-            <div class="header-m-top header container clearer">
-                <div class="inner-container">
-
-                    
-                        <?php echo $this->getChildHtml('container_mobile_header_top'); ?>
-    
-                    <div class="lang-cur-swtich">    
-                        <?php if ($currencySwitcherHtml): ?>
-                            <div id="currency-switcher-wrapper-mobile" class="item item-right"><?php echo $currencySwitcherHtml; ?></div>
-                        <?php endif; ?>
-                        <?php if ($languageSwitcherHtml): ?>
-                            <div id="lang-switcher-wrapper-mobile" class="item item-right"><?php echo $languageSwitcherHtml; ?></div>
-                        <?php endif; ?>
-                    </div>
-
-                </div> <!-- end: inner-container -->
-            </div> <!-- end: header-m-top -->
-        </div> <!-- end: header-m-top-container -->
-
-        <div class="header-m-primary-container">
-            <div class="header-m-primary header container">
-                <div class="inner-container">
-
-                    <?php if ($moveSwitchers && ($currencySwitcherHtml || $languageSwitcherHtml)): ?>
-                        <div id="header-collateral" class="header-collateral">
-                            <?php echo $languageSwitcherHtml; ?>
-                            <?php echo $currencySwitcherHtml; ?>
-                        </div>
-                    <?php endif; ?>
-
-                    <!-- Mobile logo -->
-                    <div class="logo-wrapper--mobile">
-                        <a class="logo logo--mobile" href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>">
-                            <img src="<?php echo (($small = $this->getLogoSrcSmall()) ? $small : $this->getLogoSrc()); ?>" alt="<?php echo $this->getLogoAlt() ?>" />
-                        </a>
-                        <h3 class="statement">Inspiring Divers to Become Photographers</h3>
-                    </div>
-                    <div class="clearer after-mobile-logo"></div>
-
-                    <!-- Skip links -->
-                    <div class="skip-links-wrapper skip-links--<?php echo $skipLinksCount; ?>">
-
-                        <?php if (!empty($menuHtml)): ?>
-                            <a href="#header-nav" class="skip-link skip-nav">
-                                <span class="icon ic ic-menu"></span>
-                                <span class="label"><?php echo $this->__('Menu'); ?></span>
-                            </a>
-                        <?php endif; ?>
-
-                        <?php if (!empty($searchHtml)): ?>
-                            <a href="#header-search" class="skip-link skip-search">
-                                <span class="icon ic ic-search"></span>
-                                <span class="label"><?php echo $this->__('Search'); ?></span>
-                            </a>
-                        <?php endif; ?>
-
-                        <?php if (!empty($accountLinksHtml)): ?>
-                            <a href="#header-account" class="skip-link skip-account">
-                                <span class="icon ic ic-user"></span>
-                                <span class="label"><?php echo $this->__('My Account'); ?></span>
-                            </a>
-                        <?php endif; ?>
-
-                        <?php if (!empty($compareHtml)): ?>
-                            <a href="#header-compare" class="skip-link skip-compare">
-                                <span class="icon ic ic-compare"></span>
-                                <?php if (($compareCount = Mage::registry('miniCompareProductCount')) > 0): ?>
-                                    <span class="count"><?php echo $compareCount; ?></span>
-                                <?php endif; ?>
-                                <span class="label"><?php echo $this->__('Compare'); ?></span>
-                            </a>
-                        <?php endif; ?>
-
-                        <?php //Skip content - ontainers for blocks displayed on mobile devices ?>
-
-                        <?php //Mini cart (and its skip link) on mobile devices - it has to be just after the other skip links and before other blocks ?>
-                        <?php if (!empty($cartHtml)): ?>
-                            <div id="mini-cart-marker-mobile"></div>
-                            <?php echo $cartHtml; ?>
-                        <?php endif; ?>
-
-                        <?php //Menu on mobile devices ?>
-                            <div id="header-nav" class="skip-content skip-content--style">
-                                <div id="nav-marker-mobile"></div>
-                            </div>
-
-                        <?php if (!empty($searchHtml)): ?>
-                            <div id="search-marker-mobile"></div>
-                            <?php echo $searchHtml; ?>
-                        <?php endif; ?>
-
-                        <?php if (!empty($accountLinksHtml)): ?>
-                            <div id="account-links-marker-mobile"></div>
-                            <?php echo $accountLinksHtml; ?>
-                        <?php endif; ?>
-
-                        <?php if (!empty($compareHtml)): ?>
-                            <div id="mini-compare-marker-mobile"></div>
-                            <?php echo $compareHtml; ?>
-                        <?php endif; ?>
-
-                            <div class="skip-links-clearer clearer"></div>
-
-                    </div> <!-- end: skip-links-wrapper -->
-
-                </div> <!-- end: inner-container -->
-            </div> <!-- end: header-m-primary -->
-        </div> <!-- end: header-m-primary-container -->
-
-    </div> <!-- end: header-m-container -->
-    <?php endif; //end: mode ?>
-
-
 
     <div class="header-primary-container">
         <div class="header-primary header container">

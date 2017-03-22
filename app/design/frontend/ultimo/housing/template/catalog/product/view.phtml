@@ -1,0 +1,524 @@
+<?php
+/**
+ * Product view template
+ *
+ * @see Mage_Catalog_Block_Product_View
+ * @see Mage_Review_Block_Product_View
+ */
+?>
+<?php
+	$_helper = $this->helper('catalog/output');
+	$_product = $this->getProduct();
+	$theme = $this->helper('ultimo');
+	$helperThis = $this->helper('ultimo/template_catalog_product_view');
+	$helperSnippets = $this->helper('ultimo/rsnippets');
+
+	// CSS classes based on product type
+	$productTypeId = $_product->getTypeId();
+	$productTypeClasses = '';
+	$isGrouped = false;
+	if ($productTypeId === 'grouped') {
+		$productTypeClasses .= ' is-type-grouped';
+		$isGrouped = true;
+	}
+
+	$shortDescription = $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description');
+
+	// Rich snippets
+	$useRichSnippets = ($helperSnippets->isEnabledOnProductPage() && $productTypeId !== 'grouped');
+	$priceProperties = '';
+	if ($useRichSnippets)
+	{
+		$priceProperties = $helperSnippets->getPriceProperties($_product); //Has to be called before getOfferItemscope
+	}
+
+	// Get grid classes for product page sections
+	$grid = $helperThis->getGridClasses();
+
+	// Product collaterals
+	//--------------------------------------------------------------
+	$section = array();
+	$relatedProductsHtml = '';
+	$upsellProductsHtml = '';
+	
+	// Related products.
+	// If related products not assigned to collateral data container.
+	if (!$theme->getCfg('product_page/collateral_related'))
+	{
+		$replaceRelated = $theme->getCfg('product_page/replace_related');
+		if ($replaceRelated == 1) //don't replace with static block
+		{
+			if ($tmpHtml = trim($this->getChildHtml('related_products_wrapper')))
+				$relatedProductsHtml = $tmpHtml;
+			//$relatedProductsHtml = trim($this->getChildHtml('related_products_wrapper'));
+		}
+		elseif ($replaceRelated == 2) //if related is empty, replace with static block
+		{
+			if ($tmpHtml = trim($this->getChildHtml('related_products_wrapper')))
+				$relatedProductsHtml = $tmpHtml;
+			else //related empty
+				if ($tmpHtml = $this->getChildHtml('block_product_replace_related'))
+					$relatedProductsHtml = '<div class="block_product_replace_related">'. $tmpHtml .'</div>';
+		}
+		elseif ($replaceRelated == 3) //replace with static block
+		{
+			if ($tmpHtml = $this->getChildHtml('block_product_replace_related'))
+				$relatedProductsHtml = '<div class="block_product_replace_related">'. $tmpHtml .'</div>';
+		}
+	}
+
+	// Up-sell products.
+	// If up-sell products not assigned to collateral data container.
+	if (!$theme->getCfg('product_page/collateral_upsell'))
+	{
+		$replaceUpsell = $theme->getCfg('product_page/replace_upsell');
+		if ($replaceUpsell == 1) //don't replace with static block
+		{
+			if ($tmpHtml = trim($this->getChildHtml('upsell_products_wrapper')))
+				$upsellProductsHtml = $tmpHtml;
+			//$upsellProductsHtml = $this->getChildHtml('upsell_products_wrapper');
+		}
+		elseif ($replaceUpsell == 2) //if upsell is empty, replace with static block
+		{
+			if ($tmpHtml = trim($this->getChildHtml('upsell_products_wrapper')))
+				$upsellProductsHtml = $tmpHtml;
+			else //upsell empty
+				if ($tmpHtml = $this->getChildHtml('block_product_replace_upsell'))
+					$upsellProductsHtml = '<div class="block_product_replace_upsell">'. $tmpHtml .'</div>';
+		}
+		elseif ($replaceUpsell == 3) //replace with static block
+		{
+			if ($tmpHtml = $this->getChildHtml('block_product_replace_upsell'))
+				$upsellProductsHtml = '<div class="block_product_replace_upsell">'. $tmpHtml .'</div>';
+		}
+	}
+
+	// Assign blocks to selected position
+	$p = array();
+
+	// Related products
+	$position = $theme->getCfg('product_page/related_position');
+	if (isset($p[$position]))
+		$p[$position] = $p[$position] . $relatedProductsHtml;
+	else
+		$p[$position] = $relatedProductsHtml;
+
+	// Up-sell products
+	$position = $theme->getCfg('product_page/upsell_position');
+	if (isset($p[$position]))
+		$p[$position] = $p[$position] . $upsellProductsHtml;
+	else
+		$p[$position] = $upsellProductsHtml;
+
+	// Product collateral data (displayed as tabs or stacked blocks)
+	$position = $theme->getCfg('product_page/collateral_position');
+	if (isset($p[$position]))
+		$p[$position] = $p[$position] . $this->getChildHtml('productCollaterals');
+	else
+		$p[$position] = $this->getChildHtml('productCollaterals');
+?>
+<script type="text/javascript">
+	var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+</script>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<?php  echo $this->getLayout()->createBlock('cms/block')->setBlockId('block-product-contact')->toHtml() ?>
+<div class="product-view nested-container" <?php if ($useRichSnippets) echo $helperSnippets->getProductItemscope(); ?> itemscope itemtype="http://schema.org/Product">
+
+
+
+	<div class="product-img-column <?php echo $grid['imgCol']; ?>">
+
+		<?php echo $this->getChildHtml('media') ?>
+		<?php echo $this->helper('ultimo/labels')->getLabels($_product); // Product labels ?>
+		<?php //echo $this->getChildHtml('container_product_image_1'); ?>
+      
+      <?php
+                    $cusemail = Mage::getSingleton('customer/session')->getCustomer()->getEmail();
+                    if($cusemail && $cusemail=="support@housingcamera.com"){
+                      echo ' <div class="admin-box">';
+                      echo '<a href="' . Mage::getBaseUrl() . "admin/catalog_product/edit/id/" . $_product->getId() . '">Edit in Admin </a>';
+                      echo ' </div>';
+                      
+                    
+                        
+                    }
+                ?>
+
+	</div>
+
+
+
+	<div class="product-primary-column product-shop <?php echo $grid['primCol']; ?>">
+
+		<div class="product-name">
+			<h1 itemprop="name"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+		</div>
+		
+        <div class="yotpo-view">
+              <?php $this->helper('yotpo')->showBottomline($this, $_product); ?>
+              <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                      <?php $array = $this->helper('yotpo/richSnippets')->getRichSnippet($this); ?>
+                      <span itemprop="ratingValue"><?php if (is_array($array) && isset($array["average_score"])) {echo $array["average_score"]; }?></span> 
+                      <span itemprop="ratingCount"><?php if (is_array($array) && isset($array["reviews_count"])) {echo $array["reviews_count"];} ?></span>
+               </div>   
+              <?php //$this->helper('yotpo')->showQABottomline($this, $_product); ?>
+        </div>
+
+		<?php echo $this->getReviewsSummaryHtml($_product, false, true); // Reviews ?>
+
+		<?php if ($shortDescription): ?>
+			<div class="short-description"><div class="std" itemprop="description"><?php echo $shortDescription; ?></div></div>
+		<?php endif;?>
+
+		<?php echo $this->getChildHtml('container_product_primary_1'); ?>
+
+		<?php if (isset($p['primCol_1'])) echo $p['primCol_1']; ?>
+
+		<?php if ($sku = $_product->getSku()): ?>
+			<?php if ($theme->getCfg('product_page/sku')): ?>
+				<div class="sku">
+					<span class="label"><?php echo $this->__('SKU'); ?>: </span>
+					<span class="value"><?php echo $sku; ?></span>
+				</div>
+			<?php endif; ?>
+			<?php if ($useRichSnippets): ?><meta itemprop="productID" content="sku:<?php echo $sku; ?>" /><?php endif; ?>
+		<?php endif; ?>
+      
+      <?php // Get stock status from Lead Time
+                $stock_status = $_helper->productAttribute($_product, nl2br($_product->getAvailability()), 'availability');
+                $lead_time = $_helper->productAttribute($_product, $_product->getLeadTime(), 'lead_time');
+                if (!(is_null($lead_time)) && $lead_time<>"" && $stock_status==""){        // Not Valid anymore if there is a stock_status value
+                    switch ($lead_time) {
+                        case 2:
+                            $stock_status = "<span class='instock'>Usually In Stock! Ships within 1-2 business days</span>";
+                            break;
+                        case 6:
+                            $stock_status = "<span class='instock'>Usually Ships within 3-6 Business Days</span>"
+                                . "<br />Need it quicker? <a href='/contacts'>Contact Us</a>";
+                            break;
+                        case 10:
+                            $stock_status = "<span class='instock'>Usually Ships within 10-14 Business Days</span>"
+                                 . "<br />Need it quicker? <a href='/contacts'>Contact Us</a>";
+                            break;
+                        case 15:
+                            $stock_status = "<span class='nastock'>Subject to Manufacturer Availability, Contact Us for ETA</span>"
+                                 . "<br />Need it quickly? <a href='/contacts'>Contact Us</a>";
+                            break;
+                        case 30:
+                            $stock_status = "<span class='nastock'>Pre-Order Now! First comes 1st served...</span>"
+                                . "<br />Need it quickly? <a href='/contacts'>Contact Us</a>";
+                            break;
+                        case 45:
+                            $stock_status = "<span class='outofstock'>DISCONTINUED</span>";
+                            break;
+                    }
+                }
+                else{
+                    $stock_status   = str_replace("Discontinued","<span class='outofstock'>DISCONTINUED</span>",$stock_status);
+                    if (strpos($stock_status, 'In Stock') !== false) {
+                        $stock_status =  "<span class='instock'>" . $stock_status . "</span>" ;
+                    }
+                 }
+            ?>
+            <?php  /////////////////////////GEO IP //////////////////////////
+                    $geoIP = Mage::getSingleton('geoip/country');          
+                    $visitorCountry = $geoIP->getCountry();
+                    $euCountries = array("BE","BG","CZ","DK","DE","EE","IE","EL","ES","FR","HR","IT","CY","LV","LT","LU","HU","MT","NL","AT","PL","PT","RO","SI","SK","FI","SE","UK");
+                    
+                    $brand = $_product->getAttributeText('manufacturer');
+                    $brand_allowed = !in_array($brand, array("Nauticam","nauticam","sealife","Sealife","Light and Motion", "TUSA","Waterproof"));
+                    if ($brand_allowed && $visitorCountry!="A1"){
+                        $countryStr = "We ship to <strong>" . $geoIP->getCountryName($visitorCountry) . "</strong>. Add to Cart to calculate shipping."  . "<div style='display:none;'>" .  $visitorCountry . Mage::helper('core/http')->getRemoteAddr() . "</div>";
+                    } else {$countryStr="Ships to: <strong>" . $_product->getTerritory() . "</strong>"; }
+                    
+                    switch ($visitorCountry){
+                        case "US":
+                            $countryStr = "Orders ship out of Blaine, WA"  . "<div style='display:none;'>" .  $visitorCountry . Mage::helper('core/http')->getRemoteAddr().  "</div>";
+                            break;
+                        case "CA":
+                            $countryStr = "We are Canadian and only charge GST/PST/HST, no border fees!" . "<div style='display:none;'>" .  $visitorCountry . Mage::helper('core/http')->getRemoteAddr() .  "</div>";
+                            break;
+                        case "AU":
+                            break;
+                        case "ZA";                             
+                            break;
+                        case "IL":
+                            break;
+                        default:
+                            if (in_array($visitorCountry, $euCountries)){
+                            }else{
+                            }
+                            break;
+                    } 
+                    
+                    if ($brand=="Cressi"){
+                        $countryStr = "Ships from Surrey, BC, Canada";
+                    }
+                    // Sucuri breaks the Geoip so this is a fix to default
+                    /* $strTerritory = $_product->getTerritory();
+                    if (isset($strTerritory) && strlen($strTerritory)>0){
+                        $countryStr="Ships to: <strong>" . $strTerritory . "</strong>";
+                    }else {$countryStr="";} */
+                    
+                    /////////////////////////END GEO IP ////////////////////////// ?>
+            <div class="std" ><?php echo "<strong>Stock Status: </strong>" . $stock_status  . "<br /><div id='geo-country'>" . $countryStr; ?></div></div>
+
+		
+		
+		<?php if ($extrahint_html = $this->getChildHtml('extrahint')): // Qty increments ?>
+			<div class="extrahint-wrapper"><?php echo $extrahint_html; ?></div>
+		<?php endif; ?>
+
+		<div <?php if ($useRichSnippets) echo $helperSnippets->getOfferItemscope(); ?>>
+			<div class="product-type-data<?php echo $productTypeClasses; ?>" itemscope itemtype="http://schema.org/Offer">
+
+				<?php if ($isGrouped): // Grouped product table ?>
+					<form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+						<?php echo $this->getBlockHtml('formkey'); ?>
+						<div class="no-display">
+							<input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+							<input type="hidden" name="related_product" id="related-products-field" value="" />
+						</div>
+						<?php echo $this->getChildHtml('product_type_data'); ?>
+						<?php if($_product->isSaleable()): ?>
+							<div class="add-to-box">
+								<?php echo $this->getChildHtml('addtocart') ?>
+							</div>
+						<?php endif; ?>
+					</form>
+				<?php else: ?>
+					<?php echo $this->getChildHtml('product_type_data'); ?>
+				<?php endif; ?>
+
+			</div>
+			<?php echo $this->getTierPriceHtml(); // Tier prices ?>
+			<?php echo $priceProperties; ?>
+		</div> <?php //end: offers ?>
+		<?php echo $this->getChildHtml('alert_urls'); // Alerts ?>
+
+		<?php if (!$this->hasOptions() && !$isGrouped): // Add to cart when: no options (e.g. simple product) and not a grouped product ?>
+		
+			<form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+				<?php echo $this->getBlockHtml('formkey'); ?>
+				<div class="no-display">
+					<input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+					<input type="hidden" name="related_product" id="related-products-field" value="" />
+				</div>
+            <?php if (!$this->hasOptions()): //add to cart when no options ?>
+                <?php if($_product->isSaleable()): ?>
+                    <div class="add-to-box">
+                        <?php if ($brand == "TUSA" && $visitorCountry=="CA") : ?>
+                            <strong>Sorry but TUSA products are not available in Canada <?php echo $visitorCountry; ?></strong>
+                        <?php else: ?>
+                              <?php echo $this->getChildHtml('addtocart') ?>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
+                
+                <?php echo $this->getChildHtml('extra_buttons') ?>
+            <?php endif; ?>
+           
+            <?php if ($_product->isSaleable() && $this->hasOptions()): ?>
+                <?php if ($container2_html = $this->getChildChildHtml('container2', '', true, true)): ?>
+                    <div class="box-additional <?php echo $container2ColGridClass; ?>">
+                            <div class="container2-wrapper"><?php echo $container2_html; ?></div>
+                    </div>
+               <?php endif; ?>
+            <?php endif; ?>
+
+
+             <?php if ($visitorCountry=="US") : ?>
+            <!--- Paypal Credit Banner -->
+                <script type="text/javascript" data-pp-pubid="70a912b962" data-pp-placementtype="468x60"> (function (d, t) {
+                    "use strict";
+                    var s = d.getElementsByTagName(t)[0], n = d.createElement(t);
+                    n.src = "//paypal.adtag.where.com/merchant.js";
+                    s.parentNode.insertBefore(n, s);
+                    }(document, "script"));
+                </script>
+            <?php endif; ?>
+			</form>
+
+		<?php endif; ?>
+
+		<?php if ($_product->isSaleable() && $this->hasOptions()): ?>
+			<?php if ($container1_html = $this->getChildChildHtml('container1', '', true, true)): ?>
+
+				<div class="container1-wrapper">
+					<form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+						<?php echo $this->getBlockHtml('formkey'); ?>
+						<div class="no-display">
+							<input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+							<input type="hidden" name="related_product" id="related-products-field" value="" />
+						</div>
+					 <?php if ($brand == "TUSA" && $visitorCountry=="CA") : ?>
+                           <strong>Sorry but TUSA products are not available in Canada </strong>
+                        <?php else: ?>
+                           <div class="container1-wrapper"><?php echo $container1_html; ?></div>
+                <?php endif; ?>
+					</form>
+				</div>
+
+			<?php endif; ?>
+		<?php endif;?>
+		
+		<?php if ($addtoLinksHtml = $this->getChildHtml('addto')): // Compare, wishlist, send to friend ?>
+			<div class="action-box clearer">
+				<?php echo $addtoLinksHtml; ?>
+			</div>
+		<?php endif; ?>
+
+		<?php if (isset($p['primCol_2'])) echo $p['primCol_2']; ?>
+
+		<?php echo $this->getChildHtml('other'); ?>
+
+		<?php echo $this->getChildHtml('container_product_primary_2'); ?>
+      
+      <?php echo $this->getChildHtml('container_product_image_1'); ?>
+
+	</div>
+
+
+
+	<?php if (isset($grid['secCol'])): //(!empty($secondaryColUnits)): ?>
+
+		<div class="product-secondary-column <?php echo $grid['secCol']; ?> custom-sidebar-right">
+			<div class="inner">
+
+				<?php echo $this->getChildHtml('container_product_secondary_1'); ?>
+
+				<?php if (isset($p['secCol_1'])) echo $p['secCol_1']; ?>
+
+				<?php if ($tmpHtml = $this->getChildHtml('product_secondary_top_placeholder')): // Brand logo ?>
+					<div class="feature-wrapper bottom-border"><?php echo $tmpHtml; ?></div>
+				<?php endif; ?>
+
+				<?php if (isset($p['secCol_2'])) echo $p['secCol_2']; ?>
+
+				<?php //echo $this->getChildHtml('container_product_secondary_2'); ?>
+
+				<?php if (isset($p['secCol_3'])) echo $p['secCol_3']; ?>
+
+			</div>
+        <div class="products-browse-more">
+            <?php // Get additional category links
+                    $i = 0;
+                    $cats = $_product->getCategoryIds();
+                    /* if (count($cats)>0){
+                        echo '<div class="rb-home-heading">SIMILAR ITEMS</div>';
+                    } */
+                    foreach ($cats as $category_id) {
+                            $_cat = Mage::getModel('catalog/category')->load($category_id) ; 
+                            if ($_cat->getIsActive()){
+                                echo 'Browse More <a href="' . $_cat->getUrl() . '">' . $_cat->getName() . "</a><br>";
+                                $i++;
+                            }
+                            if ($i==3) break;
+                    }  
+            ?>
+         </div>
+
+		</div>
+
+	<?php endif; ?>
+
+
+
+	<?php if ($_product->isSaleable() && $this->hasOptions()): ?>
+		<?php if ($container2_html = $this->getChildChildHtml('container2', '', true, true)): ?>
+
+			<div class="product-primary-column-part2 box-additional <?php echo $grid['cont2Col']; ?>">
+				<div class="container2-wrapper">
+					<form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+						<?php echo $this->getBlockHtml('formkey'); ?>
+						<div class="no-display">
+							<input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+							<input type="hidden" name="related_product" id="related-products-field" value="" />
+						</div>
+						<?php echo $container2_html; ?>
+					</form>
+				</div>
+			</div>
+
+		<?php endif; ?>
+	<?php endif; ?>
+
+
+	
+	<script type="text/javascript">
+	//<![CDATA[
+		var productAddToCartForm = new VarienForm('product_addtocart_form');
+		productAddToCartForm.submit = function(button, url) {
+			if (this.validator.validate()) {
+				var form = this.form;
+				var oldUrl = form.action;
+
+				if (url) {
+				   form.action = url;
+				}
+				var e = null;
+				try {
+					this.form.submit();
+				} catch (e) {
+				}
+				this.form.action = oldUrl;
+				if (e) {
+					throw e;
+				}
+
+				if (button && button != 'undefined') {
+					button.disabled = true;
+				}
+			}
+		}.bind(productAddToCartForm);
+
+		productAddToCartForm.submitLight = function(button, url){
+			if(this.validator) {
+				var nv = Validation.methods;
+				delete Validation.methods['required-entry'];
+				delete Validation.methods['validate-one-required'];
+				delete Validation.methods['validate-one-required-by-name'];
+				if (this.validator.validate()) {
+					if (url) {
+						this.form.action = url;
+					}
+					this.form.submit();
+				}
+				Object.extend(Validation.methods, nv);
+			}
+		}.bind(productAddToCartForm);
+	//]]>
+	</script>
+
+
+
+	<?php // Lower primary column ?>
+	<div class="product-lower-primary-column box-additional <?php echo $grid['lowerPrimCol']; ?>">
+
+		<?php if (isset($p['lowerPrimCol_1'])) echo $p['lowerPrimCol_1']; ?>
+		
+		<?php echo $this->getChildHtml('product_additional_data') ?>
+
+		<?php echo $this->getChildHtml('reviews'); //Reviews ?>
+
+	</div>
+
+
+
+	<?php // Lower secondary column ?>
+	<?php if (isset($p['lowerSecCol_2'])): ?>
+		<div class="product-lower-secondary-column box-additional box-sidebar custom-sidebar-right <?php echo $grid['lowerSecCol']; ?>">
+			<div class="inner"><?php echo $p['lowerSecCol_2']; ?></div>
+		</div>
+	<?php endif; ?>
+
+
+
+	<?php // TODO: move it inside "product-lower-primary-column" ?>
+	<?php if (isset($p['lowerPrimCol_2'])): ?>
+		<div class="product-lower-primary-column-part2 box-additional <?php echo $grid['lowerPrimCol']; ?>"><?php echo $p['lowerPrimCol_2']; ?></div>
+	<?php endif; ?>
+
+
+
+</div> <!-- end: product-view -->

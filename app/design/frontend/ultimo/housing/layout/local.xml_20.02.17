@@ -18,8 +18,6 @@
 			<action method="addJs"><script>infortis/jquery/plugins/jquery.accordion.min.js</script></action>
 			<action method="addJs"><script>infortis/jquery/plugins/jquery.owlcarousel.min.js</script></action>
 			<action method="addJs"><script>infortis/jquery/plugins/imagesloaded.js</script></action>
-			<action method="addJs"><script>infortis/jquery/plugins/jquery.cookie.js</script></action>
-			<action method="addJs"><script>infortis/jquery/plugins/jquery.reveal.js</script></action>
 			<action method="addItem"><type>skin_js</type><name>js/smartheader.js</name></action>
 			<action method="addItem"><type>skin_js</type><name>js/stickyheader.js</name></action>
 			<action method="addItem"><type>skin_js</type><name>js/app.js</name></action>
@@ -43,7 +41,6 @@
 			<action method="addItem"><type>skin_css</type><name>css/infortis/_shared/tabs.css</name><params/></action>
 			<action method="addItem"><type>skin_css</type><name>css/infortis/_shared/icons.css</name><params/></action>
 			<action method="addItem"><type>skin_css</type><name>css/infortis/_shared/icons-font.css</name><params/></action>
-			<action method="addItem"><type>skin_css</type><name>css/icons-social.css</name><params/></action>
 
 			<!-- Common styles for multiple elements -->
 			<action method="addItem"><type>skin_css</type><name>css/common.css</name><params/></action>
@@ -52,7 +49,6 @@
 			<action method="addItem"><type>skin_css</type><name>css/override-modules.css</name><params/></action>
 			<action method="addItem"><type>skin_css</type><name>css/override-theme.css</name><params/></action>
 			<action method="addItem"><type>skin_css</type><name>css/header.css</name><params/></action>
-			<action method="addItem"><type>skin_css</type><name>css/reveal.css</name><params/></action>
 
 			<!-- Bootstrap elements - have to be loaded before grid12.css and other built-in responsive layout styles -->
 			<action method="addItem"
@@ -183,7 +179,7 @@
 				<action method="setPollTemplate"><template>poll/result.phtml</template><type>results</type></action>
 			</block>
 			<block type="tag/popular" name="tags_popular" template="tag/popular.phtml"/>
-			<!--<block type="paypal/logo" name="paypal.partner.right.logo" template="paypal/partner/logo.phtml"/>-->
+			<block type="paypal/logo" name="paypal.partner.right.logo" template="paypal/partner/logo.phtml"/>
 			
 			<!-- Deprecated: custom static blocks -->
 			<block type="cms/block" name="block_left_top" before="-">
@@ -560,13 +556,13 @@
 			<block type="catalog/product_view_tabs" name="product.info.tabs" as="info_tabs" template="catalog/product/view/tabs.phtml" >
 				
 				<!-- Product description -->
-				<action method="addTab" translate="title" module="catalog"><alias>description</alias><title>Description</title><block>catalog/product_view_description</block><template>catalog/product/view/description.phtml</template></action>
+				<action method="addTab" translate="title" module="catalog"><alias>description</alias><title>Product Description</title><block>catalog/product_view_description</block><template>catalog/product/view/description.phtml</template></action>
 				
 				<!-- Recurring profile -->
 				<action method="addTab" translate="title" module="payment"><alias>product.info.additional.recurring.schedule</alias><title>Recurring Profile</title><block>payment/catalog_product_view_profile</block><template>payment/catalog/product/view/profile/schedule.phtml</template></action>
 				
 				<!-- Product attributes -->
-				<action method="addTab" translate="title" module="catalog"><alias>additional</alias><title>Specifications</title><block>catalog/product_view_attributes</block><template>catalog/product/view/attributes.phtml</template></action>
+				<action method="addTab" translate="title" module="catalog"><alias>additional</alias><title>Additional Information</title><block>catalog/product_view_attributes</block><template>catalog/product/view/attributes.phtml</template></action>
 				
 				<!-- Reviews-->
 				<!-- Do not change 'tabreviews' alias. It is needed in JS scripts -->
@@ -884,21 +880,6 @@
 		</reference>
 		
 	</checkout_cart_index>
-	
-		<!-- CHECKOUT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-	<checkout_onepage_index>
-		
-		<!-- Block below progress block -->
-		<reference name="right">
-			<block type="page/html_wrapper" name="i_block_opc_below_progress">
-				<action method="setElementClass"><value>block block_opc_below_progress std</value></action>
-				<block type="cms/block" name="block_opc_below_progress" after="checkout.progress.wrapper">
-					<action method="setBlockId"><block_id>block_opc_below_progress</block_id></action>
-				</block>
-			</block>
-		</reference>
-	
-	</checkout_onepage_index>
 
 
 	<!-- SEARCH %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->

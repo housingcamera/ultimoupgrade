@@ -26,11 +26,13 @@
         <span>
         
             <span class="icon ic ic-cart"></span>
-            <?php if ($_cartQty > 0): ?>
-                <span class="count"><?php echo $_cartQty; ?></span>
-            <?php endif; ?>
+            
             <span class="label"<?php if (!$theme->getCfg('header/cart_label')) echo ' style="display:none;"'; ?>><?php echo $this->__('Cart'); ?></span>
-            <?php /* Commented-out to remove the subtotal from the mini-cart heading
+            <?php if ($_cartQty > 0): ?>
+                <?php /* <span class="count"><?php echo $_cartQty; ?></span> */ ?>
+                <div class="label amount">(<?php echo $_cartQty; ?>)</div>
+            <?php endif; ?>
+            <?php  //Commented-out to remove the subtotal from the mini-cart heading ?>
             <?php if ($_cartQty > 0): ?>
                 <?php if (!$canApplyMsrp): ?>
                     <span class="summary hide-below-960"><?php echo Mage::helper('checkout')->formatPrice($this->getSubtotal()); ?></span>
@@ -38,7 +40,7 @@
             <?php else: ?>
                 <span class="summary hide-below-960"><?php echo Mage::helper('checkout')->formatPrice(0); ?></span>
             <?php endif; ?>
-            */ ?>
+            
             <span class="caret"></span>
 
         </span>
